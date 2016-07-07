@@ -1,5 +1,10 @@
 import React from 'react';
 
-export default Sample = () => {
-  return <div>Hello World!</div>
+const Sample = () => {
+  return (
+    <div>
+      Hello World!
+    </div>);
 }
+
+export default Sample;
