@@ -13,12 +13,21 @@ module.exports = {
   output: {
     path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/static/'
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin()
   ],
   module: {
+    preLoaders: [
+      {
+        test: /\.js$/,
+        loaders: ['eslint-loader'],
+        include: [
+          path.resolve(__dirname, "app/src"),
+        ],
+      }
+    ],
     loaders: [
       {
         test: /\.js$/,
