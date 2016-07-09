@@ -10,8 +10,8 @@ exports.showAllNotes = function*() {
 
 exports.postNote = function*() {
   const note = yield parse(this);
-  const newNote = new Note(note);
 
+  const newNote = new Note(note);
   yield newNote.save();
 
   this.redirect('/');
