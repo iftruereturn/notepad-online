@@ -25,7 +25,7 @@ describe('Notes CRUD', () => {
       const id = savedNote._id;
 
       request
-        .get('/notes/' + id)
+        .get('/api/notes/' + id)
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -45,7 +45,7 @@ describe('Notes CRUD', () => {
       const anotherSavedNote = yield anotherNewNote.save();
 
       request
-        .get('/notes')
+        .get('/api/notes')
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -60,7 +60,7 @@ describe('Notes CRUD', () => {
 
   it('creates a new note', (done) => {
     request
-      .post('/notes')
+      .post('/api/notes')
       .send({ value: 'Very nice note', tags: 'nice, tags' })
       .expect(201)
       .expect('location', /^\/notes\/[0-9a-f]{24}$/)
@@ -75,12 +75,12 @@ describe('Notes CRUD', () => {
 
       // updating
       yield request
-        .put('/notes/' + id)
+        .put('/api/notes/' + id)
         .send({ value: 'Very nice note' })
         .expect(200);
 
       request
-        .get('/notes/' + id)
+        .get('/api/notes/' + id)
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
@@ -100,11 +100,11 @@ describe('Notes CRUD', () => {
 
       // deleting
       yield request
-        .del('/notes/' + id)
+        .del('/api/notes/' + id)
         .expect(200);
 
       request
-        .get('/notes/' + id)
+        .get('/api/notes/' + id)
         .expect(404)
         .end(done);
     });
