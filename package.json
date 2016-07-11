@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "node api/server.js",
+    "start-dev": "node frontDevServer.js",
     "test": "node node_modules/.bin/mocha -u bdd -R spec"
   },
   "keywords": [
@@ -30,7 +31,9 @@
     "react-dom": "^15.2.0",
     "react-redux": "^4.4.5",
     "react-router": "^2.5.2",
-    "redux": "^3.5.2"
+    "redux": "^3.5.2",
+    "redux-logger": "^2.6.1",
+    "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
     "babel-core": "^6.10.4",
