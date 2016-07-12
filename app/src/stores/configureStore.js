@@ -1,6 +1,6 @@
 import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
-import notepadOnlineApp from './reducers';
+import notepadOnlineApp from '../reducers';
 import thunk from 'redux-thunk';
 
 const configureStore = () => {

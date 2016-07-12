@@ -16,7 +16,9 @@ module.exports = {
     publicPath: '/static/'
   },
   plugins: [
+    // new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin()
+    // new webpack.NoErrorsPlugin()
   ],
   module: {
     preLoaders: [
@@ -36,5 +38,9 @@ module.exports = {
         include: path.join(__dirname, 'app/src')
       }
     ]
-  }
+  },
+  devServer: {
+    historyApiFallback: true,
+    hot: true
+  },
 };

@@ -26,6 +26,8 @@
     "co-body": "^4.2.0",
     "koa": "^1.2.0",
     "koa-router": "^5.4.0",
+    "koa-send": "^3.2.0",
+    "koa-static": "^2.0.0",
     "mongoose": "^4.5.3",
     "react": "^15.2.0",
     "react-dom": "^15.2.0",
@@ -51,6 +53,7 @@
     "should": "^9.0.2",
     "supertest": "^1.2.0",
     "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1"
+    "webpack-dev-server": "^1.14.1",
+    "webpack-hot-middleware": "^2.12.1"
   }
 }
