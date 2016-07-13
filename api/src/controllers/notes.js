@@ -41,7 +41,7 @@ exports.postNote = function*() {
     return this.status = 404;
   }
 
-  this.set('location', '/notes/' + savedNote._id);
+  this.set('location', '/api/notes/' + savedNote._id);
   this.status = 201;
 };
 

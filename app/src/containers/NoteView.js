@@ -1,20 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import noteActions from '../actions/NoteActions';
+import * as noteActions from '../actions/NoteActions';
 import NotePage from '../components/NotePage';
 
 class NoteView extends React.Component {
 
   render() {
-    <NotePage {...this.props}></NotePage>
+    return (
+      <div>
+        <NotePage {...this.props}></NotePage>
+      </div>
+      );
   }
 }
 
 const mapStateToProps = (state, { params }) => {
   const noteId = params.noteId || '';
   return {
-    ...state,
+    ...state.note,
     noteId
   }
 };
