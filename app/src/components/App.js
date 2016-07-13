@@ -1,7 +1,8 @@
 import React from 'react';
+import NoteView from '../containers/NoteView';
 
 const App = () => (
-  <div>Hello World!</div>
+  <NoteView></NoteView>
 );
 
 export default App;

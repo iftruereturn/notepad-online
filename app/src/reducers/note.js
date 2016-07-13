@@ -17,7 +17,8 @@ const initialState = {
 //  owner: '',
 //  private: ''
   savedAt: '',
-  fetching: false
+  fetching: false,
+  saving: false
 };
 
 const note = (state = initialState, action) => {
@@ -39,6 +40,21 @@ const note = (state = initialState, action) => {
       };
 
     case FETCH_NOTE_FAIL:
+      return state;
+
+    case SAVE_NOTE_TO_SERVER_REQUEST:
+      return { 
+        ...state,
+        saving: true
+      };
+
+    case SAVE_NOTE_TO_SERVER_SUCCESS:
+      return { 
+        ...state,
+        saving: false
+      };
+
+    case SAVE_NOTE_TO_SERVER_FAIL:
       return state;
 
     default:
