@@ -38,12 +38,14 @@ module.exports = {
         include: path.join(__dirname, 'app/src')
       }
     ]
-  },
+  }/*,
   devServer: {
     historyApiFallback: true,
     hot: true,
     proxy: {
-        '/api/*': 'http://localhost:8080/'
+      '/': {
+        target: 'http://localhost:8080/'
+      }
     }
-  },
+  },*/
 };
