@@ -6,7 +6,10 @@ import {
   SAVE_NOTE_TO_SERVER_REQUEST,
   SAVE_NOTE_TO_SERVER_SUCCESS,
   SAVE_NOTE_TO_SERVER_FAIL,
-  DELETE_THIS_NOTE
+  DELETE_THIS_NOTE,
+  CHANGE_NOTE_NAME,
+  CHANGE_NOTE_VALUE,
+  CHANGE_NOTE_TAGS
 } from '../constants/Note';
 // import { fetchNoteById } from '../utils';
 
@@ -36,7 +39,10 @@ export const fetchNote = (noteId) => (dispatch) => {
     });
 };
 
-export const saveNoteToServer = (noteId, note) => (dispatch) => {
+export const saveNoteToServer = (noteId) => (dispatch, getState) => {
+
+  const { note } = getState();
+  const { name, value, tags } = note;
 
   dispatch({
     type: SAVE_NOTE_TO_SERVER_REQUEST,
@@ -48,7 +54,7 @@ export const saveNoteToServer = (noteId, note) => (dispatch) => {
       headers: {  
         'Content-type': 'application/json'
       },  
-      body: JSON.stringify(note) 
+      body: JSON.stringify({ name, value, tags }) 
     })
     .then( (res) => { 
       dispatch({
@@ -62,5 +68,29 @@ export const saveNoteToServer = (noteId, note) => (dispatch) => {
         noteId
       });
     });
+};
+
+export const changeName = (name) => (dispatch) => {
+
+  dispatch({
+    type: CHANGE_NOTE_NAME,
+    name
+  })
+};
+
+export const changeValue = (value) => (dispatch) => {
+
+  dispatch({
+    type: CHANGE_NOTE_VALUE,
+    value
+  })
+};
+
+export const changeTags = (tags) => (dispatch) => {
+
+  dispatch({
+    type: CHANGE_NOTE_TAGS,
+    tags
+  })
 };
 

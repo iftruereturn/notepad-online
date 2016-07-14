@@ -6,7 +6,7 @@ import App from './App';
 const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={browserHistory}>
-      <Route path='/(:noteId)' component={App} />
+      <Route path='/notes/(:noteId)' component={App} />
     </Router>
   </Provider>
 );

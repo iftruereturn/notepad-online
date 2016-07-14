@@ -6,7 +6,10 @@ import {
   SAVE_NOTE_TO_SERVER_REQUEST,
   SAVE_NOTE_TO_SERVER_SUCCESS,
   SAVE_NOTE_TO_SERVER_FAIL,
-  DELETE_THIS_NOTE
+  DELETE_THIS_NOTE,
+  CHANGE_NOTE_NAME,
+  CHANGE_NOTE_VALUE,
+  CHANGE_NOTE_TAGS
 } from '../constants/Note';
 
 const initialState = {
@@ -56,6 +59,24 @@ const note = (state = initialState, action) => {
 
     case SAVE_NOTE_TO_SERVER_FAIL:
       return state;
+
+    case CHANGE_NOTE_NAME:
+      return {
+        ...state,
+        name: action.name
+      }
+
+    case CHANGE_NOTE_VALUE:
+      return {
+        ...state,
+        value: action.value
+      }
+
+    case CHANGE_NOTE_TAGS:
+      return {
+        ...state,
+        tags: action.tags
+      }
 
     default:
       return state;
