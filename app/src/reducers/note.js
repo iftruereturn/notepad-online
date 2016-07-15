@@ -38,7 +38,7 @@ const note = (state = initialState, action) => {
         ...state, 
         name: action.note.name,
         value: action.note.value,
-        tags: action.note.tags,
+        tags: action.note.tags.join(', '),
         fetching: false
       };
 
