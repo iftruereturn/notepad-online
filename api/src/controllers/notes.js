@@ -25,8 +25,17 @@ exports.getNote = function*() {
 exports.getAllNotes = function*() {
   const query = this.request.query;
   console.log(query);
+  const tagsQuery = query.tags;
 
-  const allNotes = yield Note.find({}).exec();
+  let allNotes;
+
+  if (typeof tagsQuery === 'string') {
+    allNotes = yield Note.find({ tags: tagsQuery }).exec();
+  } else if (tagsQuery && tagsQuery.length > 2) {
+    allNotes = yield Note.find({ tags: { "$in" : tagsQuery} }).exec();
+  } else {
+    allNotes = yield Note.find({}).exec();
+  }
 
   this.set({ 'Content-Type': 'application/json' });
   this.body = JSON.stringify(allNotes);
