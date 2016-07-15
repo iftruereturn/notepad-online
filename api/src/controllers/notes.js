@@ -33,6 +33,14 @@ exports.getAllNotes = function*() {
 
 exports.postNote = function*() {
   const note = yield parse(this);
+
+  // parsing tags (if needed)
+  if (typeof note.tags === 'string') {
+    let cleanTagsArray = parseTags(note.tags);
+    console.log(cleanTagsArray);
+    note.tags = cleanTagsArray;
+  }
+
   const newNote = new Note(note);
   let savedNote;
   try {
@@ -51,6 +59,14 @@ exports.updateNote = function*() {
 
   const update = yield parse(this);
   update.updated = Date.now();
+
+  // parsing tags (if needed)
+  if (typeof update.tags === 'string') {
+    let cleanTagsArray = parseTags(update.tags);
+    console.log(cleanTagsArray);
+    update.tags = cleanTagsArray;
+  }
+
 
   try {
     yield Note.findByIdAndUpdate(id, update).exec();
@@ -72,4 +88,10 @@ exports.deleteNote = function*() {
   }
 
   this.status = 200;
+};
+
+const parseTags = (tagsArray) => {
+  return tagsArray.split(',')
+           .map( el => el.trim() )
+           .filter( el => el );
 };
