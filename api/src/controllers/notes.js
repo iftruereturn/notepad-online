@@ -50,6 +50,7 @@ exports.updateNote = function*() {
   const id = this.params.id;
 
   const update = yield parse(this);
+  update.updated = Date.now();
 
   try {
     yield Note.findByIdAndUpdate(id, update).exec();
