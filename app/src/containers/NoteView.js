@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import * as noteActions from '../actions/NoteActions';
+import * as NoteActions from '../actions/NoteActions';
 import NotePage from '../components/NotePage';
 
 class NoteView extends React.Component {
@@ -26,7 +26,7 @@ const mapStateToProps = (state, { params }) => {
 // const mapDispatchToProps = (dispatch) => {
 // }
 
-NoteView = withRouter(connect(mapStateToProps, noteActions)(NoteView));
+NoteView = withRouter(connect(mapStateToProps, NoteActions)(NoteView));
 
 export default NoteView;
 

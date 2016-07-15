@@ -23,6 +23,9 @@ exports.getNote = function*() {
 
 
 exports.getAllNotes = function*() {
+  const query = this.request.query;
+  console.log(query);
+
   const allNotes = yield Note.find({}).exec();
 
   this.set({ 'Content-Type': 'application/json' });

@@ -49,9 +49,7 @@ describe('Notes CRUD', () => {
         .expect(200)
         .expect('Content-Type', /json/)
         .expect(function(res) {
-          res.text.should.containEql('my new note');
           res.text.should.containEql('my, new, tags');
-          res.text.should.containEql('another writing');
           res.text.should.containEql('really, nice');
         })
         .end(done);

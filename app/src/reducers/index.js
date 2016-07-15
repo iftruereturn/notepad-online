@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import note from './note'
+import note from './note';
+import list from './list';
 
 const notepadOnlineApp = combineReducers({
-  note
+  note,
+  list
 });
 
 export default notepadOnlineApp;
