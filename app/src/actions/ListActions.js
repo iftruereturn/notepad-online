@@ -15,10 +15,16 @@ import {
 
 export const findNotesByTags = (queryString) => (dispatch) => {
 
-  const formattedQueryString = '?tags=' + queryString.split(' ')
-                                    .map( el => el.trim() )
-                                    .filter( el => el !== '' )
-                                    .join('&tags=');
+  let formattedQueryString;
+
+  if (queryString === '') {
+    formattedQueryString = '';
+  } else {
+    formattedQueryString = '?tags=' + queryString.split(' ')
+                                      .map( el => el.trim() )
+                                      .filter( el => el !== '' )
+                                      .join('&tags=');
+  }
 
   console.log(formattedQueryString);
 

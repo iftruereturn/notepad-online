@@ -1,6 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 export default class ListPage extends React.Component {
+  componentDidMount() {
+    this.findNotes('');
+  }
 
   findNotes(queryString) {
     const { findNotesByTags } = this.props;
@@ -18,8 +22,8 @@ export default class ListPage extends React.Component {
           {foundNotes.map((note, index) =>
             <div key={index}>
               <div>Name: {note.name}</div>
-              <div>Tags: {note.tags}</div>
-              <div>{note._id}</div>
+              <div>Tags: {note.tags.join(', ')}</div>
+              <Link to={`/notes/${note._id}`}>Open</Link>
               <hr/>
             </div>
           )}
