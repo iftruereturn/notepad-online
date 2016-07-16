@@ -30,3 +30,5 @@ export default class NotePage extends React.Component {
     );    
   }
 }
+
+// TODO Proptypes

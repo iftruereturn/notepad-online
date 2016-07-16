@@ -19,6 +19,7 @@ export const fetchNote = (noteId) => (dispatch) => {
 
   dispatch({
     type: FETCH_NOTE_REQUEST,
+    fetching: true,
     noteId
   });
 
@@ -28,12 +29,14 @@ export const fetchNote = (noteId) => (dispatch) => {
     .then( (note) => {
       dispatch({
         type: FETCH_NOTE_SUCCESS,
+        fetching: false,
         note
       });
     })
     .catch( () => {
       dispatch({
         type: FETCH_NOTE_FAIL,
+        fetching: false,
         noteId
       });
     });
@@ -46,6 +49,7 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
 
   dispatch({
     type: SAVE_NOTE_TO_SERVER_REQUEST,
+    saving: true,
     noteId
   });
 
@@ -59,12 +63,14 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
     .then( (res) => { 
       dispatch({
         type: SAVE_NOTE_TO_SERVER_SUCCESS,
+        saving: false,
         noteId
       }); 
     })
     .catch( (res) => {
       dispatch({
         type: SAVE_NOTE_TO_SERVER_FAIL,
+        saving: false,
         noteId
       });
     });

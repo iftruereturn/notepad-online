@@ -24,7 +24,7 @@ const mapStateToProps = (state) => {
 // const mapDispatchToProps = (dispatch) => {
 // }
 
-NoteView = withRouter(connect(mapStateToProps, ListActions)(ListView));
+ListView = withRouter(connect(mapStateToProps, ListActions)(ListView));
 
 export default ListView;
 

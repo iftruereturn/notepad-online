@@ -30,7 +30,7 @@ const note = (state = initialState, action) => {
     case FETCH_NOTE_REQUEST:
       return { 
         ...state, 
-        fetching: true 
+        fetching: action.fetching 
       };
 
     case FETCH_NOTE_SUCCESS:
@@ -39,26 +39,32 @@ const note = (state = initialState, action) => {
         name: action.note.name,
         value: action.note.value,
         tags: action.note.tags.join(', '),
-        fetching: false
+        fetching: action.fetching 
       };
 
     case FETCH_NOTE_FAIL:
-      return state;
+      return { 
+        ...state, 
+        fetching: action.fetching  
+      };
 
     case SAVE_NOTE_TO_SERVER_REQUEST:
       return { 
         ...state,
-        saving: true
+        saving: action.saving 
       };
 
     case SAVE_NOTE_TO_SERVER_SUCCESS:
       return { 
         ...state,
-        saving: false
+        saving: action.saving
       };
 
     case SAVE_NOTE_TO_SERVER_FAIL:
-      return state;
+      return {
+        ...state,
+        saving: action.saving 
+      };
 
     case CHANGE_NOTE_NAME:
       return {
