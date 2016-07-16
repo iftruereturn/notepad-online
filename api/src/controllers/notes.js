@@ -31,7 +31,7 @@ exports.getAllNotes = function*() {
 
   if (typeof tagsQuery === 'string') {
     allNotes = yield Note.find({ tags: tagsQuery }, '-value').exec();
-  } else if (tagsQuery && tagsQuery.length > 2) {
+  } else if (tagsQuery && tagsQuery.length > 1) {
     allNotes = yield Note.find({ tags: { "$in" : tagsQuery} }, '-value').exec();
   } else {
     allNotes = yield Note.find({}, '-value').exec();
