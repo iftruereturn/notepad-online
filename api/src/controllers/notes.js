@@ -30,11 +30,11 @@ exports.getAllNotes = function*() {
   let allNotes;
 
   if (typeof tagsQuery === 'string') {
-    allNotes = yield Note.find({ tags: tagsQuery }).exec();
+    allNotes = yield Note.find({ tags: tagsQuery }, '-value').exec();
   } else if (tagsQuery && tagsQuery.length > 2) {
-    allNotes = yield Note.find({ tags: { "$in" : tagsQuery} }).exec();
+    allNotes = yield Note.find({ tags: { "$in" : tagsQuery} }, '-value').exec();
   } else {
-    allNotes = yield Note.find({}).exec();
+    allNotes = yield Note.find({}, '-value').exec();
   }
 
   this.set({ 'Content-Type': 'application/json' });

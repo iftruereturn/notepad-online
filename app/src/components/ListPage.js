@@ -17,9 +17,9 @@ export default class ListPage extends React.Component {
         <div>
           {foundNotes.map((note, index) =>
             <div key={index}>
-              <div>{note.name}</div>
-              <div>{note.value}</div>
-              <div>{note.tags}</div>
+              <div>Name: {note.name}</div>
+              <div>Tags: {note.tags}</div>
+              <div>{note._id}</div>
               <hr/>
             </div>
           )}
