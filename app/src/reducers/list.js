@@ -14,6 +14,7 @@ import {
 } from '../constants/List';
 
 const initialState = {
+  creating: false,
   searching: false,
   foundNotes: []
 };
@@ -38,6 +39,24 @@ const list = (state = initialState, action) => {
       return {
         ...state,
         searching: action.searching
+      }
+
+    case ADD_NEW_NOTE_REQUEST:
+      return {
+        ...state,
+        creating: action.creating
+      }
+
+    case ADD_NEW_NOTE_SUCCESS:
+      return {
+        ...state,
+        creating: action.creating
+      }
+
+    case ADD_NEW_NOTE_FAIL:
+      return {
+        ...state,
+        creating: action.creating
       }
 
     default:

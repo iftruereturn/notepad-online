@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default class NotePage extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     this.fetchData();    
   }
 
@@ -20,6 +20,7 @@ export default class NotePage extends React.Component {
     return (
       <div>
         <Link to={'/notes'}>Back to list</Link>
+        {fetching? <span>Fetching</span> : ''}
         <h1>{name}</h1>
         <input type="text" value={name} 
           onChange={(e) => changeName(e.target.value)}/>

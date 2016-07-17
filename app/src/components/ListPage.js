@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default class ListPage extends React.Component {
-  componentDidMount() {
+  componentWillMount() {
     this.findNotes('');
   }
 
@@ -12,13 +12,14 @@ export default class ListPage extends React.Component {
   }
 
   render() {
-    const { searching, foundNotes } = this.props;
+    const { searching, foundNotes, addNewNote } = this.props;
 
     return (
       <div>
         <input type="text" onChange={(e) => this.findNotes(e.target.value)}/>
         <span>{searching? 'searching' : ''}</span>
         <div>
+          <button onClick={() => addNewNote()}>Add new note</button>
           {foundNotes.map((note, index) =>
             <div key={index}>
               <div>Name: {note.name}</div>

@@ -12,6 +12,7 @@ import {
   OPEN_NOTE_SUCCESS,
   OPEN_NOTE_FAIL
 } from '../constants/List';
+import { browserHistory } from 'react-router';
 
 export const findNotesByTags = (queryString) => (dispatch) => {
 
@@ -49,4 +50,38 @@ export const findNotesByTags = (queryString) => (dispatch) => {
         searching: false
       });
     });
+};
+
+export const addNewNote = () => (dispatch) => {
+  
+  dispatch({
+    type: ADD_NEW_NOTE_REQUEST,
+    creating: true
+  });
+
+  return fetch('/api/notes', {  
+      method: 'post',  
+      headers: {  
+        'Content-type': 'application/json'
+      },  
+      body: JSON.stringify({}) 
+    })
+  .then( (response) => {
+    return response.headers.get('location');
+  })
+  .then( (location) => {
+    dispatch({
+      type: ADD_NEW_NOTE_SUCCESS,
+      creating: false
+    });
+    let path = location.slice(4);
+    browserHistory.push(path);
+  } )
+  .catch( () => {
+    dispatch({
+      type: ADD_NEW_NOTE_FAIL,
+      creating: false
+    });
+  });
+
 };
