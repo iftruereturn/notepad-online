@@ -7,10 +7,7 @@ import {
   ADD_NEW_NOTE_FAIL,
   DELETE_NOTE_REQUEST,
   DELETE_NOTE_SUCCESS,
-  DELETE_NOTE_FAIL,
-  OPEN_NOTE_REQUEST,
-  OPEN_NOTE_SUCCESS,
-  OPEN_NOTE_FAIL
+  DELETE_NOTE_FAIL
 } from '../constants/List';
 import { browserHistory } from 'react-router';
 
@@ -84,4 +81,35 @@ export const addNewNote = () => (dispatch) => {
     });
   });
 
+};
+
+export const deleteNote = (noteId) => (dispatch) => {
+
+  dispatch({
+    type: DELETE_NOTE_REQUEST,
+    deleting: true
+  });
+
+  return fetch('/api/notes/' + noteId, {  
+      method: 'delete'
+    })
+  .then( (response) => {
+    if (response.status === 200) {
+      dispatch({
+        type: DELETE_NOTE_SUCCESS,
+        deleting: false
+      });
+    } else {
+      dispatch({
+        type: DELETE_NOTE_FAIL,
+        deleting: false
+      });
+    }
+  })
+  .catch( () => {
+    dispatch({
+      type: DELETE_NOTE_FAIL,
+      deleting: false
+    });
+  });
 };

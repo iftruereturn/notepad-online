@@ -7,15 +7,13 @@ import {
   ADD_NEW_NOTE_FAIL,
   DELETE_NOTE_REQUEST,
   DELETE_NOTE_SUCCESS,
-  DELETE_NOTE_FAIL,
-  OPEN_NOTE_REQUEST,
-  OPEN_NOTE_SUCCESS,
-  OPEN_NOTE_FAIL
+  DELETE_NOTE_FAIL
 } from '../constants/List';
 
 const initialState = {
   creating: false,
   searching: false,
+  deleting: false,
   foundNotes: []
 };
 
@@ -57,6 +55,24 @@ const list = (state = initialState, action) => {
       return {
         ...state,
         creating: action.creating
+      }
+
+    case DELETE_NOTE_REQUEST:
+      return {
+        ...state,
+        deleting: action.deleting
+      }
+
+    case DELETE_NOTE_SUCCESS:
+      return {
+        ...state,
+        deleting: action.deleting
+      }
+
+    case DELETE_NOTE_FAIL:
+      return {
+        ...state,
+        deleting: action.deleting
       }
 
     default:
