@@ -12,15 +12,13 @@ export default class NotePage extends React.Component {
   }
 
   render() {
-    const { noteId, name, value, tags, saving, fetching,
-      changeName, changeValue, changeTags, saveNoteToServer } = this.props;
+    const { noteId, name, value, tags, saving, fetching, deleting,
+      changeName, changeValue, changeTags, saveNoteToServer, deleteThisNote } = this.props;
 
     console.log(this.props);
 
-    return (
+    const note = (
       <div>
-        <Link to={'/notes'}>Back to list</Link>
-        {fetching? <span>Fetching</span> : ''}
         <h1>{name}</h1>
         <input type="text" value={name} 
           onChange={(e) => changeName(e.target.value)}/>
@@ -29,6 +27,14 @@ export default class NotePage extends React.Component {
         <input type="text" value={tags} 
           onChange={(e) => changeTags(e.target.value)}/>
         <button onClick={() => saveNoteToServer(noteId)}>{(saving)? 'saving...' : 'Save note'}</button>
+        <button onClick={() => deleteThisNote(noteId)}>{(deleting)? 'deleting...' : 'Delete note'}</button>
+      </div>
+    );
+
+    return (
+      <div>
+        <Link to={'/notes'}>Back to list</Link>
+        {fetching? <h3>...Fetching...</h3> : note}
       </div>
     );    
   }

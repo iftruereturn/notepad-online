@@ -6,13 +6,16 @@ import {
   SAVE_NOTE_TO_SERVER_REQUEST,
   SAVE_NOTE_TO_SERVER_SUCCESS,
   SAVE_NOTE_TO_SERVER_FAIL,
-  DELETE_THIS_NOTE,
+  DELETE_THIS_NOTE_REQUEST,
+  DELETE_THIS_NOTE_SUCCESS,
+  DELETE_THIS_NOTE_FAIL,
   CHANGE_NOTE_NAME,
   CHANGE_NOTE_VALUE,
   CHANGE_NOTE_TAGS
 } from '../constants/Note';
 
 const initialState = {
+  _id: '',
   name: '',
   value: '',
 //  updated: '',
@@ -21,7 +24,8 @@ const initialState = {
 //  private: ''
   savedAt: '',
   fetching: false,
-  saving: false
+  saving: false,
+  deleting: false
 };
 
 const note = (state = initialState, action) => {
@@ -82,6 +86,24 @@ const note = (state = initialState, action) => {
       return {
         ...state,
         tags: action.tags
+      }
+
+    case DELETE_THIS_NOTE_REQUEST:
+      return {
+        ...state,
+        deleting: action.deleting
+      }
+
+    case DELETE_THIS_NOTE_SUCCESS:
+      return {
+        ...state,
+        deleting: action.deleting
+      }
+
+    case DELETE_THIS_NOTE_FAIL:
+      return {
+        ...state,
+        deleting: action.deleting
       }
 
     default:

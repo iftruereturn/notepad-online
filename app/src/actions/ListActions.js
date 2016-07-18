@@ -83,6 +83,7 @@ export const addNewNote = () => (dispatch) => {
 
 };
 
+// TODO: move this function to util
 export const deleteNote = (noteId) => (dispatch) => {
 
   dispatch({

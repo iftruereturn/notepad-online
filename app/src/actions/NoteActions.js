@@ -6,11 +6,14 @@ import {
   SAVE_NOTE_TO_SERVER_REQUEST,
   SAVE_NOTE_TO_SERVER_SUCCESS,
   SAVE_NOTE_TO_SERVER_FAIL,
-  DELETE_THIS_NOTE,
+  DELETE_THIS_NOTE_REQUEST,
+  DELETE_THIS_NOTE_SUCCESS,
+  DELETE_THIS_NOTE_FAIL,
   CHANGE_NOTE_NAME,
   CHANGE_NOTE_VALUE,
   CHANGE_NOTE_TAGS
 } from '../constants/Note';
+import { browserHistory } from 'react-router';
 // import { fetchNoteById } from '../utils';
 
 export const fetchNote = (noteId) => (dispatch) => {
@@ -99,4 +102,38 @@ export const changeTags = (tags) => (dispatch) => {
     tags
   })
 };
+
+
+// TODO: move this function to util
+export const deleteThisNote = (noteId) => (dispatch) => {
+
+  dispatch({
+    type: DELETE_THIS_NOTE_REQUEST,
+    deleting: true
+  });
+
+  return fetch('/api/notes/' + noteId, {  
+      method: 'delete'
+    })
+  .then( (response) => {
+    if (response.status === 200) {
+      dispatch({
+        type: DELETE_THIS_NOTE_SUCCESS,
+        deleting: false
+      });
+      browserHistory.push('/notes');
+    } else {
+      dispatch({
+        type: DELETE_THIS_NOTE_FAIL,
+        deleting: false
+      });
+    }
+  })
+  .catch( () => {
+    dispatch({
+      type: DELETE_THIS_NOTE_FAIL,
+      deleting: false
+    });
+  });
+}
 
