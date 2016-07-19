@@ -1,4 +1,3 @@
-const parse = require('co-body');
 const Note = require('../models/note.js');
 
 
@@ -24,7 +23,7 @@ exports.getNote = function*() {
 
 exports.getAllNotes = function*() {
   const query = this.request.query;
-  console.log(query);
+  // console.log(query);
   const tagsQuery = query.tags;
 
   let allNotes;
@@ -44,12 +43,12 @@ exports.getAllNotes = function*() {
 
 
 exports.postNote = function*() {
-  const note = yield parse(this);
+  const note = this.request.body;
 
   // parsing tags (if needed)
   if (typeof note.tags === 'string') {
     let cleanTagsArray = parseTags(note.tags);
-    console.log(cleanTagsArray);
+    // console.log(cleanTagsArray);
     note.tags = cleanTagsArray;
   }
 
@@ -69,13 +68,13 @@ exports.postNote = function*() {
 exports.updateNote = function*() {
   const id = this.params.id;
 
-  const update = yield parse(this);
+  const update = this.request.body;
   update.updated = Date.now();
 
   // parsing tags (if needed)
   if (typeof update.tags === 'string') {
     let cleanTagsArray = parseTags(update.tags);
-    console.log(cleanTagsArray);
+    // console.log(cleanTagsArray);
     update.tags = cleanTagsArray;
   }
 

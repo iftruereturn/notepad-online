@@ -1,5 +1,8 @@
 const koa = require('koa');
 const app = module.exports = koa();
+const bodyParser = require('koa-bodyparser');
+
+app.use(bodyParser());
 
 // logger for dev
 const logger = require('koa-logger');
