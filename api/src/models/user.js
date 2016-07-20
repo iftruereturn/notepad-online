@@ -15,4 +15,18 @@ UserSchema.pre('save', (next) => {
   next();
 });
 
+UserSchema.methods.comparePassword = function*(candidatePassword) {  
+  return candidatePassword === this.password;
+};
+
+UserSchema.statics.matchUser = function*(username, password) {  
+  const user = yield this.findOne({ 'username': username.toLowerCase() }).exec();
+  if (!user) throw new Error('User not found');
+
+  if (yield user.comparePassword(password))
+    return user;
+
+  throw new Error('Password does not match');
+};
+
 module.exports = mongoose.model('User', UserSchema);

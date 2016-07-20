@@ -2,6 +2,15 @@ const koa = require('koa');
 const app = module.exports = koa();
 const bodyParser = require('koa-bodyparser');
 
+// sessions
+const convert = require('koa-convert');
+const session = require('koa-generic-session');
+// keys needs to be in config file
+app.keys = ['your-session-secret'];
+app.use(convert(session({
+  key: 'notepadonline.sid',
+})));
+
 app.use(bodyParser());
 
 // logger for dev
@@ -12,37 +21,17 @@ app.use(logger());
 const cors = require('koa-cors');
 app.use(cors());
 
-
-/*
-const send = require('koa-send');
-const serve = require('koa-static');
-*/
-
 // db connect
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/notebook_online');
 
-// hot-reload webpack
-/*
-const webpack = require('webpack');
-const webpackConfig = require('./../../webpack.config');
-const compiler = webpack(webpackConfig);
-const hotMiddleware = require("webpack-hot-middleware")(compiler);
-app.use(function*(next) {
-  yield hotMiddleware.bind(null, this.request, this.response);
-  yield next;
-});
-*/
+// auth
+const passport = require('koa-passport')
+app.use(passport.initialize())
+app.use(passport.session())
 
 // routes
 require('./routes/router')(app);
-
-/*
-app.use(function* index() {
-  console.log('Responded with html');
-  yield send(this, __dirname + './../../index.html');
-})
-*/
 
 app.listen(3001);
 console.log('The app is listening on port 3001 (API)');
