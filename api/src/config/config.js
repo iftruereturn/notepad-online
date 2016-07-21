@@ -1,13 +1,13 @@
 // Some configuration options will be here
-// 
-// {
-//   "app": {
-//     "root": "rootpath-tofolder/",
-//     "port": 3000,
-//     "env": "development",
-//     "keys": ["secret-keys-for-sessions"]
-//   },
-//   "mongo": {
-//       "url": "mongodb://localhost/koapassport_dev"
-//   }
-// }
+
+{
+  "app": {
+    "root": "/",
+    "port": 3001,
+    "env": "development",
+    "keys": ["your-session-secret"]
+  },
+  "mongo": {
+      "url": "mongodb://localhost/notebook_online"
+  }
+}

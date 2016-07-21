@@ -1,9 +1,11 @@
 const Router = require('koa-router');
 const notesController = require('../controllers/notes');
-const usersController = require('../controllers/users');
+const usersControllerInit = require('../controllers/users');
 
-module.exports = function(app) {
-  var router = new Router();
+module.exports = function(app, passport) {
+  const router = new Router();
+
+  const usersController = usersControllerInit(passport);
 
   // Notes
   router.get('/api/notes/:id', notesController.getNote);
