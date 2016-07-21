@@ -7,7 +7,7 @@ const config = require('./config/config');
 // sessions
 const convert = require('koa-convert');
 const session = require('koa-generic-session');
-// keys need to be placed in config file
+
 app.keys = config.app.keys;
 app.use(convert(session({
   key: 'notepadonline.sid',
@@ -37,5 +37,3 @@ require('./routes/router')(app, passport);
 
 app.listen(config.app.port);
 console.log('The app is listening on port 3001 (API)');
-
-

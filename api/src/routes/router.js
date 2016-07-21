@@ -1,10 +1,11 @@
 const Router = require('koa-router');
-const notesController = require('../controllers/notes');
+const notesControllerInit = require('../controllers/notes');
 const usersControllerInit = require('../controllers/users');
 
 module.exports = function(app, passport) {
   const router = new Router();
 
+  const notesController = notesControllerInit(passport);
   const usersController = usersControllerInit(passport);
 
   // Notes
