@@ -1,5 +1,5 @@
 const LocalStrategy = require('passport-local').Strategy;  
-const User = require('mongoose').model('User');  
+const User = require('../models/user.js');  
 const co = require('co');
 
 // Basic function that calls our model static function to

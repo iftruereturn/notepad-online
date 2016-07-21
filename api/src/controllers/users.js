@@ -15,13 +15,15 @@ module.exports = function(passport) {
   };
 
 
-  const login = function*() {
-
-  };
+  const login = passport.authenticate('local', {
+    successRedirect: '/profile', // ?
+    failureRedirect: '/'
+  });
 
 
   const logout = function*() {
-
+    this.logout();
+    this.redirect('/');
   };
 
   return {

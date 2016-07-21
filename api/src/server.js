@@ -5,13 +5,12 @@ const bodyParser = require('koa-bodyparser');
 const config = require('./config/config');
 
 // sessions
-const convert = require('koa-convert');
 const session = require('koa-generic-session');
 
 app.keys = config.app.keys;
-app.use(convert(session({
-  key: 'notepadonline.sid',
-})));
+app.use(session({
+  key: 'notepadonline.sid'
+}));
 
 app.use(bodyParser());
 
@@ -28,9 +27,11 @@ const mongoose = require('mongoose');
 mongoose.connect(config.mongo.url);
 
 // auth
-const passport = require('koa-passport')
-app.use(passport.initialize())
-app.use(passport.session())
+const passport = require('koa-passport');
+require('./config/passport')(passport, config);
+app.use(passport.initialize());
+app.use(passport.session());
+
 
 // routes
 require('./routes/router')(app, passport);

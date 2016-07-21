@@ -28,6 +28,10 @@ module.exports = function(passport) {
     // console.log(query);
     const tagsQuery = query.tags;
 
+    // TODO: find notes that belong to this user
+    // if (this.isAuthenticated()) {
+    // }
+
     let allNotes;
 
     if (typeof tagsQuery === 'string') {
