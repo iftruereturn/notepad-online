@@ -16,9 +16,9 @@ module.exports = function(app, passport) {
   router.post('/api/notes', notesController.postNote);
 
   // User
-  router.post('/signup', usersController.signup);
-  router.post('/login', usersController.login);
-  router.get('/logout',  usersController.logout);
+  router.post('/api/signup', usersController.signup);
+  router.post('/api/login', usersController.login);
+  router.get('/api/logout',  usersController.logout);
 
   app.use(router.routes());
 };

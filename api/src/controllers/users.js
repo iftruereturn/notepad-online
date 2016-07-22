@@ -1,24 +1,38 @@
 const User = require('../models/user.js');
 
-
 module.exports = function(passport) {
 
   const signup = function*() {
-    var User = require('mongoose').model('User');
+    const { username, password } = this.request.body;
+
+    console.log(this.request.body);
+
     try {
-      var user = new User({ username: this.params.username, password: this.params.password });
+      let user = new User({ username, password });
       user = yield user.save();
       this.status = 201;
     } catch (err) {
+      console.log(err);
       this.status = 404;
     }
   };
 
 
-  const login = passport.authenticate('local', {
-    successRedirect: '/profile', // ?
-    failureRedirect: '/'
-  });
+  const login = function*() {
+    var _this = this;
+    yield* passport.authenticate('local', function*(err, user, info) {
+      if (err) {
+        return this.status = 404; 
+      }
+
+      if (user === false) {
+        return _this.status = 401;
+      }
+
+      yield _this.login(user);
+      _this.body = { user: user };
+    }).call(this);
+  };
 
 
   const logout = function*() {
