@@ -115,25 +115,25 @@ export const deleteThisNote = (noteId) => (dispatch) => {
   return fetch('/api/notes/' + noteId, {  
       method: 'delete'
     })
-  .then( (response) => {
-    if (response.status === 200) {
-      dispatch({
-        type: DELETE_THIS_NOTE_SUCCESS,
-        deleting: false
-      });
-      browserHistory.push('/notes');
-    } else {
+    .then( (response) => {
+      if (response.status === 200) {
+        dispatch({
+          type: DELETE_THIS_NOTE_SUCCESS,
+          deleting: false
+        });
+        browserHistory.push('/notes');
+      } else {
+        dispatch({
+          type: DELETE_THIS_NOTE_FAIL,
+          deleting: false
+        });
+      }
+    })
+    .catch( () => {
       dispatch({
         type: DELETE_THIS_NOTE_FAIL,
         deleting: false
       });
-    }
-  })
-  .catch( () => {
-    dispatch({
-      type: DELETE_THIS_NOTE_FAIL,
-      deleting: false
     });
-  });
 }
 
