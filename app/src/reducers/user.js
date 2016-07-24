@@ -11,11 +11,11 @@ import {
 } from '../constants/User';
 
 const initialState = {
-  username: '',
-  password: '',
+  username: ''
   logInRequested: false,
   signUpRequested: false,
-  logOutRequested: false
+  logOutRequested: false,
+  loggedIn: false
 };
 
 const user = (state = initialState, action) => {
@@ -26,7 +26,6 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         username: action.username,
-        pasword: action.password,
         signUpRequested: action.signUpRequested
       }
 
@@ -46,14 +45,14 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         username: action.username,
-        pasword: action.password,
         logInRequested: action.logInRequested
       }
 
     case USER_LOGIN_SUCCESS:
       return {
         ...state,
-        logInRequested: action.logInRequested
+        logInRequested: action.logInRequested,
+        loggedIn: action.loggedIn
       }
 
     case USER_LOGIN_FAIL:
@@ -71,7 +70,8 @@ const user = (state = initialState, action) => {
     case USER_LOGOUT_SUCCESS:
       return {
         ...state,
-        logOutRequested: action.logOutRequested
+        logOutRequested: action.logOutRequested,
+        loggedIn: action.loggedIn
       }
 
     case USER_LOGOUT_FAIL:

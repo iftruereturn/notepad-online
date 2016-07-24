@@ -12,7 +12,6 @@ import {
 
 // import { browserHistory } from 'react-router';
 
-
 export const signUp = (username, password) => (dispatch) => {
   // Need to verify if this user if already exist
 
@@ -49,8 +48,7 @@ export const logIn = (username, password) => (dispatch) => {
   dispatch({
     type: USER_LOGIN_REQUEST,
     logInRequested: true,
-    username,
-    password
+    username
   });
 
   return fetch('/api/login', {  
@@ -63,7 +61,8 @@ export const logIn = (username, password) => (dispatch) => {
     .then( () => {
       dispatch({
         type: USER_LOGIN_SUCCESS,
-        logInRequested: false
+        logInRequested: false,
+        loggedIn: true
       });
     })
     .catch( () => {
@@ -74,7 +73,7 @@ export const logIn = (username, password) => (dispatch) => {
     });
 };
 
-export const logOut = (username, password) => (dispatch) => {
+export const logOut = () => (dispatch) => {
 
   dispatch({
     type: USER_LOGOUT_REQUEST,
@@ -84,7 +83,8 @@ export const logOut = (username, password) => (dispatch) => {
   return fetch('/api/logout').then( () => {
       dispatch({
         type: USER_LOGOUT_SUCCESS,
-        logOutRequested: false
+        logOutRequested: false,
+        loggedIn: false
       });
     })
     .catch( () => {
