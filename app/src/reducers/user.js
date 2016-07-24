@@ -11,7 +11,7 @@ import {
 } from '../constants/User';
 
 const initialState = {
-  username: ''
+  username: '',
   logInRequested: false,
   signUpRequested: false,
   logOutRequested: false,

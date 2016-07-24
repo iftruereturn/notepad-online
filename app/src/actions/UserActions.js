@@ -18,8 +18,7 @@ export const signUp = (username, password) => (dispatch) => {
   dispatch({
     type: USER_SIGNUP_REQUEST,
     signUpRequested: true,
-    username,
-    password
+    username
   });
 
   return fetch('/api/signup', {  
