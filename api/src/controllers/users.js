@@ -20,7 +20,7 @@ module.exports = function(passport) {
 
   const login = function*() {
     var _this = this;
-    yield* passport.authenticate('local-login', function*(err, user, info) {
+    yield* passport.authenticate('local', function*(err, user, info) {
       if (err) {
         return this.status = 404; 
       }
@@ -28,6 +28,8 @@ module.exports = function(passport) {
       if (user === false) {
         return _this.status = 401;
       }
+
+      console.log('inside passport');
 
       yield _this.login(user);
       _this.body = { user: user };

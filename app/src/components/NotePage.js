@@ -1,5 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
+import NameInput from './note_page_components/NameInput';
+import NoteTextInput from './note_page_components/NoteTextInput';
+import TagsInput from './note_page_components/TagsInput';
+
 
 export default class NotePage extends React.Component {
   componentWillMount() {
@@ -20,12 +24,9 @@ export default class NotePage extends React.Component {
     const note = (
       <div>
         <h1>{name}</h1>
-        <input type="text" value={name} 
-          onChange={(e) => changeName(e.target.value)}/>
-        <textarea name="" id="" cols="30" rows="10"
-          value={value} onChange={(e) => changeValue(e.target.value)}></textarea>
-        <input type="text" value={tags} 
-          onChange={(e) => changeTags(e.target.value)}/>
+        <NameInput name={name} changeName={changeName}></NameInput>
+        <NoteTextInput value={value} changeValue={changeValue}></NoteTextInput>
+        <TagsInput tags={tags} changeTags={changeTags}></TagsInput>
         <button onClick={() => saveNoteToServer(noteId)}>{(saving)? 'saving...' : 'Save note'}</button>
         <button onClick={() => deleteThisNote(noteId)}>{(deleting)? 'deleting...' : 'Delete note'}</button>
       </div>
