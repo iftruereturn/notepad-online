@@ -26,5 +26,5 @@ const deserialize = (id, done) => {
 module.exports = (passport, config) => {  
   passport.serializeUser(serialize);
   passport.deserializeUser(deserialize);
-  passport.use(new LocalStrategy(AuthLocalUser));
+  passport.use('local', new LocalStrategy(AuthLocalUser));
 };

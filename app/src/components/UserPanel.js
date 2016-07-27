@@ -11,10 +11,10 @@ export default class UserPanel extends React.Component {
         { signUpRequested ? '...signing up...' :
         <div>
           <h2>Sign up</h2>
-          Username: <input type="text" ref={node => { this.username = node }} />
-          Password: <input type="text" ref={node => { this.password = node }} />
+          Username: <input type="text" ref={node => { this.usernameSignUp = node }} />
+          Password: <input type="text" ref={node => { this.passwordSignUp = node }} />
           Repeat password: <input type="text"/>
-          <button onClick={() => {signUp(this.username.value, this.password.value)}}>Sign Up</button>
+          <button onClick={() => {signUp(this.usernameSignUp.value, this.passwordSignUp.value)}}>Sign Up</button>
         </div>
         }
       </div>
@@ -25,9 +25,9 @@ export default class UserPanel extends React.Component {
         { logInRequested ? '...logging in...' :
         <div>
           <h2>Log In</h2>
-          Username: <input type="text" ref={node => { this.username = node }} />
-          Password: <input type="text" ref={node => { this.password = node }} />
-          <button onClick={() => {logIn(this.username.value, this.password.value)}}>Log In</button>
+          Username: <input type="text" ref={node => { this.usernameLogIn = node }} />
+          Password: <input type="text" ref={node => { this.passwordLogIn = node }} />
+          <button onClick={() => {logIn(this.usernameLogIn.value, this.passwordLogIn.value)}}>Log In</button>
         </div>
         }
       </div>

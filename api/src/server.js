@@ -1,7 +1,6 @@
 const koa = require('koa');
 const app = module.exports = koa();
 const bodyParser = require('koa-bodyparser');
-app.use(bodyParser());
 
 const config = require('./config/config');
 
@@ -16,6 +15,10 @@ app.keys = config.app.keys;
 app.use(session({
   key: 'notepadonline.sid'
 }));
+
+
+app.use(bodyParser());
+
 
 // logger for dev
 const logger = require('koa-logger');
