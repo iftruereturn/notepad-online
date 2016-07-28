@@ -15,16 +15,20 @@ const AuthLocalUser = (username, password, done) => {
 
     // need done?
     try {
+      console.log('inside auth function');
+      console.log(username);
+      console.log(password);
+
       const user = yield User.findOne({ 'username': username.toLowerCase() }).exec();
-      if (!user) throw new Error('User not found');
+      if (!user) return done(null, false);
 
       if (user.password === password)
-        return user;
+        return done(null, user);
 
       throw new Error('Password does not match');
 
     } catch (e) {
-      return null;
+      return done(e);
     }
   });
 };
@@ -41,5 +45,5 @@ const deserialize = (id, done) => {
 module.exports = (passport, config) => {  
   passport.serializeUser(serialize);
   passport.deserializeUser(deserialize);
-  passport.use('local', new LocalStrategy(AuthLocalUser));
+  passport.use(new LocalStrategy(AuthLocalUser));
 };

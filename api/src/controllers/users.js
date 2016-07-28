@@ -29,16 +29,38 @@ module.exports = function(passport) {
         return _this.status = 404; 
       }
 
+      console.log('inside passport 2');
+      console.log(user);
+
       if (user === false) {
         return _this.status = 401;
       }
 
-      console.log('inside passport 2');
+      console.log('inside passport 3');
 
       yield _this.login(user);
       _this.body = { user: user };
     }).call(this);
   };
+
+  /*const login = passport.authenticate('local', function*(err, user, info) {
+    if (err) {
+      // _this.body = JSON.stringify(err);
+      return this.status = 404; 
+    }
+
+    console.log('inside passport 2');
+    console.log(user);
+
+    if (user === false) {
+      return this.status = 401;
+    }
+
+    console.log('inside passport 3');
+
+    yield this.login(user);
+    this.body = { user: user };
+  });*/
 
 
   const logout = function*() {
