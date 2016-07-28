@@ -6,8 +6,23 @@ const co = require('co');
 // check if the password we got matches the existing one
 const AuthLocalUser = (username, password, done) => {  
   co(function*() {
+    // try {
+    //   return yield User.matchUser(username, password);
+    // } catch (e) {
+    //   return null;
+    // }
+    
+
+    // need done?
     try {
-      return yield User.matchUser(username, password);
+      const user = yield User.findOne({ 'username': username.toLowerCase() }).exec();
+      if (!user) throw new Error('User not found');
+
+      if (user.password === password)
+        return user;
+
+      throw new Error('Password does not match');
+
     } catch (e) {
       return null;
     }
