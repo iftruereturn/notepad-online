@@ -26,7 +26,9 @@ export const fetchNote = (noteId) => (dispatch) => {
     noteId
   });
 
-  return fetch('/api/notes/' + noteId).then( (response) => {
+  return fetch('/api/notes/' + noteId, {
+    credentials: 'same-origin'
+  }).then( (response) => {
       return response.json();
     })
     .then( (note) => {
@@ -61,7 +63,8 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
       headers: {  
         'Content-type': 'application/json'
       },  
-      body: JSON.stringify({ name, value, tags }) 
+      body: JSON.stringify({ name, value, tags }),
+      credentials: 'same-origin'
     })
     .then( (res) => { 
       dispatch({
@@ -113,7 +116,8 @@ export const deleteThisNote = (noteId) => (dispatch) => {
   });
 
   return fetch('/api/notes/' + noteId, {  
-      method: 'delete'
+      method: 'delete',
+      credentials: 'same-origin'
     })
     .then( (response) => {
       if (response.status === 200) {

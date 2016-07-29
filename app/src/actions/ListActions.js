@@ -31,7 +31,9 @@ export const findNotesByTags = (queryString) => (dispatch) => {
     searching: true
   });
 
-  return fetch('/api/notes' + formattedQueryString).then( (response) => {
+  return fetch('/api/notes' + formattedQueryString, {
+    credentials: 'same-origin'
+  }).then( (response) => {
       return response.json();
     })
     .then( (foundNotes) => {
@@ -61,7 +63,8 @@ export const addNewNote = () => (dispatch) => {
       headers: {  
         'Content-type': 'application/json'
       },  
-      body: JSON.stringify({}) 
+      body: JSON.stringify({}),
+      credentials: 'same-origin'
     })
   .then( (response) => {
     return response.headers.get('location');
@@ -92,7 +95,8 @@ export const deleteNote = (noteId) => (dispatch) => {
   });
 
   return fetch('/api/notes/' + noteId, {  
-      method: 'delete'
+      method: 'delete',
+      credentials: 'same-origin'
     })
   .then( (response) => {
     if (response.status === 200) {

@@ -26,7 +26,8 @@ export const signUp = (username, password) => (dispatch) => {
       headers: {  
         'Content-type': 'application/json'
       },  
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ username, password }),
+      credentials: 'same-origin'
     })
     .then( () => {
       dispatch({
@@ -55,7 +56,8 @@ export const logIn = (username, password) => (dispatch) => {
       headers: {  
         'Content-type': 'application/json'
       },  
-      body: JSON.stringify({ username, password })
+      body: JSON.stringify({ username, password }),
+      credentials: 'same-origin'
     })
     .then( () => {
       dispatch({
@@ -79,7 +81,9 @@ export const logOut = () => (dispatch) => {
     logOutRequested: true
   });
 
-  return fetch('/api/logout').then( () => {
+  return fetch('/api/logout', {
+    credentials: 'same-origin'
+  }).then( () => {
       dispatch({
         type: USER_LOGOUT_SUCCESS,
         logOutRequested: false,
