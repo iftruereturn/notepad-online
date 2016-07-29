@@ -18,7 +18,7 @@ const initialState = {
   loggedIn: false
 };
 
-const user = (state = initialState, action) => {
+const auth = (state = initialState, action) => {
 
   switch (action.type) {
 
@@ -84,3 +84,5 @@ const user = (state = initialState, action) => {
       return state;
   }
 };
+
+export default auth;
