@@ -8,7 +8,7 @@ import {
   USER_LOGOUT_REQUEST,
   USER_LOGOUT_SUCCESS,
   USER_LOGOUT_FAIL 
-} from '../constants/User';
+} from '../constants/Auth';
 
 const initialState = {
   username: '',

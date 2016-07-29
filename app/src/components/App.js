@@ -1,11 +1,11 @@
 import React from 'react';
-import User from '../containers/User';
+import Auth from '../containers/Auth';
 
 export default class App extends React.Component {
   render() {
     return (
       <div>
-        <User></User>
+        <Auth></Auth>
         {this.props.children}
       </div>
     );

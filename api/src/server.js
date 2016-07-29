@@ -30,12 +30,10 @@ mongoose.connect(config.mongo.url);
 
 // auth
 const passport = require('koa-passport');
-require('./config/passport')(passport, config);
-
-
-
 app.use(passport.initialize());
 app.use(passport.session());
+
+require('./config/passport')(passport, config);
 
 
 // routes

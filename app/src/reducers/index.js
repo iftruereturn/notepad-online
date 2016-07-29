@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 import note from './note';
 import list from './list';
-import user from './user';
+import auth from './auth';
 
 const notepadOnlineApp = combineReducers({
   note,
   list,
-  user
+  auth
 });
 
 export default notepadOnlineApp;
