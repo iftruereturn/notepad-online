@@ -23,10 +23,12 @@ export default class ListPage extends React.Component {
     return (
       <div>
         <SearchField searchInput={this.searchInput} findNotes={this.findNotes}
-          searching={searching} addNewNote={addNewNote}></SearchField>
-        {foundNotes.map((note, index) =>
-          <ListNoteItem note={note} deleteNote={this.deleteNote} key={index}></ListNoteItem>
-        )}
+          addNewNote={addNewNote}></SearchField>
+        { searching ? <h2>Searching</h2>
+                    : foundNotes.map((note, index) =>
+            <ListNoteItem note={note} deleteNote={this.deleteNote} key={index}></ListNoteItem>
+          )
+        }
       </div>
     );
   }
