@@ -26,12 +26,12 @@ module.exports = function(passport) {
 
   const getAllNotes = function*() {
     // TODO: find notes that belong to this user
-    if (!this.isAuthenticated()) {
-      this.status = 200;
-      return this.body = JSON.stringify([]);
-    }
+    // if (!this.isAuthenticated()) {
+    //   this.status = 200;
+    //   return this.body = JSON.stringify([]);
+    // }
 
-    console.log(this.req.user.username);
+    const usernameQuery = [this.req.user.username, 'Anonymous'];
 
     const query = this.request.query;
     // console.log(query);
@@ -39,12 +39,16 @@ module.exports = function(passport) {
     
     let allNotes;
 
+    // needs to find notes that :
+    // owner - Anonymous
+    // owner - current user
+    // owner - any user, but isSecret - public
     if (typeof tagsQuery === 'string') {
-      allNotes = yield Note.find({ tags: tagsQuery }, '-value').exec();
+      allNotes = yield Note.find({ tags: tagsQuery, owner: { "$in" : usernameQuery}  }, '-value').exec();
     } else if (tagsQuery && tagsQuery.length > 1) {
-      allNotes = yield Note.find({ tags: { "$in" : tagsQuery} }, '-value').exec();
+      allNotes = yield Note.find({ tags: { "$in" : tagsQuery}, owner: { "$in" : usernameQuery} }, '-value').exec();
     } else {
-      allNotes = yield Note.find({}, '-value').exec();
+      allNotes = yield Note.find({ owner: { "$in" : usernameQuery} }, '-value').exec();
     }
 
     this.set({ 'Content-Type': 'application/json' });
