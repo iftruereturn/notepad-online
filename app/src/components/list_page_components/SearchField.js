@@ -2,9 +2,9 @@ import React from 'react';
 
 const SearchField = ({ searchInput, findNotes, addNewNote }) => (
   <div>
-    <input type="text" ref={(ref) => searchInput = ref} 
-            onChange={(e) => findNotes(e.target.value)}/>
-    <button onClick={() => addNewNote()}>Add new note</button>
+    <input type="text" ref={(ref) => searchInput = ref}/>
+    <button onClick={() => findNotes(searchInput.value)}>Find notes</button>
+    <button onClick={() => addNewNote()}>+</button>
   </div>
 );
 

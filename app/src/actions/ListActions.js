@@ -18,7 +18,8 @@ export const findNotesByTags = (queryString) => (dispatch) => {
   if (queryString === '') {
     formattedQueryString = '';
   } else {
-    formattedQueryString = '?tags=' + queryString.split(' ')
+    formattedQueryString = '?tags=' + queryString.replace(/\,/g, ' ')
+                                      .split(' ')
                                       .map( el => el.trim() )
                                       .filter( el => el !== '' )
                                       .join('&tags=');

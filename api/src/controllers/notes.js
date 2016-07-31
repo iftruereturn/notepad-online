@@ -24,14 +24,18 @@ module.exports = function(passport) {
 
 
   const getAllNotes = function*() {
+    // TODO: find notes that belong to this user
+    if (!this.isAuthenticated()) {
+      this.status = 200;
+      return this.body = JSON.stringify([]);
+    }
+
+    console.log(this.req.user.username);
+
     const query = this.request.query;
     // console.log(query);
     const tagsQuery = query.tags;
-
-    // TODO: find notes that belong to this user
-    // if (this.isAuthenticated()) {
-    // }
-
+    
     let allNotes;
 
     if (typeof tagsQuery === 'string') {

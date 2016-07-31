@@ -64,7 +64,11 @@ module.exports = function(passport) {
 
 
   const logout = function*() {
-    this.logout();
+    console.log(this);
+
+    this.logOut();
+    // this.clearCookie('notepadonline.sid', {path: '/'});
+    // this.session.destroy();
     this.redirect('/');
   };
 
