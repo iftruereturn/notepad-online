@@ -1,4 +1,5 @@
 const Note = require('../models/note.js');
+const User = require('../models/user.js');
 
 
 module.exports = function(passport) {
@@ -60,6 +61,10 @@ module.exports = function(passport) {
       let cleanTagsArray = parseTags(note.tags);
       // console.log(cleanTagsArray);
       note.tags = cleanTagsArray;
+    }
+
+    if (this.isAuthenticated()) {
+      note.owner = this.req.user.username;
     }
 
     const newNote = new Note(note);

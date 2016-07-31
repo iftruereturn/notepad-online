@@ -8,7 +8,7 @@ const NoteSchema = new Schema({
   updated: { type: Date, default: Date.now() },
   tags: { type: Array },
   owner: { type: String, default: 'Anonymous' },
-  private: { type: Boolean, default: false }
+  isSecret: { type: Boolean, default: false }
 });
 
 NoteSchema.pre('save', (next) => {

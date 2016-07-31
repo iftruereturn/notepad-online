@@ -18,11 +18,11 @@ const initialState = {
   _id: '',
   name: '',
   value: '',
-//  updated: '',
+  saved: '',
+  updated: '',
   tags: '',
   owner: '',
-//  private: ''
-  savedAt: '',
+  isSecret: '',
   fetching: false,
   saving: false,
   deleting: false
@@ -42,8 +42,12 @@ const note = (state = initialState, action) => {
         ...state, 
         name: action.note.name,
         value: action.note.value,
+        saved: new Date(action.note.saved).toLocaleString(),
+        updated: new Date(action.note.updated).toLocaleString(),
         tags: action.note.tags.join(', '),
-        fetching: action.fetching 
+        owner: action.note.owner,
+        isSecret: action.note.isSecret,
+        fetching: action.fetching
       };
 
     case FETCH_NOTE_FAIL:
