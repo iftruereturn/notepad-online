@@ -1,6 +1,20 @@
 import React from 'react';
 
-export default class UserPanel extends React.Component {
+export default class AuthPanel extends React.Component {
+  componentDidMount() {
+    this.registerCheck();
+  }
+
+  registerCheck() {
+    if (this.passwordSignUp.value !== this.repeatedPasswordSignUp.value 
+        || this.passwordSignUp.value.length < 1
+        || this.usernameSignUp.value.length === 0) {
+      this.registerButton.disabled = 'true';
+    } else {
+      this.registerButton.disabled = '';
+    }
+  }
+
   render() {
     const { username,
       logInRequested, signUpRequested, logOutRequested, loggedIn,
@@ -11,10 +25,14 @@ export default class UserPanel extends React.Component {
         { signUpRequested ? '...signing up...' :
         <div>
           <h2>Sign up</h2>
-          Username: <input type="text" ref={node => { this.usernameSignUp = node }} />
-          Password: <input type="text" ref={node => { this.passwordSignUp = node }} />
-          Repeat password: <input type="text"/>
-          <button onClick={() => {signUp(this.usernameSignUp.value, this.passwordSignUp.value)}}>Sign Up</button>
+          Username: <input type="text" ref={node => { this.usernameSignUp = node }} 
+            onChange={() => {this.registerCheck()}}/>
+          Password: <input type="text" ref={node => { this.passwordSignUp = node }} 
+            onChange={() => {this.registerCheck()}}/>
+          Repeat password: <input type="text" ref={node => { this.repeatedPasswordSignUp = node }} 
+            onChange={() => {this.registerCheck()}}/>
+          <button ref={node => { this.registerButton = node }} 
+            onClick={() => {signUp(this.usernameSignUp.value, this.passwordSignUp.value)}}>Sign Up</button>
         </div>
         }
       </div>

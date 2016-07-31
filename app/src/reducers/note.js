@@ -20,7 +20,7 @@ const initialState = {
   value: '',
 //  updated: '',
   tags: '',
-//  owner: '',
+  owner: '',
 //  private: ''
   savedAt: '',
   fetching: false,
