@@ -30,8 +30,12 @@ module.exports = function(passport) {
     //   this.status = 200;
     //   return this.body = JSON.stringify([]);
     // }
+    
+    const username = (this.req.user && this.req.user.username)
+      ? this.req.user.username
+      : '';
 
-    const usernameQuery = [this.req.user.username, 'Anonymous'];
+    const usernameQuery = [username, 'Anonymous'];
 
     const query = this.request.query;
     // console.log(query);
@@ -42,13 +46,30 @@ module.exports = function(passport) {
     // needs to find notes that :
     // owner - Anonymous
     // owner - current user
-    // owner - any user, but isSecret - public
+    // owner - any user, but isSecret - false
     if (typeof tagsQuery === 'string') {
-      allNotes = yield Note.find({ tags: tagsQuery, owner: { "$in" : usernameQuery}  }, '-value').exec();
+      allNotes = yield Note.find({ 
+        tags: tagsQuery, 
+        $or: [
+          { owner: { "$in" : usernameQuery} },
+          { isSecret: false }
+        ]  
+      }, '-value').exec();
     } else if (tagsQuery && tagsQuery.length > 1) {
-      allNotes = yield Note.find({ tags: { "$in" : tagsQuery}, owner: { "$in" : usernameQuery} }, '-value').exec();
+      allNotes = yield Note.find({ 
+        tags: { "$in" : tagsQuery }, 
+        $or: [
+          { owner: { "$in" : usernameQuery} },
+          { isSecret: false }
+        ] 
+      }, '-value').exec();
     } else {
-      allNotes = yield Note.find({ owner: { "$in" : usernameQuery} }, '-value').exec();
+      allNotes = yield Note.find({ 
+        $or: [
+          { owner: { "$in" : usernameQuery} },
+          { isSecret: false }
+        ]  
+      }, '-value').exec();  
     }
 
     this.set({ 'Content-Type': 'application/json' });
@@ -69,7 +90,10 @@ module.exports = function(passport) {
 
     if (this.isAuthenticated()) {
       note.owner = this.req.user.username;
+    } else {
+      note.isSecret = false;
     }
+
 
     const newNote = new Note(note);
     let savedNote;

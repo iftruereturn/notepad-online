@@ -11,8 +11,10 @@ import {
   DELETE_THIS_NOTE_FAIL,
   CHANGE_NOTE_NAME,
   CHANGE_NOTE_VALUE,
-  CHANGE_NOTE_TAGS
+  CHANGE_NOTE_TAGS,
+  CHANGE_NOTE_IS_SECRET
 } from '../constants/Note';
+
 import { browserHistory } from 'react-router';
 // import { fetchNoteById } from '../utils';
 
@@ -50,7 +52,7 @@ export const fetchNote = (noteId) => (dispatch) => {
 export const saveNoteToServer = (noteId) => (dispatch, getState) => {
 
   const { note } = getState();
-  const { name, value, tags } = note;
+  const { name, value, tags, isSecret } = note;
 
   dispatch({
     type: SAVE_NOTE_TO_SERVER_REQUEST,
@@ -63,7 +65,7 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
       headers: {  
         'Content-type': 'application/json'
       },  
-      body: JSON.stringify({ name, value, tags }),
+      body: JSON.stringify({ name, value, tags, isSecret }),
       credentials: 'same-origin'
     })
     .then( (res) => { 
@@ -104,6 +106,14 @@ export const changeTags = (tags) => (dispatch) => {
     type: CHANGE_NOTE_TAGS,
     tags
   })
+};
+
+export const changeIsSecret = (isSecret) => (dispatch) => {
+
+  dispatch({
+    type: CHANGE_NOTE_IS_SECRET,
+    isSecret
+  });
 };
 
 

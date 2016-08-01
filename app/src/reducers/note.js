@@ -11,7 +11,8 @@ import {
   DELETE_THIS_NOTE_FAIL,
   CHANGE_NOTE_NAME,
   CHANGE_NOTE_VALUE,
-  CHANGE_NOTE_TAGS
+  CHANGE_NOTE_TAGS,
+  CHANGE_NOTE_IS_SECRET
 } from '../constants/Note';
 
 const initialState = {
@@ -22,7 +23,7 @@ const initialState = {
   updated: '',
   tags: '',
   owner: '',
-  isSecret: '',
+  isSecret: false,
   fetching: false,
   saving: false,
   deleting: false
@@ -90,6 +91,12 @@ const note = (state = initialState, action) => {
       return {
         ...state,
         tags: action.tags
+      }
+
+    case CHANGE_NOTE_IS_SECRET:
+      return {
+        ...state,
+        isSecret: action.isSecret
       }
 
     case DELETE_THIS_NOTE_REQUEST:
