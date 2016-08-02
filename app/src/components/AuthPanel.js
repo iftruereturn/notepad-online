@@ -1,9 +1,9 @@
 import React from 'react';
 
 export default class AuthPanel extends React.Component {
-  componentDidMount() {
-    this.registerCheck();
-  }
+  // componentDidMount() {
+  //   this.registerCheck();
+  // }
 
   registerCheck() {
     if (this.passwordSignUp.value !== this.repeatedPasswordSignUp.value 
