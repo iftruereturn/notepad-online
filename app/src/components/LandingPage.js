@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import FeatureItem from './landing_page_components/FeatureItem';
 
 const LandingPage = () => (
   <div>
@@ -11,10 +12,18 @@ const LandingPage = () => (
     <div>
       <h2>Features</h2>
       <ul>
-        <li>Save your notes easily</li>
-        <li>Access notes from everywhere</li>
-        <li>Find notes by tags</li>
-        <li>Hide your notes from the world</li>
+        <li>
+          <FeatureItem>Save your notes easily</FeatureItem>
+        </li>
+        <li>
+          <FeatureItem>Access notes from everywhere</FeatureItem>
+        </li>
+        <li>
+          <FeatureItem>Find notes by tags</FeatureItem>
+        </li>
+        <li>
+          <FeatureItem>Hide your notes from the world</FeatureItem>
+        </li>
       </ul>
     </div>
       <Link to={'/notes'}>Wanna try it?</Link>
