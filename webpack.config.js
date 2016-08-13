@@ -36,6 +36,10 @@ module.exports = {
         loaders: ['react-hot', 'babel-loader'],
         exclude: /node_modules/,
         include: path.join(__dirname, 'app/src')
+      },
+      {
+        test: /\.scss$/,
+        loaders: ['style', 'css', 'sass']
       }
     ]
   }/*,

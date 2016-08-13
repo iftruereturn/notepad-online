@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import Root from './components/Root';
 import configureStore from './stores/configureStore';
 
+import '../styles/bundle.scss';
+
 const store = configureStore();
 
 ReactDOM.render(
