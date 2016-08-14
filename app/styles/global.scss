@@ -1,0 +1,27 @@
+body {
+  font-family: sans-serif;
+  background-color: $background-color;
+  color: $text-color;
+}
+
+a {
+  color: $color-alice;
+  font-style: italic;
+}
+
+button {
+  padding: 5px 10px;
+  margin: 5px;
+  background-color: $background-color;
+  border: 1px solid $color-ruby;
+  color: $color-ruby;
+  cursor: pointer;
+  transition: 0.1s ease-in-out;
+
+  &:hover {
+    background-color: $color-ruby;
+    border: 1px solid $color-ruby;
+    color: $background-color;
+  }
+
+}

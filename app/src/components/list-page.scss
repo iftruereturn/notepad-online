@@ -1,0 +1,9 @@
+.list-page {
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
+}
+
+@import "./list_page_components/list-note-item";

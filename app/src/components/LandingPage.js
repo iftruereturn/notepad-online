@@ -3,13 +3,13 @@ import { Link } from 'react-router';
 import FeatureItem from './landing_page_components/FeatureItem';
 
 const LandingPage = () => (
-  <div>
-    <div>
-      <h1>Notebook-Online</h1>
+  <div className="landing-container">
+    <div className="landing-container-presentation">
+      <h1>Notepad-Online</h1>
       <div>Save, access, and edit your notes</div>
       <Link to={'/notes'}>Start using it right now</Link>
     </div>
-    <div>
+    <div className="landing-container-features">
       <h2>Features</h2>
       <ul>
         <li>
@@ -26,7 +26,7 @@ const LandingPage = () => (
         </li>
       </ul>
     </div>
-      <Link to={'/notes'}>Wanna try it?</Link>
+    <Link to={'/notes'}>Wanna try it?</Link>
   </div>
 );
 

@@ -1,0 +1,16 @@
+
+.app {
+  box-sizing: border-box;
+  width: $content-width;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@import "./landing-page";
+@import "./list-page";
+

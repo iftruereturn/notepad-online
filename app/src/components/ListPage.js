@@ -9,7 +9,7 @@ export default class ListPage extends React.Component {
 
   deleteNote = (noteId) => {
     const { deleteNote } = this.props;
-    deleteNote(noteId).then( () => this.findNotes(this.searchInput.value) );
+    deleteNote(noteId).then( () => this.findNotes(this.searchInput.value || '') );
   };
 
   findNotes = (queryString) => {
@@ -20,16 +20,23 @@ export default class ListPage extends React.Component {
   render() {
     const { searching, foundNotes, addNewNote } = this.props;
 
+    let notesToShow = foundNotes.map((note, index) => {
+      return <ListNoteItem note={note} deleteNote={this.deleteNote} key={index}></ListNoteItem>
+    });
+
     return (
       <div>
         <SearchField searchInput={this.searchInput} findNotes={this.findNotes}
           addNewNote={addNewNote}></SearchField>
-        { searching ? <h2>Searching</h2>
-                    : foundNotes.map((note, index) =>
-            <ListNoteItem note={note} deleteNote={this.deleteNote} key={index}></ListNoteItem>
-          )
-        }
-      </div>
+          
+            { searching ? <h2>Searching</h2>
+                        : <div className="list-page">
+                            {notesToShow}
+                          </div>
+                          
+            }
+          
+      </div> 
     );
   }
 }
