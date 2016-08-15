@@ -10,7 +10,7 @@ import {
   USER_LOGOUT_FAIL 
 } from '../constants/Auth';
 
-// import { browserHistory } from 'react-router';
+import { browserHistory } from 'react-router';
 
 export const signUp = (username, password) => (dispatch) => {
   // Need to verify if this user if already exist
@@ -89,6 +89,8 @@ export const logOut = () => (dispatch) => {
         logOutRequested: false,
         loggedIn: false
       });
+
+      browserHistory.push('/');
     })
     .catch( () => {
       dispatch({

@@ -1,6 +1,5 @@
 import React from 'react';
 import ListNoteItem from './list_page_components/ListNoteItem';
-import SearchField from './list_page_components/SearchField';
 
 export default class ListPage extends React.Component {
   componentWillMount() {
@@ -9,7 +8,8 @@ export default class ListPage extends React.Component {
 
   deleteNote = (noteId) => {
     const { deleteNote } = this.props;
-    deleteNote(noteId).then( () => this.findNotes(this.searchInput.value || '') );
+    console.log(this.searchInput);
+    deleteNote(noteId).then( () => this.findNotes(this.searchInput.value) );
   };
 
   findNotes = (queryString) => {
@@ -26,15 +26,19 @@ export default class ListPage extends React.Component {
 
     return (
       <div>
-        <SearchField searchInput={this.searchInput} findNotes={this.findNotes}
-          addNewNote={addNewNote}></SearchField>
+
+        <div>
+          <input type="text" ref={(ref) => this.searchInput = ref}/>
+          <button onClick={() => this.findNotes(this.searchInput.value)}>Find notes</button>
+          <button onClick={() => addNewNote()}>+ Add new note</button>
+        </div>
           
-            { searching ? <h2>Searching</h2>
-                        : <div className="list-page">
-                            {notesToShow}
-                          </div>
-                          
-            }
+        { searching ? <h2>Searching</h2>
+                    : <div className="list-page">
+                        {notesToShow}
+                      </div>
+                      
+        }
           
       </div> 
     );
