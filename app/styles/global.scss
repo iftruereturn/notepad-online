@@ -1,6 +1,6 @@
 body {
   font-family: sans-serif;
-  background-color: $background-color;
+  background-color: #fff;
   color: $text-color;
 }
 
@@ -12,7 +12,7 @@ a {
 button {
   padding: 5px 10px;
   margin: 5px;
-  background-color: $background-color;
+  background-color: $background-color-button;
   border: 1px solid $color-ruby;
   color: $color-ruby;
   cursor: pointer;
@@ -21,7 +21,37 @@ button {
   &:hover {
     background-color: $color-ruby;
     border: 1px solid $color-ruby;
-    color: $background-color;
+    color: $background-color-button;
   }
 
+}
+
+button.delete {
+  @extend button;
+}
+
+button.save {
+  @extend button;
+
+  border: 1px solid $color-alice;
+  color: $color-alice;
+
+  &:hover {
+    background-color: $color-alice;
+    border: 1px solid $color-alice;
+    color: $background-color-button;
+  }
+}
+
+button.add {
+  @extend button;
+
+  border: 1px solid $color-jade;
+  color: $color-jade;
+
+  &:hover {
+    background-color: $color-jade;
+    border: 1px solid $color-jade;
+    color: $background-color-button;
+  }
 }

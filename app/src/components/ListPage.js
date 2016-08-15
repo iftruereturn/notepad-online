@@ -29,12 +29,12 @@ export default class ListPage extends React.Component {
 
         <div>
           <input type="text" ref={(ref) => this.searchInput = ref}/>
-          <button onClick={() => this.findNotes(this.searchInput.value)}>Find notes</button>
-          <button onClick={() => addNewNote()}>+ Add new note</button>
+          <button className="save" onClick={() => this.findNotes(this.searchInput.value)}>Find notes</button>
+          <button className="add" onClick={() => addNewNote()}>+ Add new note</button>
         </div>
           
-        { searching ? <h2>Searching</h2>
-                    : <div className="list-page">
+        { searching ? <h2>...Searching...</h2>
+                    : <div className="list-page-notes">
                         {notesToShow}
                       </div>
                       

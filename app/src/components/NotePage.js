@@ -25,17 +25,21 @@ export default class NotePage extends React.Component {
     console.log(this.props);
 
     const note = (
-      <div>
+      <div className="note-page">
         <h1>{name}</h1>
-        <h5>Author: {owner}</h5>
-        <h5>Saved: {saved}</h5>
-        <h5>Updated: {updated}</h5>
+        <div>
+          <h5>Author: {owner}</h5>
+          <h5>Saved: {saved}</h5>
+          <h5>Updated: {updated}</h5>
+        </div>
         <IsSecretCheckbox isSecret={isSecret} changeIsSecret={changeIsSecret}></IsSecretCheckbox>
         <NameInput name={name} changeName={changeName}></NameInput>
         <NoteTextInput value={value} changeValue={changeValue}></NoteTextInput>
         <TagsInput tags={tags} changeTags={changeTags}></TagsInput>
-        <button onClick={() => saveNoteToServer(noteId)}>{(saving)? 'saving...' : 'Save note'}</button>
-        <button onClick={() => deleteThisNote(noteId)}>{(deleting)? 'deleting...' : 'Delete note'}</button>
+        <div className="save-delete-buttons">
+          <button className="save" onClick={() => saveNoteToServer(noteId)}>{(saving)? 'saving...' : 'Save note'}</button>
+          <button className="delete" onClick={() => deleteThisNote(noteId)}>{(deleting)? 'deleting...' : 'Delete note'}</button>
+        </div>
       </div>
     );
 
