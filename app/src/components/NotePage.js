@@ -37,8 +37,12 @@ export default class NotePage extends React.Component {
         <NoteTextInput value={value} changeValue={changeValue}></NoteTextInput>
         <TagsInput tags={tags} changeTags={changeTags}></TagsInput>
         <div className="save-delete-buttons">
-          <button className="save" onClick={() => saveNoteToServer(noteId)}>{(saving)? 'saving...' : 'Save note'}</button>
-          <button className="delete" onClick={() => deleteThisNote(noteId)}>{(deleting)? 'deleting...' : 'Delete note'}</button>
+          <button className="save" onClick={() => saveNoteToServer(noteId)}>
+            {(saving)? 'saving...' : 'Save note'}
+          </button>
+          <button className="delete" onClick={() => deleteThisNote(noteId)}>
+            {(deleting)? 'deleting...' : 'Delete note'}
+          </button>
         </div>
       </div>
     );

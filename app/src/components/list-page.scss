@@ -1,9 +1,27 @@
-.list-page-notes {
+.list-page {
 
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  
+  .search-add-panel {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+    .search-add-panel-input {
+      // height: 1em;
+    }
+
+    .add {
+      // margin-left: auto;
+    }
+  }
+
+  .list-page-notes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
 }
+
+
 
 @import "./list_page_components/list-note-item";

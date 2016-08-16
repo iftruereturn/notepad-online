@@ -25,10 +25,15 @@ export default class ListPage extends React.Component {
     });
 
     return (
-      <div>
+      <div className="list-page">
 
-        <div>
-          <input type="text" ref={(ref) => this.searchInput = ref}/>
+        <div className="search-add-panel">
+          <input 
+            className="search-add-panel-input" 
+            type="text" 
+            ref={(ref) => this.searchInput = ref}
+            placeholder="write, tags, here"
+          />
           <button className="save" onClick={() => this.findNotes(this.searchInput.value)}>Find notes</button>
           <button className="add" onClick={() => addNewNote()}>+ Add new note</button>
         </div>
