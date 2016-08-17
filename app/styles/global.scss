@@ -1,7 +1,25 @@
 body {
   font-family: sans-serif;
-  background-color: #fff;
+  background-color: $background-color;
   color: $text-color;
+
+  font-size: 100%;
+
+  @include large-screens {
+    font-size: 1.2em;
+  }
+
+  @include medium-screens {
+    font-size: 1.2em;
+  }
+
+  @include small-screens {
+    font-size: 1.2em;
+  }
+
+  @include tiny-screens {
+    font-size: 1.2em;
+  }
 }
 
 a {
@@ -10,7 +28,7 @@ a {
 }
 
 button {
-  padding: 5px 10px;
+  padding: 0.4em 0.5em;
   margin: 5px;
   background-color: $background-color-button;
   border: 1px solid $color-ruby;
@@ -57,6 +75,16 @@ button.add {
 }
 
 input {
-  padding: 0.3em;
-  margin: auto 5px;
+  border: 1px solid $color-input-border;
+  padding: 0.4em 0.6em;
+  margin: 5px;
+  outline: none;
+
+  &:focus {
+    border-color: $color-alice;
+  }
+}
+
+textarea {
+  @extend input;
 }

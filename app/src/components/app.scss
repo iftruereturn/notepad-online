@@ -1,7 +1,7 @@
 
 .app {
   box-sizing: border-box;
-  width: $content-width;
+  max-width: $content-width;
 
   display: flex;
   flex-wrap: wrap;
@@ -11,7 +11,9 @@
   margin-right: auto;
 }
 
+@import "./auth-panel";
 @import "./landing-page";
 @import "./list-page";
 @import "./note-page";
+@import "./footer";
 

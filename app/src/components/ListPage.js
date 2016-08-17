@@ -6,6 +6,12 @@ export default class ListPage extends React.Component {
     this.findNotes('');
   }
 
+  handleInputChange = (e) => {
+    if (e.key == 'Enter') {
+      this.findNotes(this.searchInput.value);
+    }
+  };
+
   deleteNote = (noteId) => {
     const { deleteNote } = this.props;
     console.log(this.searchInput);
@@ -33,6 +39,7 @@ export default class ListPage extends React.Component {
             type="text" 
             ref={(ref) => this.searchInput = ref}
             placeholder="write, tags, here"
+            onKeyPress={this.handleInputChange}
           />
           <button className="save" onClick={() => this.findNotes(this.searchInput.value)}>Find notes</button>
           <button className="add" onClick={() => addNewNote()}>+ Add new note</button>

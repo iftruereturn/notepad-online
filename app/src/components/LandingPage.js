@@ -5,7 +5,7 @@ import FeatureItem from './landing_page_components/FeatureItem';
 const LandingPage = () => (
   <div className="landing-container">
     <div className="landing-container-presentation">
-      <h1>Notepad-Online</h1>
+      <h1>Notepad Online</h1>
       <div>Save, access, and edit your notes</div>
       <Link to={'/notes'}>Start using it right now</Link>
     </div>

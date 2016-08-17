@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import NameInput from './note_page_components/NameInput';
-import NoteTextInput from './note_page_components/NoteTextInput';
+import NoteTextarea from './note_page_components/NoteTextarea';
 import TagsInput from './note_page_components/TagsInput';
 import IsSecretCheckbox from './note_page_components/IsSecretCheckbox';
 import { browserHistory } from 'react-router';
@@ -26,15 +26,15 @@ export default class NotePage extends React.Component {
 
     const note = (
       <div className="note-page">
-        <h1>{name}</h1>
-        <div>
-          <h5>Author: {owner}</h5>
-          <h5>Saved: {saved}</h5>
-          <h5>Updated: {updated}</h5>
+        <div className="note-page-title">{name}</div>
+        <div className="note-page-info">
+          <div>Author: {owner}</div>
+          <div>Saved: {saved}</div>
+          <div>Updated: {updated}</div>
         </div>
-        <IsSecretCheckbox isSecret={isSecret} changeIsSecret={changeIsSecret}></IsSecretCheckbox>
         <NameInput name={name} changeName={changeName}></NameInput>
-        <NoteTextInput value={value} changeValue={changeValue}></NoteTextInput>
+        <NoteTextarea value={value} changeValue={changeValue}></NoteTextarea>
+        <IsSecretCheckbox isSecret={isSecret} changeIsSecret={changeIsSecret}></IsSecretCheckbox>
         <TagsInput tags={tags} changeTags={changeTags}></TagsInput>
         <div className="save-delete-buttons">
           <button className="save" onClick={() => saveNoteToServer(noteId)}>
