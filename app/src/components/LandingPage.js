@@ -25,8 +25,10 @@ const LandingPage = () => (
           <FeatureItem>Hide your notes from the world</FeatureItem>
         </li>
       </ul>
+      <div>
+        <Link to={'/notes'}>Wanna try it?</Link>
+      </div>
     </div>
-    <Link to={'/notes'}>Wanna try it?</Link>
   </div>
 );
 

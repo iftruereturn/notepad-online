@@ -11,7 +11,7 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <Router history={browserHistory}>
       <Route component={App}>
-        <Route path='/' component={LandingPage}></Route>
+        <Route path='/' component={LandingPage} />
         <Route path='/notes' component={ListView} />
         <Route path='/notes/(:noteId)' component={NoteView} />
       </Route>

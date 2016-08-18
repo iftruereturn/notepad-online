@@ -7,7 +7,9 @@ export default class App extends React.Component {
     return (
       <div className="app">
         <Auth></Auth>
-        {this.props.children}
+        <div className="content">
+          {this.props.children}
+        </div>
         <Footer></Footer>
       </div>
     );

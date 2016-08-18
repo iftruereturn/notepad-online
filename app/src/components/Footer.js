@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-const Footer = () => (
-  <footer className="footer">
-    <Link to={'/'}>Notepad Online</Link>
-  </footer>
-);
+class Footer extends React.Component {
+  render() {
+
+    console.log('Footer render');
+     
+    return (
+      <footer className="footer">
+        <Link to={'/'}>Notepad Online</Link>
+      </footer>
+    );
+  }
+}
 
 export default Footer;
