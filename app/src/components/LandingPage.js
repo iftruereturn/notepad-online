@@ -22,7 +22,7 @@ const LandingPage = () => (
           <FeatureItem>Find notes by tags</FeatureItem>
         </li>
         <li>
-          <FeatureItem>Hide your notes from the world</FeatureItem>
+          <FeatureItem>Hide your notes from the others</FeatureItem>
         </li>
       </ul>
       <div>

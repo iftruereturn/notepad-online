@@ -8,7 +8,7 @@ class Loader extends React.Component {
     return (
       <div className="loader" ref={ node => this.loader = node }>
         <div className="loader-container">
-          {text}
+          ...{text}...
         </div>
       </div>
     );

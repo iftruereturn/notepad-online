@@ -25,7 +25,7 @@ export default class ListPage extends React.Component {
   };
 
   render() {
-    const { searching, foundNotes, addNewNote } = this.props;
+    const { searching, creating, foundNotes, addNewNote } = this.props;
 
     let notesToShow = foundNotes.map((note, index) => {
       return <ListNoteItem note={note} deleteNote={this.deleteNote} key={index}></ListNoteItem>
@@ -46,7 +46,8 @@ export default class ListPage extends React.Component {
           <button className="add" onClick={() => addNewNote()}>+ Add new note</button>
         </div>
           
-        { searching ? <Loader text="searching"/>
+        { searching ? <Loader text="searching"/> :
+          creating ? <Loader text="creating"/>
                     : <div className="list-page-notes">
                         {notesToShow}
                       </div>

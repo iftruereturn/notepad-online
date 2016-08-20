@@ -39,6 +39,22 @@
 .loader {
   padding: 1em;
   font-size: 2em;
+
+  @include large-screens {
+    font-size: 2em;
+  }
+
+  @include medium-screens {
+    font-size: 2em;
+  }
+
+  @include small-screens {
+    font-size: 2em;
+  }
+
+  @include tiny-screens {
+    font-size: 2em;
+  }
   
   // animation: blink linear 0.5s;
   animation: shake linear 0.5s;
