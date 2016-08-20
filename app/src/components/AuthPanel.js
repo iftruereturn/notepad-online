@@ -70,7 +70,7 @@ export default class AuthPanel extends React.Component {
       );
 
     return (
-      <div>
+      <div className="auth-container">
         { loggedIn ? 
           logOutMarkup : 
           unloggedMarkup }

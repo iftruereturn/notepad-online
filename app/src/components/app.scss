@@ -1,14 +1,13 @@
 
 .app {
-  box-sizing: border-box;
-  max-width: $content-width;
+  // box-sizing: border-box;
 
-  display: flex;
-  flex-wrap: wrap;
+  // display: flex;
+  // flex-wrap: wrap;
   
-  min-height: 100vh;
+  // min-height: 100vh;
   // height: 100%;
-  flex-direction: column;
+  // flex-direction: column;
 
   margin-left: auto;
   margin-right: auto;
@@ -16,14 +15,25 @@
   // overflow-y: auto;
 
   .content {
-    flex: 1 0 auto; 
+    // flex: 1 0 auto; 
 
-    &::after {
-      content: '\00a0'; /* &nbsp; */
-      display: block;
-      margin-top: 1.5em;
-      height: 0px;
-      visibility: hidden;
+    // &::after {
+    //   content: '\00a0'; /* &nbsp; */
+    //   display: block;
+    //   margin-top: 1.5em;
+    //   height: 0px;
+    //   visibility: hidden;
+    // }
+    max-width: $content-width;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    min-height: 100%;
+    margin-bottom: -50px;
+
+    .push {
+      height: 50px;
     }
   }
 }
