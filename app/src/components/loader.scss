@@ -1,0 +1,50 @@
+@keyframes blink {
+  from {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes shake {
+  from {
+    transform:  translate(0px,0px)  ;
+  }
+
+  25% {
+    transform:  translate(0px, -10px)  ;
+  }
+
+  50% {
+    transform:  translate(0px,0px)  ;
+  }
+
+  75% {
+    transform:  translate(0px, 10px)  ;
+  }
+
+  to {
+    transform:  translate(0px,0px)  ;
+  }
+}
+
+
+
+.loader {
+  padding: 1em;
+  font-size: 2em;
+  
+  // animation: blink linear 0.5s;
+  animation: shake linear 0.5s;
+  animation-iteration-count: infinite;
+
+  .loader-container {
+    text-align: center;
+  }
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import Loader from './Loader';
 
 export default class AuthPanel extends React.Component {
   // componentDidMount() {
@@ -22,7 +23,7 @@ export default class AuthPanel extends React.Component {
 
     const signUpMarkup = (
       <div>
-        { signUpRequested ? '...signing up...' :
+        { signUpRequested ? <Loader text="signing up"/> :
         <div>
           <h2>Sign up</h2>
           Username: <input type="text" ref={node => { this.usernameSignUp = node }} 
@@ -40,7 +41,7 @@ export default class AuthPanel extends React.Component {
 
     const logInMarkup = (
       <div>
-        { logInRequested ? '...logging in...' :
+        { logInRequested ? <Loader text="logging in"/> :
         <div>
           <h2>Log In</h2>
           Username: <input type="text" ref={node => { this.usernameLogIn = node }} />
@@ -53,7 +54,7 @@ export default class AuthPanel extends React.Component {
 
     const logOutMarkup = (
       <div>
-        { logOutRequested ? '...logging out...' :
+        { logOutRequested ? <Loader text="logging out"/> :
         <div>
           { username }
           <button onClick={() => {logOut()}}>Log Out</button>
@@ -63,9 +64,9 @@ export default class AuthPanel extends React.Component {
       );
 
     const unloggedMarkup = (
-      <div>
-        { logInMarkup }
-        { signUpMarkup }
+      <div className="auth-unlogged-markup">
+        { signUpRequested ? null : logInMarkup }
+        { logInRequested ? null : signUpMarkup }
       </div>
       );
 

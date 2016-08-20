@@ -5,6 +5,7 @@ import NoteTextarea from './note_page_components/NoteTextarea';
 import TagsInput from './note_page_components/TagsInput';
 import IsSecretCheckbox from './note_page_components/IsSecretCheckbox';
 import { browserHistory } from 'react-router';
+import Loader from './Loader';
 
 export default class NotePage extends React.Component {
   componentWillMount() {
@@ -50,7 +51,7 @@ export default class NotePage extends React.Component {
     return (
       <div>
         <button className="save" onClick={() => browserHistory.push('/notes')}>Return to list</button>
-        {fetching? <h3>...Fetching...</h3> : note}
+        {fetching? <Loader text="fetching" /> : note}
       </div>
     );    
   }

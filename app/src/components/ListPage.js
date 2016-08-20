@@ -1,5 +1,6 @@
 import React from 'react';
 import ListNoteItem from './list_page_components/ListNoteItem';
+import Loader from './Loader';
 
 export default class ListPage extends React.Component {
   componentWillMount() {
@@ -45,7 +46,7 @@ export default class ListPage extends React.Component {
           <button className="add" onClick={() => addNewNote()}>+ Add new note</button>
         </div>
           
-        { searching ? <h2>...Searching...</h2>
+        { searching ? <Loader text="searching"/>
                     : <div className="list-page-notes">
                         {notesToShow}
                       </div>
