@@ -2,7 +2,6 @@ import { createStore, applyMiddleware, compose } from 'redux';
 import createLogger from 'redux-logger';
 import notepadOnlineApp from '../reducers';
 import thunk from 'redux-thunk';
-import persistState from 'redux-localstorage';
 
 const configureStore = () => {
   const middlewares = [thunk];
@@ -11,14 +10,9 @@ const configureStore = () => {
     middlewares.push(createLogger());
   }
 
-  const enhancer = compose(
-    applyMiddleware(...middlewares),
-    persistState('auth', 'user')
-  );
-
   return createStore(
     notepadOnlineApp,
-    enhancer
+    applyMiddleware(...middlewares),
   );
 };
 
