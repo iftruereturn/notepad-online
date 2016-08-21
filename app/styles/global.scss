@@ -45,12 +45,18 @@ button {
   cursor: pointer;
   transition: 0.1s ease-in-out;
 
+  border-radius: 2px;
+
   &:hover {
     background-color: $color-ruby;
-    border: 1px solid $color-ruby;
     color: $background-color-button;
   }
 
+  &:active {
+    outline: none;
+    background-color: lighten($color-ruby, 10%);
+    border-color: lighten($color-ruby, 10%);
+  }
 }
 
 button.delete {
@@ -65,8 +71,13 @@ button.save {
 
   &:hover {
     background-color: $color-alice;
-    border: 1px solid $color-alice;
     color: $background-color-button;
+  }
+
+  &:active {
+    outline: none;
+    background-color: lighten($color-alice, 10%);
+    border-color: lighten($color-alice, 10%);
   }
 }
 
@@ -78,12 +89,17 @@ button.add {
 
   &:hover {
     background-color: $color-jade;
-    border: 1px solid $color-jade;
     color: $background-color-button;
+  }
+
+  &:active {
+    background-color: lighten($color-jade, 10%);
+    border-color: lighten($color-jade, 10%);
   }
 }
 
 input {
+  max-width: $content-width;
   border: 1px solid $color-input-border;
   padding: 0.4em 0.6em;
   margin: 5px;

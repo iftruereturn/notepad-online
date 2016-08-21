@@ -121,6 +121,11 @@ module.exports = function(passport) {
       update.tags = cleanTagsArray;
     }
 
+    if ( !this.isAuthenticated() 
+      || this.req.user.username !== update.owner ) {
+      update.isSecret = false;
+    }
+
 
     try {
       yield Note.findByIdAndUpdate(id, update).exec();
