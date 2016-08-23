@@ -155,6 +155,18 @@ module.exports = function(passport) {
              .filter( el => el );
   };
 
+  /*const encodeBase64(mongoId) {
+    return (new Buffer(mongoId, 'hex')
+      .toString('base64')
+      .replace('+', '-')
+      .replace('/', '*'));
+  }
+
+  const decodeBase64(base64Str) {
+    return (new Buffer(base64.replace('-', '+').replace('*', '/'), 'base64')
+      .toString('hex'));
+  }*/
+
 
   return {
     getNote,

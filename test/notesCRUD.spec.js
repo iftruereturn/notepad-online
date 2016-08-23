@@ -61,7 +61,7 @@ describe('Notes CRUD', () => {
       .post('/api/notes')
       .send({ value: 'Very nice note', tags: 'nice, tags' })
       .expect(201)
-      .expect('location', /^\/api\/notes\/[0-9a-f]{24}$/)
+      .expect('location', /^\/api\/notes\/[A-Za-z0-9-*=]+$/)
       .end(done);
   });
 

@@ -2,6 +2,16 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const NoteSchema = new Schema({
+  _id: { type: String, required: true, index: true, unique: true, 
+    default() { 
+      const b64 = new Buffer(new mongoose.mongo.ObjectID().toString(), 'hex')
+        .toString('base64')
+        .replace('+', '-')
+        .replace('/', '*'); 
+      return b64; 
+    } 
+  },
+
   name: { type: String, default: 'New note' },
   value: { type: String, default: '' },
   saved: { type: Date, default: Date.now() },
