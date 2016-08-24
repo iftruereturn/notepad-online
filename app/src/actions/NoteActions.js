@@ -52,7 +52,7 @@ export const fetchNote = (noteId) => (dispatch) => {
 export const saveNoteToServer = (noteId) => (dispatch, getState) => {
 
   const { note } = getState();
-  const { name, value, tags, isSecret } = note;
+  const { name, value, tags, isSecret, owner } = note;
 
   dispatch({
     type: SAVE_NOTE_TO_SERVER_REQUEST,
@@ -65,7 +65,7 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
       headers: {  
         'Content-type': 'application/json'
       },  
-      body: JSON.stringify({ name, value, tags, isSecret }),
+      body: JSON.stringify({ name, value, tags, isSecret, owner }),
       credentials: 'same-origin'
     })
     .then( (res) => { 

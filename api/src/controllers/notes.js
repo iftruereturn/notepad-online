@@ -114,6 +114,8 @@ module.exports = function(passport) {
     const update = this.request.body;
     update.updated = Date.now();
 
+    console.log(update);
+
     // parsing tags (if needed)
     if (typeof update.tags === 'string') {
       let cleanTagsArray = parseTags(update.tags);
