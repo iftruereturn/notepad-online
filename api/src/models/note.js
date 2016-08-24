@@ -6,8 +6,9 @@ const NoteSchema = new Schema({
     default() { 
       const b64 = new Buffer(new mongoose.mongo.ObjectID().toString(), 'hex')
         .toString('base64')
-        .replace('+', '-')
-        .replace('/', '*'); 
+        .replace(/\+/g, '-')
+        .replace(/\s/g, '-')
+        .replace(/\//g, '*'); 
       return b64; 
     } 
   },

@@ -19,6 +19,8 @@ module.exports = function(app, passport) {
   router.post('/api/signup', usersController.signup);
   router.post('/api/login', usersController.login);
   router.get('/api/logout',  usersController.logout);
+  router.get('/api/account',  usersController.account);
+
 
   app.use(router.routes());
 };

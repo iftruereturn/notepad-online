@@ -7,7 +7,10 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGOUT_REQUEST,
   USER_LOGOUT_SUCCESS,
-  USER_LOGOUT_FAIL 
+  USER_LOGOUT_FAIL,
+  CHECK_IF_LOGGED_IN_REQUEST,
+  CHECK_IF_LOGGED_IN_SUCCESS,
+  CHECK_IF_LOGGED_IN_FAIL
 } from '../constants/Auth';
 
 const initialState = {
@@ -15,6 +18,7 @@ const initialState = {
   logInRequested: false,
   signUpRequested: false,
   logOutRequested: false,
+  checkIfLoggedInRequested: false,
   loggedIn: false
 };
 
@@ -78,6 +82,26 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         logOutRequested: action.logOutRequested
+      }
+
+    case CHECK_IF_LOGGED_IN_REQUEST:
+      return {
+        ...state,
+        checkIfLoggedInRequested: action.checkIfLoggedInRequested
+      }
+
+    case CHECK_IF_LOGGED_IN_SUCCESS:
+      return {
+        ...state,
+        username: action.username,
+        checkIfLoggedInRequested: action.checkIfLoggedInRequested,
+        loggedIn: action.loggedIn
+      }
+
+    case CHECK_IF_LOGGED_IN_FAIL:
+      return {
+        ...state,
+        checkIfLoggedInRequested: action.checkIfLoggedInRequested
       }
 
     default:

@@ -2,9 +2,10 @@ import React from 'react';
 import Loader from './Loader';
 
 export default class AuthPanel extends React.Component {
-  // componentDidMount() {
-  //   this.registerCheck();
-  // }
+  componentDidMount() {
+    const { checkIfLoggedIn } = this.props;
+    checkIfLoggedIn();
+  }
 
   registerCheck() {
     if (this.passwordSignUp.value !== this.repeatedPasswordSignUp.value 
@@ -18,7 +19,7 @@ export default class AuthPanel extends React.Component {
 
   render() {
     const { username,
-      logInRequested, signUpRequested, logOutRequested, loggedIn,
+      logInRequested, signUpRequested, logOutRequested, loggedIn, checkIfLoggedInRequested,
       signUp, logIn, logOut } = this.props;
 
     const signUpMarkup = (
@@ -41,7 +42,7 @@ export default class AuthPanel extends React.Component {
 
     const logInMarkup = (
       <div>
-        { logInRequested ? <Loader text="logging in"/> :
+        { logInRequested || checkIfLoggedInRequested ? <Loader text="logging in"/> :
         <div>
           <h2>Log In</h2>
           Username: <input type="text" ref={node => { this.usernameLogIn = node }} />
@@ -66,7 +67,7 @@ export default class AuthPanel extends React.Component {
     const unloggedMarkup = (
       <div className="auth-unlogged-markup">
         { signUpRequested ? null : logInMarkup }
-        { logInRequested ? null : signUpMarkup }
+        { logInRequested || checkIfLoggedInRequested ? null : signUpMarkup }
       </div>
       );
 

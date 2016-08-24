@@ -72,9 +72,28 @@ module.exports = function(passport) {
     this.redirect('/');
   };
 
+  const account = function*() {
+    let userId;
+    let user;
+
+    if (this.isAuthenticated()) {
+      userId = this.session.passport.user;
+      user = yield User.findById(userId).exec();
+      console.log(user.username);
+    }
+
+    if (user) {
+      this.body = { username: user.username };
+      this.status = 201;
+    } else {
+      this.status = 404;
+    }
+  };
+
   return {
     signup,
     login,
-    logout
+    logout,
+    account
   };
 };

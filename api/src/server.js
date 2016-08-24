@@ -35,6 +35,15 @@ app.use(passport.session());
 
 require('./config/passport')(passport, config);
 
+/*app.use(function*(next) {
+  if (this.isAuthenticated()) {
+    this.session.cookie.maxAge = 60 * 60 * 1000;
+    console.log(this.session.passport);
+    console.log(this.session);
+  }
+
+  yield next;
+});*/
 
 // routes
 require('./routes/router')(app, passport);

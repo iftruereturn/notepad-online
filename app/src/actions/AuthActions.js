@@ -7,7 +7,10 @@ import {
   USER_LOGIN_FAIL,
   USER_LOGOUT_REQUEST,
   USER_LOGOUT_SUCCESS,
-  USER_LOGOUT_FAIL 
+  USER_LOGOUT_FAIL,
+  CHECK_IF_LOGGED_IN_REQUEST,
+  CHECK_IF_LOGGED_IN_SUCCESS,
+  CHECK_IF_LOGGED_IN_FAIL
 } from '../constants/Auth';
 
 import { browserHistory } from 'react-router';
@@ -99,3 +102,31 @@ export const logOut = () => (dispatch) => {
       });
     });
 };
+
+export const checkIfLoggedIn = () => (dispatch) => {
+
+  dispatch({
+    type: CHECK_IF_LOGGED_IN_REQUEST,
+    checkIfLoggedInRequested: true
+  })
+
+  return fetch('/api/account', {
+    credentials: 'same-origin'
+  }).then( (response) => {
+      return response.json();
+    })
+    .then( (json) => {
+      dispatch({
+        type: CHECK_IF_LOGGED_IN_SUCCESS,
+        checkIfLoggedInRequested: false,
+        username: json.username,
+        loggedIn: true
+      });
+    } )
+    .catch( () => {
+      dispatch({
+        type: CHECK_IF_LOGGED_IN_FAIL,
+        checkIfLoggedInRequested: false,
+      });
+    });
+}
