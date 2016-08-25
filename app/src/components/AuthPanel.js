@@ -16,19 +16,25 @@ export default class AuthPanel extends React.Component {
   render() {
     const { username,
       logInRequested, signUpRequested, logOutRequested, loggedIn, checkIfLoggedInRequested,
-      signUp, logIn, logOut } = this.props;
+      signUp, logIn } = this.props;
 
     const signUpMarkup = (
       <div>
         { signUpRequested ? <Loader text="signing up"/> :
         <div>
           <h2>Sign up</h2>
-          Username: <input type="text" ref={node => { this.usernameSignUp = node }} 
-            onChange={() => {this.registerCheck()}}/>
-          Password: <input type="password" ref={node => { this.passwordSignUp = node }} 
-            onChange={() => {this.registerCheck()}}/>
-          Repeat password: <input type="password" ref={node => { this.repeatedPasswordSignUp = node }} 
-            onChange={() => {this.registerCheck()}}/>
+          <label className="auth-container-label">
+            Username: <input type="text" ref={node => { this.usernameSignUp = node }} 
+              onChange={() => {this.registerCheck()}}/>
+          </label>
+          <label className="auth-container-label">
+            Password: <input type="password" ref={node => { this.passwordSignUp = node }} 
+              onChange={() => {this.registerCheck()}}/>
+          </label>
+          <label className="auth-container-label">
+            Repeat password: <input type="password" ref={node => { this.repeatedPasswordSignUp = node }} 
+              onChange={() => {this.registerCheck()}}/>
+          </label>   
           <button className="add" ref={node => { this.registerButton = node }} 
             onClick={() => {signUp(this.usernameSignUp.value, this.passwordSignUp.value)}}>Sign Up</button>
         </div>
@@ -41,8 +47,12 @@ export default class AuthPanel extends React.Component {
         { logInRequested || checkIfLoggedInRequested ? <Loader text="logging in"/> :
         <div>
           <h2>Log In</h2>
-          Username: <input type="text" ref={node => { this.usernameLogIn = node }} />
-          Password: <input type="password" ref={node => { this.passwordLogIn = node }} />
+          <label className="auth-container-label">
+            Username: <input type="text" ref={node => { this.usernameLogIn = node }} />
+          </label>
+          <label className="auth-container-label">
+            Password: <input type="password" ref={node => { this.passwordLogIn = node }} />
+          </label>
           <button className="save" onClick={() => {logIn(this.usernameLogIn.value, this.passwordLogIn.value)}}>Log In</button>
         </div>
         }
@@ -53,8 +63,7 @@ export default class AuthPanel extends React.Component {
       <div>
         { logOutRequested ? <Loader text="logging out"/> :
         <div>
-          { username }
-          <button onClick={() => {logOut()}}>Log Out</button>
+          Already logged in as { username }
         </div>
         }
       </div>

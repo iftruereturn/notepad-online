@@ -1,7 +1,14 @@
 .auth-container {
-  padding: 10px;
-
+  padding: 15px;
+  display: flex;
+  flex-flow: column wrap;
+  align-items: center;
+  
   .auth-unlogged-markup {
 
+  }
+
+  .auth-container-label {
+    display: block;
   }
 }
