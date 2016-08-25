@@ -8,9 +8,7 @@ class NoteView extends React.Component {
 
   render() {
     return (
-      <div>
         <NotePage {...this.props}></NotePage>
-      </div>
       );
   }
 }

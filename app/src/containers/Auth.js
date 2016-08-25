@@ -8,9 +8,7 @@ class Auth extends React.Component {
 
   render() {
     return (
-      <div>
         <AuthPanel {...this.props}></AuthPanel>
-      </div>
       );
   }
 }

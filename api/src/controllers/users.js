@@ -84,9 +84,9 @@ module.exports = function(passport) {
 
     if (user) {
       this.body = { username: user.username };
-      this.status = 201;
+      this.status = 302;
     } else {
-      this.status = 404;
+      this.status = 401;
     }
   };
 

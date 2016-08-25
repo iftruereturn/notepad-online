@@ -68,6 +68,8 @@ export const logIn = (username, password) => (dispatch) => {
         logInRequested: false,
         loggedIn: true
       });
+
+      browserHistory.push('/');
     })
     .catch( () => {
       dispatch({

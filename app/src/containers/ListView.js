@@ -8,9 +8,7 @@ class ListView extends React.Component {
 
   render() {
     return (
-      <div>
         <ListPage {...this.props}></ListPage>
-      </div>
       );
   }
 }

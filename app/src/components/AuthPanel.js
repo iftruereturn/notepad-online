@@ -2,10 +2,6 @@ import React from 'react';
 import Loader from './Loader';
 
 export default class AuthPanel extends React.Component {
-  componentDidMount() {
-    const { checkIfLoggedIn } = this.props;
-    checkIfLoggedIn();
-  }
 
   registerCheck() {
     if (this.passwordSignUp.value !== this.repeatedPasswordSignUp.value 
