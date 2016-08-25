@@ -3,6 +3,10 @@ import Loader from './Loader';
 
 export default class AuthPanel extends React.Component {
 
+  componentDidMount() {
+    document.title = 'Notepad Online - Auth';
+  }
+
   registerCheck() {
     if (this.passwordSignUp.value !== this.repeatedPasswordSignUp.value 
         || this.passwordSignUp.value.length < 1

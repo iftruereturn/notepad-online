@@ -3,8 +3,13 @@ import ListNoteItem from './list_page_components/ListNoteItem';
 import Loader from './Loader';
 
 export default class ListPage extends React.Component {
+
   componentWillMount() {
     this.findNotes('');
+  }
+
+  componentDidMount() {
+    document.title = 'Notepad Online - Search';
   }
 
   handleInputChange = (e) => {

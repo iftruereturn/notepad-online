@@ -8,8 +8,14 @@ import { browserHistory } from 'react-router';
 import Loader from './Loader';
 
 export default class NotePage extends React.Component {
+  
   componentWillMount() {
     this.fetchData();    
+  }
+
+  componentDidMount() {
+    const { noteId } = this.props;
+    document.title = 'Notepad Online - ' + noteId;
   }
 
   fetchData() {
