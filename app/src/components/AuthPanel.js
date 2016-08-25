@@ -29,9 +29,9 @@ export default class AuthPanel extends React.Component {
           <h2>Sign up</h2>
           Username: <input type="text" ref={node => { this.usernameSignUp = node }} 
             onChange={() => {this.registerCheck()}}/>
-          Password: <input type="text" ref={node => { this.passwordSignUp = node }} 
+          Password: <input type="password" ref={node => { this.passwordSignUp = node }} 
             onChange={() => {this.registerCheck()}}/>
-          Repeat password: <input type="text" ref={node => { this.repeatedPasswordSignUp = node }} 
+          Repeat password: <input type="password" ref={node => { this.repeatedPasswordSignUp = node }} 
             onChange={() => {this.registerCheck()}}/>
           <button className="add" ref={node => { this.registerButton = node }} 
             onClick={() => {signUp(this.usernameSignUp.value, this.passwordSignUp.value)}}>Sign Up</button>
@@ -46,7 +46,7 @@ export default class AuthPanel extends React.Component {
         <div>
           <h2>Log In</h2>
           Username: <input type="text" ref={node => { this.usernameLogIn = node }} />
-          Password: <input type="text" ref={node => { this.passwordLogIn = node }} />
+          Password: <input type="password" ref={node => { this.passwordLogIn = node }} />
           <button className="save" onClick={() => {logIn(this.usernameLogIn.value, this.passwordLogIn.value)}}>Log In</button>
         </div>
         }

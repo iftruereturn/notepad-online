@@ -1,7 +1,7 @@
 import React from 'react';
 
 const NameInput = ({ name, changeName }) => (
-  <input type="text" 
+  <input className="note-page-input" type="text" 
     placeholder="Input name here"
     value={name} 
     onChange={(e) => changeName(e.target.value)}/>
