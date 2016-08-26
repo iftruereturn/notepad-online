@@ -24,7 +24,7 @@ export default class NotePage extends React.Component {
   }
 
   render() {
-    const { noteId, name, value, saved, updated, tags, owner, isSecret,
+    const { noteId, name, value, createdAt, updatedAt, tags, owner, isSecret,
       saving, fetching, deleting,
       changeName, changeValue, changeTags, changeIsSecret,
       saveNoteToServer, deleteThisNote } = this.props;
@@ -36,8 +36,8 @@ export default class NotePage extends React.Component {
         <div className="note-page-title">{name}</div>
         <div className="note-page-info">
           <div>Author: {owner}</div>
-          <div>Saved: {saved}</div>
-          <div>Updated: {updated}</div>
+          <div>Created at: {createdAt}</div>
+          <div>Updated at: {updatedAt}</div>
         </div>
         <NameInput name={name} changeName={changeName}></NameInput>
         <NoteTextarea value={value} changeValue={changeValue}></NoteTextarea>

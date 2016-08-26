@@ -10,8 +10,8 @@ const ListNoteItem = ({ note, deleteNote }) => {
     <div className={combinedClasses}>
       <h3 className="list-note-item-title">{note.name}</h3>
       <div>Author: {note.owner}</div>
-      <div>Created: {(new Date(note.saved)).toLocaleString()}</div>
-      <div>Updated: {(new Date(note.updated)).toLocaleString()}</div>
+      <div>Created at: {(new Date(note.createdAt)).toLocaleString()}</div>
+      <div>Updated at: {(new Date(note.updatedAt)).toLocaleString()}</div>
       <div className="list-note-item-tags">Tags: {note.tags.join(', ')}</div>
       {/*<Link to={`/notes/${note._id}`}>Open this note</Link>*/}
       <button className="save" onClick={() => browserHistory.push(`/notes/${note._id}`)}>Open</button>

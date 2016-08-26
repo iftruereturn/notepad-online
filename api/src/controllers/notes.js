@@ -112,7 +112,7 @@ module.exports = function(passport) {
     const id = this.params.id;
 
     const update = this.request.body;
-    update.updated = Date.now();
+    // update.updated = Date.now();
 
     console.log(update);
 
