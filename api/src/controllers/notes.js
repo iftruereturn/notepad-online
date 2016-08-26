@@ -154,6 +154,8 @@ module.exports = function(passport) {
   const parseTags = (tagsArray) => {
     return tagsArray.split(',')
              .map( el => el.trim().toLowerCase() )
+             .join(' ')
+             .split(' ')
              .filter( el => el );
   };
 
