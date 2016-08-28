@@ -19,7 +19,8 @@ const initialState = {
   signUpRequested: false,
   logOutRequested: false,
   checkIfLoggedInRequested: false,
-  loggedIn: false
+  loggedIn: false,
+  errorMessage: ''
 };
 
 const auth = (state = initialState, action) => {
@@ -36,13 +37,15 @@ const auth = (state = initialState, action) => {
     case USER_SIGNUP_SUCCESS:
       return {
         ...state,
-        signUpRequested: action.signUpRequested
+        signUpRequested: action.signUpRequested,
+        errorMessage: action.errorMessage
       }
 
     case USER_SIGNUP_FAIL:
       return {
         ...state,
-        signUpRequested: action.signUpRequested
+        signUpRequested: action.signUpRequested,
+        errorMessage: action.errorMessage
       }
 
     case USER_LOGIN_REQUEST:
@@ -56,13 +59,15 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         logInRequested: action.logInRequested,
-        loggedIn: action.loggedIn
+        loggedIn: action.loggedIn,
+        errorMessage: action.errorMessage
       }
 
     case USER_LOGIN_FAIL:
       return {
         ...state,
-        logInRequested: action.logInRequested
+        logInRequested: action.logInRequested,
+        errorMessage: action.errorMessage
       }
 
     case USER_LOGOUT_REQUEST:
@@ -75,13 +80,15 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         logOutRequested: action.logOutRequested,
-        loggedIn: action.loggedIn
+        loggedIn: action.loggedIn,
+        errorMessage: action.errorMessage
       }
 
     case USER_LOGOUT_FAIL:
       return {
         ...state,
-        logOutRequested: action.logOutRequested
+        logOutRequested: action.logOutRequested,
+        errorMessage: action.errorMessage
       }
 
     case CHECK_IF_LOGGED_IN_REQUEST:
@@ -95,13 +102,15 @@ const auth = (state = initialState, action) => {
         ...state,
         username: action.username,
         checkIfLoggedInRequested: action.checkIfLoggedInRequested,
-        loggedIn: action.loggedIn
+        loggedIn: action.loggedIn,
+        errorMessage: action.errorMessage
       }
 
     case CHECK_IF_LOGGED_IN_FAIL:
       return {
         ...state,
-        checkIfLoggedInRequested: action.checkIfLoggedInRequested
+        checkIfLoggedInRequested: action.checkIfLoggedInRequested,
+        errorMessage: action.errorMessage
       }
 
     default:

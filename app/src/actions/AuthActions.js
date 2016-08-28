@@ -36,19 +36,22 @@ export const signUp = (username, password) => (dispatch) => {
       
       // Because CORS
       if (response.status === 401
-          || response.status === 404) {
+          || response.status === 404
+          || response.status === 502) {
         throw new Error();
       }
 
       dispatch({
         type: USER_SIGNUP_SUCCESS,
-        signUpRequested: false
+        signUpRequested: false,
+        errorMessage: ''
       });
     })
     .catch( () => {
       dispatch({
         type: USER_SIGNUP_FAIL,
-        signUpRequested: false
+        signUpRequested: false,
+        errorMessage: 'Signup error'
       });
     });
 };
@@ -73,14 +76,16 @@ export const logIn = (username, password) => (dispatch) => {
 
       // Because CORS
       if (response.status === 401
-          || response.status === 404) {
+          || response.status === 404
+          || response.status === 502) {
         throw new Error();
       }
 
       dispatch({
         type: USER_LOGIN_SUCCESS,
         logInRequested: false,
-        loggedIn: true
+        loggedIn: true,
+        errorMessage: ''
       });
 
       browserHistory.push('/');
@@ -88,7 +93,8 @@ export const logIn = (username, password) => (dispatch) => {
     .catch( (e) => {
       dispatch({
         type: USER_LOGIN_FAIL,
-        logInRequested: false
+        logInRequested: false,
+        errorMessage: 'Login error'
       });
     });
 };
@@ -102,11 +108,20 @@ export const logOut = () => (dispatch) => {
 
   return fetch('/api/logout', {
     credentials: 'same-origin'
-  }).then( () => {
+  }).then( (response) => {
+      
+      // Because CORS
+      if (response.status === 401
+          || response.status === 404
+          || response.status === 502) {
+        throw new Error();
+      }
+
       dispatch({
         type: USER_LOGOUT_SUCCESS,
         logOutRequested: false,
-        loggedIn: false
+        loggedIn: false,
+        errorMessage: ''
       });
 
       browserHistory.push('/');
@@ -114,7 +129,8 @@ export const logOut = () => (dispatch) => {
     .catch( () => {
       dispatch({
         type: USER_LOGOUT_FAIL,
-        logOutRequested: false
+        logOutRequested: false,
+        errorMessage: 'Logout error'
       });
     });
 };
@@ -129,6 +145,14 @@ export const checkIfLoggedIn = () => (dispatch) => {
   return fetch('/api/account', {
     credentials: 'same-origin'
   }).then( (response) => {
+      
+      // Because CORS
+      if (response.status === 401
+          || response.status === 404
+          || response.status === 502) {
+        throw response;
+      }
+
       return response.json();
     })
     .then( (json) => {
@@ -136,13 +160,16 @@ export const checkIfLoggedIn = () => (dispatch) => {
         type: CHECK_IF_LOGGED_IN_SUCCESS,
         checkIfLoggedInRequested: false,
         username: json.username,
-        loggedIn: true
+        loggedIn: true,
+        errorMessage: ''
       });
     } )
-    .catch( () => {
+    .catch( (e) => {
+
       dispatch({
         type: CHECK_IF_LOGGED_IN_FAIL,
         checkIfLoggedInRequested: false,
+        errorMessage: ''
       });
     });
 }

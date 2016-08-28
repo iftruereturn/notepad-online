@@ -1,3 +1,4 @@
+
 .auth-container {
   padding: 15px;
   display: flex;
@@ -10,6 +11,12 @@
 
   .auth-container-label {
     display: block;
+  }
+
+  .auth-container-error {
+    // animation: show-error linear 10s;
+    color: $color-ruby;
+    padding: 5px;
   }
 }
 

@@ -29,7 +29,8 @@ export default class AuthPanel extends React.Component {
   render() {
     const { username,
       logInRequested, signUpRequested, logOutRequested, loggedIn, checkIfLoggedInRequested,
-      signUp, logIn } = this.props;
+      signUp, logIn,
+      errorMessage } = this.props;
 
     const signUpMarkup = (
       <div>
@@ -50,6 +51,9 @@ export default class AuthPanel extends React.Component {
           </label>   
           <button className="add" ref={node => { this.registerButton = node }} 
             onClick={() => {signUp(this.usernameSignUp.value, this.passwordSignUp.value)}}>Sign Up</button>
+          { errorMessage === 'Signup error' ?
+            <span className="auth-container-error">{errorMessage}</span> :
+          '' }
         </div>
         }
       </div>
@@ -67,6 +71,9 @@ export default class AuthPanel extends React.Component {
             Password: <input type="password" ref={node => { this.passwordLogIn = node }} />
           </label>
           <button className="save" onClick={() => {logIn(this.usernameLogIn.value, this.passwordLogIn.value)}}>Log In</button>
+          { errorMessage === 'Login error' ?
+            <span className="auth-container-error">{errorMessage}</span> :
+          '' }
         </div>
         }
       </div>
