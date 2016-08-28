@@ -5,6 +5,15 @@ export default class AuthPanel extends React.Component {
 
   componentDidMount() {
     document.title = 'Notepad Online - Auth';
+    if (this.registerButton) {
+      this.registerButton.disabled = 'true';
+    }
+  }
+
+  componentDidUpdate() {
+    if (this.registerButton) {
+      this.registerButton.disabled = 'true';
+    }
   }
 
   registerCheck() {

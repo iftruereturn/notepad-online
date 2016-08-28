@@ -45,7 +45,7 @@ button {
   cursor: pointer;
   transition: 0.1s ease-in-out;
 
-  border-radius: 2px;
+  border-radius: 3px;
 
   &:hover {
     background-color: $color-ruby;
@@ -95,6 +95,18 @@ button.add {
   &:active {
     background-color: lighten($color-jade, 10%);
     border-color: lighten($color-jade, 10%);
+  }
+
+  &:disabled {
+    cursor: default;
+    border-color: #888;
+    background-color: $background-color;
+    color: #888;
+
+    &:hover {
+      background-color: $background-color;
+      color: #888;
+    }
   }
 }
 

@@ -32,7 +32,14 @@ export const signUp = (username, password) => (dispatch) => {
       body: JSON.stringify({ username, password }),
       credentials: 'same-origin'
     })
-    .then( () => {
+    .then( (response) => {
+      
+      // Because CORS
+      if (response.status === 401
+          || response.status === 404) {
+        throw new Error();
+      }
+
       dispatch({
         type: USER_SIGNUP_SUCCESS,
         signUpRequested: false
@@ -62,7 +69,14 @@ export const logIn = (username, password) => (dispatch) => {
       body: JSON.stringify({ username, password }),
       credentials: 'same-origin'
     })
-    .then( () => {
+    .then( (response) => {
+
+      // Because CORS
+      if (response.status === 401
+          || response.status === 404) {
+        throw new Error();
+      }
+
       dispatch({
         type: USER_LOGIN_SUCCESS,
         logInRequested: false,
@@ -71,7 +85,7 @@ export const logIn = (username, password) => (dispatch) => {
 
       browserHistory.push('/');
     })
-    .catch( () => {
+    .catch( (e) => {
       dispatch({
         type: USER_LOGIN_FAIL,
         logInRequested: false
@@ -110,7 +124,7 @@ export const checkIfLoggedIn = () => (dispatch) => {
   dispatch({
     type: CHECK_IF_LOGGED_IN_REQUEST,
     checkIfLoggedInRequested: true
-  })
+  });
 
   return fetch('/api/account', {
     credentials: 'same-origin'
