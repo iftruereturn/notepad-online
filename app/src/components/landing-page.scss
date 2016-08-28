@@ -14,11 +14,23 @@
   margin-left: auto;
   margin-right: auto;
 
+  padding: 20px;
+
+  .landing-container-title {
+    padding: 30px;
+    font-size: 2.5em;
+    line-height: 1em;
+  }
+
   .landing-container-presentation {
-    
+    padding: 20px;
+  }
 
-    h1 {
+  .landing-container-features {
+    padding: 20px;
 
+    .landing-container-features-title {
+      font-size: 1.5em;
     }
   }
 }

@@ -11,13 +11,13 @@ class LandingPage extends React.Component {
   render() {
     return (
       <div className="landing-container">
+        <div className="landing-container-title">Notepad Online</div>
         <div className="landing-container-presentation">
-          <h1>Notepad Online</h1>
           <div>Save, access, and edit your notes</div>
           <Link to={'/notes'}>Start using it right now</Link>
         </div>
         <div className="landing-container-features">
-          <h2>Features</h2>
+          <div className="landing-container-features-title">Features</div>
           <ul>
             <li>
               <FeatureItem>Save your notes easily</FeatureItem>
