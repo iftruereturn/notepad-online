@@ -1,9 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router';
-import FeatureItem from './landing_page_components/FeatureItem';
+import FeatureItem from './landing_page_components/FeatureItem.jsx';
 
 class LandingPage extends React.Component {
-  
+
   componentDidMount() {
     document.title = 'Notepad Online';
   }

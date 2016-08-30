@@ -6,7 +6,7 @@ import auth from './auth';
 const notepadOnlineApp = combineReducers({
   note,
   list,
-  auth
+  auth,
 });
 
 export default notepadOnlineApp;

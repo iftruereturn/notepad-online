@@ -1,8 +1,8 @@
-import { 
+import { browserHistory } from 'react-router';
+import {
   FETCH_NOTE_REQUEST,
   FETCH_NOTE_SUCCESS,
   FETCH_NOTE_FAIL,
-  SAVE_NOTE_TO_STATE,
   SAVE_NOTE_TO_SERVER_REQUEST,
   SAVE_NOTE_TO_SERVER_SUCCESS,
   SAVE_NOTE_TO_SERVER_FAIL,
@@ -12,11 +12,8 @@ import {
   CHANGE_NOTE_NAME,
   CHANGE_NOTE_VALUE,
   CHANGE_NOTE_TAGS,
-  CHANGE_NOTE_IS_SECRET
+  CHANGE_NOTE_IS_SECRET,
 } from '../constants/Note';
-
-import { browserHistory } from 'react-router';
-// import { fetchNoteById } from '../utils';
 
 export const fetchNote = (noteId) => (dispatch) => {
   // Need to verify if this note is already fetched or now fetching
@@ -25,129 +22,114 @@ export const fetchNote = (noteId) => (dispatch) => {
   dispatch({
     type: FETCH_NOTE_REQUEST,
     fetching: true,
-    noteId
+    noteId,
   });
 
-  return fetch('/api/notes/' + noteId, {
-    credentials: 'same-origin'
-  }).then( (response) => {
-      return response.json();
-    })
-    .then( (note) => {
+  return fetch(`/api/notes/${noteId}`, {
+    credentials: 'same-origin',
+  }).then((response) => response.json())
+    .then((note) => {
       dispatch({
         type: FETCH_NOTE_SUCCESS,
         fetching: false,
-        note
+        note,
       });
     })
-    .catch( () => {
+    .catch(() => {
       dispatch({
         type: FETCH_NOTE_FAIL,
         fetching: false,
-        noteId
+        noteId,
       });
     });
 };
 
 export const saveNoteToServer = (noteId) => (dispatch, getState) => {
-
   const { note } = getState();
   const { name, value, tags, isSecret, owner } = note;
 
   dispatch({
     type: SAVE_NOTE_TO_SERVER_REQUEST,
     saving: true,
-    noteId
+    noteId,
   });
 
-  return fetch('/api/notes/' + noteId, {  
-      method: 'put',  
-      headers: {  
-        'Content-type': 'application/json'
-      },  
-      body: JSON.stringify({ name, value, tags, isSecret, owner }),
-      credentials: 'same-origin'
-    })
-    .then( (res) => { 
-      dispatch({
-        type: SAVE_NOTE_TO_SERVER_SUCCESS,
-        saving: false,
-        noteId
-      }); 
-    })
-    .catch( (res) => {
-      dispatch({
-        type: SAVE_NOTE_TO_SERVER_FAIL,
-        saving: false,
-        noteId
-      });
+  return fetch(`/api/notes/${noteId}`, {
+    method: 'put',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({ name, value, tags, isSecret, owner }),
+    credentials: 'same-origin',
+  }).then(() => {
+    dispatch({
+      type: SAVE_NOTE_TO_SERVER_SUCCESS,
+      saving: false,
+      noteId,
     });
+  }).catch(() => {
+    dispatch({
+      type: SAVE_NOTE_TO_SERVER_FAIL,
+      saving: false,
+      noteId,
+    });
+  });
 };
 
 export const changeName = (name) => (dispatch) => {
-
   dispatch({
     type: CHANGE_NOTE_NAME,
-    name
-  })
+    name,
+  });
 };
 
 export const changeValue = (value) => (dispatch) => {
-
   dispatch({
     type: CHANGE_NOTE_VALUE,
-    value
-  })
+    value,
+  });
 };
 
 export const changeTags = (tags) => (dispatch) => {
-
   dispatch({
     type: CHANGE_NOTE_TAGS,
-    tags
-  })
+    tags,
+  });
 };
 
 export const changeIsSecret = (isSecret) => (dispatch) => {
-
   dispatch({
     type: CHANGE_NOTE_IS_SECRET,
-    isSecret
+    isSecret,
   });
 };
 
-
-// TODO: move this function to util
 export const deleteThisNote = (noteId) => (dispatch) => {
-
   dispatch({
     type: DELETE_THIS_NOTE_REQUEST,
-    deleting: true
+    deleting: true,
   });
 
-  return fetch('/api/notes/' + noteId, {  
-      method: 'delete',
-      credentials: 'same-origin'
-    })
-    .then( (response) => {
-      if (response.status === 200) {
-        dispatch({
-          type: DELETE_THIS_NOTE_SUCCESS,
-          deleting: false
-        });
-        browserHistory.push('/notes');
-      } else {
-        dispatch({
-          type: DELETE_THIS_NOTE_FAIL,
-          deleting: false
-        });
-      }
-    })
-    .catch( () => {
+  return fetch(`/api/notes/${noteId}`, {
+    method: 'delete',
+    credentials: 'same-origin',
+  }).then((response) => {
+    if (response.status === 200) {
+      dispatch({
+        type: DELETE_THIS_NOTE_SUCCESS,
+        deleting: false,
+      });
+      browserHistory.push('/notes');
+    } else {
       dispatch({
         type: DELETE_THIS_NOTE_FAIL,
-        deleting: false
+        deleting: false,
       });
+    }
+  }).catch(() => {
+    dispatch({
+      type: DELETE_THIS_NOTE_FAIL,
+      deleting: false,
     });
-}
-
+  });
+};

@@ -9,7 +9,7 @@ module.exports = {
     // 'babel-polyfill',
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './app/src/index.js'
+    './app/src/index.jsx'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -24,7 +24,7 @@ module.exports = {
   module: {
     preLoaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: ['eslint-loader'],
         include: [
           path.resolve(__dirname, "app/src"),
@@ -33,7 +33,7 @@ module.exports = {
     ],
     loaders: [
       {
-        test: /\.js$/,
+        test: /\.jsx?$/,
         loaders: ['react-hot', 'babel-loader'],
         exclude: /node_modules/,
         include: path.join(__dirname, 'app/src')

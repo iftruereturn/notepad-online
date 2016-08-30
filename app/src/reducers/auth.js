@@ -1,5 +1,5 @@
-import { 
-  USER_SIGNUP_REQUEST, 
+import {
+  USER_SIGNUP_REQUEST,
   USER_SIGNUP_SUCCESS,
   USER_SIGNUP_FAIL,
   USER_LOGIN_REQUEST,
@@ -10,7 +10,7 @@ import {
   USER_LOGOUT_FAIL,
   CHECK_IF_LOGGED_IN_REQUEST,
   CHECK_IF_LOGGED_IN_SUCCESS,
-  CHECK_IF_LOGGED_IN_FAIL
+  CHECK_IF_LOGGED_IN_FAIL,
 } from '../constants/Auth';
 
 const initialState = {
@@ -20,82 +20,81 @@ const initialState = {
   logOutRequested: false,
   checkIfLoggedInRequested: false,
   loggedIn: false,
-  errorMessage: ''
+  errorMessage: '',
 };
 
 const auth = (state = initialState, action) => {
-
   switch (action.type) {
 
     case USER_SIGNUP_REQUEST:
       return {
         ...state,
         username: action.username,
-        signUpRequested: action.signUpRequested
-      }
+        signUpRequested: action.signUpRequested,
+      };
 
     case USER_SIGNUP_SUCCESS:
       return {
         ...state,
         signUpRequested: action.signUpRequested,
-        errorMessage: action.errorMessage
-      }
+        errorMessage: action.errorMessage,
+      };
 
     case USER_SIGNUP_FAIL:
       return {
         ...state,
         signUpRequested: action.signUpRequested,
-        errorMessage: action.errorMessage
-      }
+        errorMessage: action.errorMessage,
+      };
 
     case USER_LOGIN_REQUEST:
       return {
         ...state,
         username: action.username,
-        logInRequested: action.logInRequested
-      }
+        logInRequested: action.logInRequested,
+      };
 
     case USER_LOGIN_SUCCESS:
       return {
         ...state,
         logInRequested: action.logInRequested,
         loggedIn: action.loggedIn,
-        errorMessage: action.errorMessage
-      }
+        errorMessage: action.errorMessage,
+      };
 
     case USER_LOGIN_FAIL:
       return {
         ...state,
         logInRequested: action.logInRequested,
-        errorMessage: action.errorMessage
-      }
+        errorMessage: action.errorMessage,
+      };
 
     case USER_LOGOUT_REQUEST:
       return {
         ...state,
-        logOutRequested: action.logOutRequested
-      }
+        logOutRequested: action.logOutRequested,
+      };
 
     case USER_LOGOUT_SUCCESS:
       return {
         ...state,
         logOutRequested: action.logOutRequested,
         loggedIn: action.loggedIn,
-        errorMessage: action.errorMessage
-      }
+        errorMessage: action.errorMessage,
+      };
 
     case USER_LOGOUT_FAIL:
       return {
         ...state,
         logOutRequested: action.logOutRequested,
-        errorMessage: action.errorMessage
-      }
+        errorMessage: action.errorMessage,
+      };
 
     case CHECK_IF_LOGGED_IN_REQUEST:
       return {
         ...state,
-        checkIfLoggedInRequested: action.checkIfLoggedInRequested
-      }
+        checkIfLoggedInRequested: action.checkIfLoggedInRequested,
+      };
 
     case CHECK_IF_LOGGED_IN_SUCCESS:
       return {
@@ -103,15 +102,15 @@ const auth = (state = initialState, action) => {
         username: action.username,
         checkIfLoggedInRequested: action.checkIfLoggedInRequested,
         loggedIn: action.loggedIn,
-        errorMessage: action.errorMessage
-      }
+        errorMessage: action.errorMessage,
+      };
 
     case CHECK_IF_LOGGED_IN_FAIL:
       return {
         ...state,
         checkIfLoggedInRequested: action.checkIfLoggedInRequested,
-        errorMessage: action.errorMessage
-      }
+        errorMessage: action.errorMessage,
+      };
 
     default:
       return state;

@@ -1,3 +1,4 @@
+import { browserHistory } from 'react-router';
 import {
   FIND_NOTES_REQUEST,
   FIND_NOTES_SUCCESS,
@@ -7,115 +8,99 @@ import {
   ADD_NEW_NOTE_FAIL,
   DELETE_NOTE_REQUEST,
   DELETE_NOTE_SUCCESS,
-  DELETE_NOTE_FAIL
+  DELETE_NOTE_FAIL,
 } from '../constants/List';
-import { browserHistory } from 'react-router';
 
 export const findNotesByTags = (queryString) => (dispatch) => {
-
   let formattedQueryString;
 
   if (queryString === '') {
     formattedQueryString = '';
   } else {
-    formattedQueryString = '?tags=' + queryString.replace(/\,/g, ' ')
-                                      .split(' ')
-                                      .map( el => el.trim() )
-                                      .filter( el => el !== '' )
-                                      .join('&tags=');
+    const queryStringRightSide = queryString.replace(/,/g, ' ')
+                            .split(' ')
+                            .map(el => el.trim())
+                            .filter(el => el !== '')
+                            .join('&tags=');
+    formattedQueryString = `?tags=${queryStringRightSide}`;
   }
-
-  console.log(formattedQueryString);
 
   dispatch({
     type: FIND_NOTES_REQUEST,
-    searching: true
+    searching: true,
   });
 
-  return fetch('/api/notes' + formattedQueryString, {
-    credentials: 'same-origin'
-  }).then( (response) => {
-      return response.json();
-    })
-    .then( (foundNotes) => {
+  return fetch(`/api/notes${formattedQueryString}`, {
+    credentials: 'same-origin',
+  }).then((response) => response.json())
+    .then((foundNotes) => {
       dispatch({
         type: FIND_NOTES_SUCCESS,
         foundNotes,
-        searching: false
+        searching: false,
       });
-    })
-    .catch( () => {
+    }).catch(() => {
       dispatch({
         type: FIND_NOTES_FAIL,
-        searching: false
+        searching: false,
       });
     });
 };
 
 export const addNewNote = () => (dispatch) => {
-  
   dispatch({
     type: ADD_NEW_NOTE_REQUEST,
-    creating: true
+    creating: true,
   });
 
-  return fetch('/api/notes', {  
-      method: 'post',  
-      headers: {  
-        'Content-type': 'application/json'
-      },  
-      body: JSON.stringify({}),
-      credentials: 'same-origin'
-    })
-  .then( (response) => {
-    return response.headers.get('location');
-  })
-  .then( (location) => {
-    dispatch({
-      type: ADD_NEW_NOTE_SUCCESS,
-      creating: false
+  return fetch('/api/notes', {
+    method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({}),
+    credentials: 'same-origin',
+  }).then((response) => response.headers.get('location'))
+    .then((location) => {
+      dispatch({
+        type: ADD_NEW_NOTE_SUCCESS,
+        creating: false,
+      });
+      const path = location.slice(4);
+      browserHistory.push(path);
+    }).catch(() => {
+      dispatch({
+        type: ADD_NEW_NOTE_FAIL,
+        creating: false,
+      });
     });
-    let path = location.slice(4);
-    browserHistory.push(path);
-  } )
-  .catch( () => {
-    dispatch({
-      type: ADD_NEW_NOTE_FAIL,
-      creating: false
-    });
-  });
-
 };
 
-// TODO: move this function to util
 export const deleteNote = (noteId) => (dispatch) => {
-
   dispatch({
     type: DELETE_NOTE_REQUEST,
-    deleting: true
+    deleting: true,
   });
 
-  return fetch('/api/notes/' + noteId, {  
-      method: 'delete',
-      credentials: 'same-origin'
-    })
-  .then( (response) => {
+  return fetch(`/api/notes/${noteId}`, {
+    method: 'delete',
+    credentials: 'same-origin',
+  }).then((response) => {
     if (response.status === 200) {
       dispatch({
         type: DELETE_NOTE_SUCCESS,
-        deleting: false
+        deleting: false,
       });
     } else {
       dispatch({
         type: DELETE_NOTE_FAIL,
-        deleting: false
+        deleting: false,
       });
     }
-  })
-  .catch( () => {
+  }).catch(() => {
     dispatch({
       type: DELETE_NOTE_FAIL,
-      deleting: false
+      deleting: false,
     });
   });
 };

@@ -1,7 +1,7 @@
-import { createStore, applyMiddleware, compose } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import createLogger from 'redux-logger';
-import notepadOnlineApp from '../reducers';
 import thunk from 'redux-thunk';
+import notepadOnlineApp from '../reducers';
 
 const configureStore = () => {
   const middlewares = [thunk];
