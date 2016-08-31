@@ -1,6 +1,8 @@
 const koa = require('koa');
 const app = module.exports = koa();
 const bodyParser = require('koa-bodyparser');
+const serve = require('koa-static');
+const path = require('path');
 
 const config = require('./config/config');
 
@@ -44,6 +46,8 @@ require('./config/passport')(passport, config);
 
   yield next;
 });*/
+
+app.use(serve(path.resolve('public')));
 
 // routes
 require('./routes/router')(app, passport);

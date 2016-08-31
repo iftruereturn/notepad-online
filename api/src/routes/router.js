@@ -1,4 +1,7 @@
 const Router = require('koa-router');
+const send = require('koa-send');
+const path = require('path');
+
 const notesControllerInit = require('../controllers/notes');
 const usersControllerInit = require('../controllers/users');
 
@@ -21,6 +24,9 @@ module.exports = function(app, passport) {
   router.get('/api/logout',  usersController.logout);
   router.get('/api/account',  usersController.account);
 
+  router.all('/', function*() {
+    yield send(this, 'index.html', { root: path.resolve('.') });
+  });
 
   app.use(router.routes());
 };

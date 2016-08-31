@@ -9,8 +9,10 @@
   },
   "scripts": {
     "start": "node api/src/server.js",
+    "prod": "npm run build && npm start",
     "dev": "node frontDevServer.js",
-    "test": "node node_modules/.bin/mocha -u bdd -R spec"
+    "test": "node node_modules/.bin/mocha -u bdd -R spec",
+    "build": "webpack --config ./webpack.prod.config.js --progress --colors"
   },
   "keywords": [
     "notepad",
