@@ -8,6 +8,6 @@ module.exports = {
     "keys": ["your-session-secret"]
   },
   "mongo": {
-      "url": "mongodb://localhost/notebook_online"
+      "url": "mongodb://localhost/notepad_online"
   }
 };

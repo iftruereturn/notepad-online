@@ -4,4 +4,4 @@
 /node_modules
 
 # generated files
-/public/assets
+# /public/assets

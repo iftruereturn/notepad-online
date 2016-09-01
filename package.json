@@ -2,6 +2,9 @@
   "name": "notepad-online",
   "version": "0.0.1",
   "description": "Notepad-Online",
+  "engines": {
+    "node": "6.4.0"
+  },
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -9,7 +12,8 @@
   },
   "scripts": {
     "start": "node api/src/server.js",
-    "prod": "npm run build && npm start",
+    "start-prod": "set NODE_ENV=production&& node api/src/server.js",
+    "prod": "npm run build && npm run start-prod",
     "dev": "node frontDevServer.js",
     "test": "node node_modules/.bin/mocha -u bdd -R spec",
     "build": "webpack --config ./webpack.prod.config.js --progress --colors"
@@ -25,7 +29,6 @@
   "author": "iftruereturn",
   "license": "MIT",
   "dependencies": {
-    "babel-polyfill": "^6.9.1",
     "co": "^4.6.0",
     "koa": "^1.2.0",
     "koa-bodyparser": "^2.2.0",
