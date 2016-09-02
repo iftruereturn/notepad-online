@@ -7,8 +7,8 @@ module.exports = {
   entry: [
     // 'webpack-hot-middleware/client',
     // 'babel-polyfill',
-    'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
+    'webpack-dev-server/client?http://localhost:3000',
     './app/src/index.jsx'
   ],
   output: {

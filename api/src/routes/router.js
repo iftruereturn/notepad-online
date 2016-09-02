@@ -24,7 +24,7 @@ module.exports = function(app, passport) {
   router.get('/api/logout',  usersController.logout);
   router.get('/api/account',  usersController.account);
 
-  router.all('/', function*() {
+  router.all('/*', function*() {
     yield send(this, 'index.html', { root: path.resolve('.') });
   });
 

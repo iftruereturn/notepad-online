@@ -1,19 +1,25 @@
 .list-note-item {
   padding: 1em;
+  @include small-screens {
+    // padding: 0.5em;
+    min-width: 80%;
+  }
   margin: 0.75em;
   border: 1px solid $color-alice;
 
   transition: 0.3s ease-in;
 
-  // max-width: 260px;
   // background-color: lighten($background-color-note, 10%);
   // box-shadow: 1px 1px 1px 1px #ccc;
-  
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
 
   .list-note-item-title {
+    @include small-screens {
+      margin: 0 auto;
+    }
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
@@ -25,6 +31,28 @@
 
   &:hover {
     box-shadow: 5px 5px 2px 2px rgba(200, 200, 200, 0.5);
+  }
+
+  // .list-note-item-author {
+  //   @include small-screens {
+  //     display: none;
+  //   }
+  // }
+
+  .list-note-item-created-at {
+    @include small-screens {
+      display: none;
+    }
+  }
+
+  .list-note-item-updated-at {
+    @include small-screens {
+      display: none;
+    }
+  }
+
+  .list-note-item-buttons {
+    float: right;
   }
 }
 

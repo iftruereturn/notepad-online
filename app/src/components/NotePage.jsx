@@ -41,11 +41,11 @@ class NotePage extends React.Component {
         <IsSecretCheckbox isSecret={isSecret} changeIsSecret={changeIsSecret} />
         <TagsInput tags={tags} changeTags={changeTags} />
         <div className="save-delete-buttons">
-          <button className="save" onClick={() => saveNoteToServer(noteId)}>
-            {saving ? 'saving...' : 'Save note'}
-          </button>
           <button className="delete" onClick={() => deleteThisNote(noteId)}>
             {deleting ? 'deleting...' : 'Delete note'}
+          </button>
+          <button className="save" onClick={() => saveNoteToServer(noteId)}>
+            {saving ? 'saving...' : 'Save note'}
           </button>
         </div>
       </div>

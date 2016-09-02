@@ -9,14 +9,24 @@ const ListNoteItem = ({ note, deleteNote }) => {
   return (
     <div className={combinedClasses}>
       <h3 className="list-note-item-title">{note.name}</h3>
-      <div>Author: {note.owner}</div>
-      <div>Created at: {(new Date(note.createdAt)).toLocaleString()}</div>
-      <div>Updated at: {(new Date(note.updatedAt)).toLocaleString()}</div>
+      <div className="list-note-item-author">Author: {note.owner}</div>
+      <div
+        className="list-note-item-created-at"
+      >
+        Created at: {(new Date(note.createdAt)).toLocaleString()}
+      </div>
+      <div
+        className="list-note-item-updated-at"
+      >
+        Updated at: {(new Date(note.updatedAt)).toLocaleString()}
+      </div>
       <div className="list-note-item-tags">Tags: {note.tags.join(', ')}</div>
-      <button className="save" onClick={() => browserHistory.push(`/notes/${note._id}`)}>
-        Open
-      </button>
-      <button className="delete" onClick={() => deleteNote(note._id)}>Delete</button>
+      <div className="list-note-item-buttons">
+        <button className="delete" onClick={() => deleteNote(note._id)}>Delete</button>
+        <button className="save" onClick={() => browserHistory.push(`/notes/${note._id}`)}>
+          Open
+        </button>
+      </div>
     </div>
   );
 };

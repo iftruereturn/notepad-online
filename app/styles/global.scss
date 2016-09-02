@@ -15,25 +15,25 @@ body {
   font-size: 100%;
 
   @include large-screens {
-    font-size: 1.2em;
+    font-size: 1em;
   }
 
   @include medium-screens {
-    font-size: 1.2em;
+    font-size: 1em;
   }
 
   @include small-screens {
-    font-size: 1.2em;
+    font-size: 1em;
   }
 
   @include tiny-screens {
-    font-size: 1.2em;
+    font-size: 1em;
   }
 }
 
 a {
   color: $color-alice;
-  font-style: italic;
+  // font-style: italic;
 }
 
 button {
