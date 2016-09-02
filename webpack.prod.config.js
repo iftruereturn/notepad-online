@@ -1,11 +1,13 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: [
-    './app/src/index.jsx'
+    './app/src/index.jsx',
+    './app/styles/bundle.scss'
   ],
   output: {
     path: path.join(__dirname, '/public/assets/'),
@@ -24,6 +26,9 @@ module.exports = {
       'process.env': {
         'NODE_ENV': JSON.stringify('production')
       }
+    }),
+    new ExtractTextPlugin("styles.css", {
+      allChunks: true
     })
   ],
   module: {
@@ -36,9 +41,9 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader'])
       }
     ]
   },
-  postcss: [ autoprefixer({ browsers: ['last 20 versions'] }) ]
+  postcss: [ autoprefixer({ browsers: ['last 30 versions'] }) ]
 };

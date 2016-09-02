@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var autoprefixer = require('autoprefixer');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
   devtool: 'cheap-module-eval-source-map',
@@ -9,7 +10,8 @@ module.exports = {
     // 'babel-polyfill',
     'webpack/hot/only-dev-server',
     'webpack-dev-server/client?http://localhost:3000',
-    './app/src/index.jsx'
+    './app/src/index.jsx',
+    './app/styles/bundle.scss'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -18,7 +20,10 @@ module.exports = {
   },
   plugins: [
     // new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin()
+    new webpack.HotModuleReplacementPlugin(),
+    new ExtractTextPlugin("styles.css", {
+      allChunks: true
+    })
     // new webpack.NoErrorsPlugin()
   ],
   module: {
@@ -40,7 +45,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader'])
       }
     ]
   },

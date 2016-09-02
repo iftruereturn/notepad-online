@@ -1,6 +1,6 @@
-@import './partials/normalize';
-@import './partials/variables';
-@import './partials/mixins';
+@import './partials/_normalize.scss';
+@import './partials/_variables.scss';
+@import './partials/_mixins.scss';
 
-@import './global';
+@import './global.scss';
 @import '../src/components/app.scss';
