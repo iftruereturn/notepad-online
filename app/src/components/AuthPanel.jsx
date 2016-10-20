@@ -21,8 +21,24 @@ class AuthPanel extends React.Component {
         || this.passwordSignUp.value.length < 1
         || this.usernameSignUp.value.length === 0) {
       this.registerButton.disabled = 'true';
-    } else {
-      this.registerButton.disabled = '';
+      return false;
+    }
+
+    this.registerButton.disabled = '';
+    return true;
+  }
+
+  checkEnterKeyPressedLogin(e) {
+    if (e.key === 'Enter') {
+      this.props.logIn(this.usernameLogIn.value, this.passwordLogIn.value);
+    }
+  }
+
+  checkEnterKeyPressedSignup(e) {
+    if (e.key === 'Enter') {
+      if (this.registerCheck()) {
+        this.props.signUp(this.usernameSignUp.value, this.passwordSignUp.value);
+      }
     }
   }
 
@@ -45,6 +61,7 @@ class AuthPanel extends React.Component {
               type="text"
               ref={node => { this.usernameSignUp = node; }}
               onChange={() => { this.registerCheck(); }}
+              onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
             />
             <label className="auth-container-label" htmlFor="signup-password">
               Password:
@@ -54,6 +71,7 @@ class AuthPanel extends React.Component {
               type="password"
               ref={node => { this.passwordSignUp = node; }}
               onChange={() => { this.registerCheck(); }}
+              onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
             />
             <label className="auth-container-label" htmlFor="signup-repeat-password">
               Repeat password:
@@ -63,6 +81,7 @@ class AuthPanel extends React.Component {
               type="password"
               ref={node => { this.repeatedPasswordSignUp = node; }}
               onChange={() => { this.registerCheck(); }}
+              onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
             />
             <button
               className="add"
@@ -91,6 +110,7 @@ class AuthPanel extends React.Component {
               id="login-username"
               type="text"
               ref={node => { this.usernameLogIn = node; }}
+              onKeyPress={(e) => { this.checkEnterKeyPressedLogin(e); }}
             />
             <label className="auth-container-label" htmlFor="login-password">
               Password:
@@ -99,6 +119,7 @@ class AuthPanel extends React.Component {
               id="login-password"
               type="password"
               ref={node => { this.passwordLogIn = node; }}
+              onKeyPress={(e) => { this.checkEnterKeyPressedLogin(e); }}
             />
             <button
               className="save"

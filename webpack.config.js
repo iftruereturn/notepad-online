@@ -20,10 +20,7 @@ module.exports = {
   },
   plugins: [
     // new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.HotModuleReplacementPlugin(),
-    new ExtractTextPlugin("styles.css", {
-      allChunks: true
-    })
+    new webpack.HotModuleReplacementPlugin()
     // new webpack.NoErrorsPlugin()
   ],
   module: {
@@ -45,7 +42,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style-loader', ['css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader'])
+        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'resolve-url-loader', 'sass-loader']
       }
     ]
   },
