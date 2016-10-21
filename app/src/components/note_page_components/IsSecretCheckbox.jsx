@@ -2,15 +2,15 @@ import React from 'react';
 
 const IsSecretCheckbox = ({ isSecret, changeIsSecret }) => (
   <div className="is-secret-checkbox">
-    <label htmlFor="is-secret-checkbox-input">
-      Secret?
-    </label>
     <input
       id="is-secret-checkbox-input"
       type="checkbox"
       checked={isSecret}
       onChange={(e) => changeIsSecret(e.target.checked)}
     />
+    <label htmlFor="is-secret-checkbox-input">
+      Is note secret?
+    </label>
   </div>
 );
 

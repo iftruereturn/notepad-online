@@ -42,10 +42,28 @@ class NotePage extends React.Component {
         <TagsInput tags={tags} changeTags={changeTags} />
         <div className="save-delete-buttons">
           <button className="delete" onClick={() => deleteThisNote(noteId)}>
-            {deleting ? 'deleting...' : 'Delete note'}
+            {deleting ?
+              <span>
+                <i className="fa fa-refresh fa-spin fa-lg" />
+                &nbsp;deleting...
+              </span> :
+              <span>
+                <i className="fa fa-trash-o fa-lg" />
+                &nbsp;Delete note
+              </span>
+            }
           </button>
           <button className="save" onClick={() => saveNoteToServer(noteId)}>
-            {saving ? 'saving...' : 'Save note'}
+            {saving ?
+              <span>
+                <i className="fa fa-refresh fa-spin fa-lg" />
+                &nbsp;saving...
+              </span> :
+              <span>
+                <i className="fa fa-floppy-o fa-lg" />
+                &nbsp;Save note
+              </span>
+            }
           </button>
         </div>
       </div>
@@ -54,7 +72,8 @@ class NotePage extends React.Component {
     return (
       <div>
         <button className="save" onClick={() => browserHistory.push('/notes')}>
-          Return to list
+          <i className="fa fa-long-arrow-left fa-lg" />
+          &nbsp;Return to list
         </button>
         {fetching ? <Loader text="fetching" /> : note}
       </div>

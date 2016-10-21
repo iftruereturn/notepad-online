@@ -21,7 +21,7 @@ An example of single page application that uses React, Redux, React-Router, Webp
 0. `npm install`
 0. `npm test`
 0. Open terminal emulator and run `npm run start-dev`
-0. Open another termminal emulator and run `npm run dev`
+0. Open another terminal emulator and run `npm run dev`
 0. Go to `localhost:3000`
 
 ### Build

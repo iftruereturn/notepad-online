@@ -22,9 +22,13 @@ const ListNoteItem = ({ note, deleteNote }) => {
       </div>
       <div className="list-note-item-tags">Tags: {note.tags.join(', ')}</div>
       <div className="list-note-item-buttons">
-        <button className="delete" onClick={() => deleteNote(note._id)}>Delete</button>
+        <button className="delete" onClick={() => deleteNote(note._id)}>
+          <i className="fa fa-trash-o fa-lg" />
+           &nbsp;Delete
+        </button>
         <button className="save" onClick={() => browserHistory.push(`/notes/${note._id}`)}>
-          Open
+          <i className="fa fa-file-o fa-lg" />
+          &nbsp;Open
         </button>
       </div>
     </div>

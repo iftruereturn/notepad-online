@@ -88,7 +88,7 @@ class AuthPanel extends React.Component {
               ref={node => { this.registerButton = node; }}
               onClick={() => { signUp(this.usernameSignUp.value, this.passwordSignUp.value); }}
             >
-              Sign Up
+              <i className="fa fa-user-plus" />&nbsp;Sign Up
             </button>
             { errorMessage === 'Signup error' ?
               <span className="auth-container-error">{errorMessage}</span> :
@@ -125,7 +125,7 @@ class AuthPanel extends React.Component {
               className="save"
               onClick={() => { logIn(this.usernameLogIn.value, this.passwordLogIn.value); }}
             >
-              Log In
+              <i className="fa fa-sign-in" />&nbsp;Log In
             </button>
             { errorMessage === 'Login error' ?
               <span className="auth-container-error">{errorMessage}</span> :

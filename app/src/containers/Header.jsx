@@ -24,14 +24,19 @@ class Header extends React.Component {
         className="add"
         onClick={() => { browserHistory.push('auth'); }}
       >
-        Log In | Sign Up
+        <i className="fa fa-sign-in" />&nbsp;Log In |
+        &nbsp;<i className="fa fa-user-plus" />&nbsp;Sign Up
       </button>
     );
 
     const logOutMarkup = (
       <div>
-        { username }
-        <button onClick={() => { this.gotoAuthAndLogOut(); }}>Log Out</button>
+        <i className="fa fa-user" />
+        &nbsp;{ username }
+        <button onClick={() => { this.gotoAuthAndLogOut(); }}>
+          <i className="fa fa-sign-out" />
+          &nbsp;Log Out
+        </button>
       </div>
     );
 

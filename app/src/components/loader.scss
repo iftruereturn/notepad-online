@@ -55,12 +55,36 @@
   @include tiny-screens {
     font-size: 2em;
   }
-  
+
   // animation: blink linear 0.5s;
-  animation: shake linear 0.5s;
-  animation-iteration-count: infinite;
+  // animation: shake linear 0.5s;
+  // animation-iteration-count: infinite;
 
   .loader-container {
     text-align: center;
+    margin: 20px;
+  }
+
+  .loader-text {
+    text-align: center;
+    margin: 20px;
+
+    font-size: 0.8em;
+
+    @include large-screens {
+      font-size: 0.8em;
+    }
+
+    @include medium-screens {
+      font-size: 0.8em;
+    }
+
+    @include small-screens {
+      font-size: 0.8em;
+    }
+
+    @include tiny-screens {
+      font-size: 0.8em;
+    }
   }
 }
