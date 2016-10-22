@@ -1,11 +1,11 @@
 .landing-container {
-  
+
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
 
   // justify-content: space-around;
-  
+
   align-items: center;
   // justify-content: center;
 
@@ -17,8 +17,9 @@
   padding: 20px;
 
   .landing-container-title {
+    font-family: RobotoCondensed, sans-serif;
     padding: 30px;
-    font-size: 2.5em;
+    font-size: 3.5em;
     line-height: 1em;
   }
 
