@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    
+
     .search-add-panel-input {
       // height: 1em;
     }
@@ -26,3 +26,4 @@
 
 
 @import "./list_page_components/list-note-item";
+@import "./list_page_components/load-more-button";

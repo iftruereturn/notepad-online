@@ -30,7 +30,7 @@ module.exports = function(passport) {
     //   this.status = 200;
     //   return this.body = JSON.stringify([]);
     // }
-    
+
     const username = (this.req.user && this.req.user.username)
       ? this.req.user.username
       : '';
@@ -40,7 +40,9 @@ module.exports = function(passport) {
     const query = this.request.query;
     // console.log(query);
     const tagsQuery = query.tags;
-    
+    const lastDateQuery = query.date || 1;
+    const itemsLimitQuery = +query.limit || 9;
+
     let allNotes;
 
     // needs to find notes that :
@@ -48,28 +50,31 @@ module.exports = function(passport) {
     // owner - current user
     // owner - any user, but isSecret - false
     if (typeof tagsQuery === 'string') {
-      allNotes = yield Note.find({ 
-        tags: tagsQuery, 
+      allNotes = yield Note.find({
+        tags: tagsQuery,
         $or: [
           { owner: { "$in" : usernameQuery} },
           { isSecret: false }
-        ]  
-      }, '-value').exec();
+        ],
+        createdAt: { $gt: lastDateQuery }
+      }, '-value').limit(itemsLimitQuery).exec();
     } else if (tagsQuery && tagsQuery.length > 1) {
-      allNotes = yield Note.find({ 
-        tags: { "$in" : tagsQuery }, 
+      allNotes = yield Note.find({
+        tags: { "$in" : tagsQuery },
         $or: [
-          { owner: { "$in" : usernameQuery} },
+          { owner: { "$in" : usernameQuery } },
           { isSecret: false }
-        ] 
-      }, '-value').exec();
+        ],
+        createdAt: { $gt: lastDateQuery }
+      }, '-value').limit(itemsLimitQuery).exec();
     } else {
-      allNotes = yield Note.find({ 
+      allNotes = yield Note.find({
         $or: [
           { owner: { "$in" : usernameQuery} },
           { isSecret: false }
-        ]  
-      }, '-value').exec();  
+        ],
+        createdAt: { $gt: lastDateQuery }
+      }, '-value').limit(itemsLimitQuery).exec();
     }
 
     this.set({ 'Content-Type': 'application/json' });
@@ -123,7 +128,7 @@ module.exports = function(passport) {
       update.tags = cleanTagsArray;
     }
 
-    if ( !this.isAuthenticated() 
+    if ( !this.isAuthenticated()
       || this.req.user.username !== update.owner ) {
       update.isSecret = false;
     }

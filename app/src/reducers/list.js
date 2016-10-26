@@ -2,6 +2,9 @@ import {
   FIND_NOTES_REQUEST,
   FIND_NOTES_SUCCESS,
   FIND_NOTES_FAIL,
+  LOAD_MORE_NOTES_REQUEST,
+  LOAD_MORE_NOTES_SUCCESS,
+  LOAD_MORE_NOTES_FAIL,
   ADD_NEW_NOTE_REQUEST,
   ADD_NEW_NOTE_SUCCESS,
   ADD_NEW_NOTE_FAIL,
@@ -15,6 +18,8 @@ const initialState = {
   searching: false,
   deleting: false,
   foundNotes: [],
+  lastNoteCreatedAt: 0,
+  formattedQueryString: '',
 };
 
 const list = (state = initialState, action) => {
@@ -23,6 +28,7 @@ const list = (state = initialState, action) => {
       return {
         ...state,
         searching: action.searching,
+        formattedQueryString: action.formattedQueryString,
       };
 
     case FIND_NOTES_SUCCESS:
@@ -30,12 +36,30 @@ const list = (state = initialState, action) => {
         ...state,
         foundNotes: action.foundNotes,
         searching: action.searching,
+        lastNoteCreatedAt: action.lastNoteCreatedAt,
       };
 
     case FIND_NOTES_FAIL:
       return {
         ...state,
         searching: action.searching,
+      };
+
+    case LOAD_MORE_NOTES_REQUEST:
+      return {
+        ...state,
+      };
+
+    case LOAD_MORE_NOTES_SUCCESS:
+      return {
+        ...state,
+        foundNotes: action.foundNotes,
+        lastNoteCreatedAt: action.lastNoteCreatedAtNew,
+      };
+
+    case LOAD_MORE_NOTES_FAIL:
+      return {
+        ...state,
       };
 
     case ADD_NEW_NOTE_REQUEST:
@@ -66,6 +90,10 @@ const list = (state = initialState, action) => {
       return {
         ...state,
         deleting: action.deleting,
+        foundNotes: [
+          ...state.foundNotes.slice(0, action.noteIndexToDelete),
+          ...state.foundNotes.slice(action.noteIndexToDelete + 1),
+        ],
       };
 
     case DELETE_NOTE_FAIL:

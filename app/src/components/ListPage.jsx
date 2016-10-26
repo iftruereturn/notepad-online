@@ -1,11 +1,12 @@
 import React from 'react';
 import ListNoteItem from './list_page_components/ListNoteItem.jsx';
+import LoadMoreButton from './list_page_components/LoadMoreButton.jsx';
 import Loader from './Loader.jsx';
 
 class ListPage extends React.Component {
 
   componentWillMount() {
-    this.findNotes('');
+    // this.findNotes('');
   }
 
   componentDidMount() {
@@ -20,7 +21,7 @@ class ListPage extends React.Component {
 
   deleteNote = (noteId) => {
     const { deleteNote } = this.props;
-    deleteNote(noteId).then(() => this.findNotes(this.searchInput.value));
+    deleteNote(noteId); /* .then(() => this.findNotes(this.searchInput.value)) */
   };
 
   findNotes = (queryString) => {
@@ -72,6 +73,8 @@ class ListPage extends React.Component {
           </div>
         }
 
+        <LoadMoreButton loadMoreNotes={this.props.loadMoreNotes} />
+
       </div>
     );
   }
@@ -84,6 +87,7 @@ ListPage.propTypes = {
   addNewNote: React.PropTypes.func.isRequired,
   deleteNote: React.PropTypes.func.isRequired,
   findNotesByTags: React.PropTypes.func.isRequired,
+  loadMoreNotes: React.PropTypes.func.isRequired,
 };
 
 export default ListPage;
