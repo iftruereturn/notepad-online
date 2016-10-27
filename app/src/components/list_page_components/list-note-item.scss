@@ -17,6 +17,8 @@
   text-overflow: ellipsis;
 
   .list-note-item-title {
+    text-align: center;
+
     @include small-screens {
       margin: 0 auto;
     }
@@ -27,6 +29,7 @@
 
   .list-note-item-tags {
     @extend .list-note-item-title;
+    text-align: left;
   }
 
   &:hover {

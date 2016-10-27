@@ -30,7 +30,7 @@ class ListPage extends React.Component {
   };
 
   render() {
-    const { searching, creating, foundNotes, addNewNote } = this.props;
+    const { searching, creating, loadingMoreNotes, foundNotes, addNewNote } = this.props;
 
     const notesToShow = foundNotes.map((note, index) => (
       <ListNoteItem note={note} deleteNote={this.deleteNote} key={index} />
@@ -73,7 +73,14 @@ class ListPage extends React.Component {
           </div>
         }
 
-        <LoadMoreButton loadMoreNotes={this.props.loadMoreNotes} />
+        {
+          (notesToShow.length === 0 || searching || creating) ?
+            null :
+            <LoadMoreButton
+              loadMoreNotes={this.props.loadMoreNotes}
+              loadingMoreNotes={loadingMoreNotes}
+            />
+        }
 
       </div>
     );
@@ -83,6 +90,7 @@ class ListPage extends React.Component {
 ListPage.propTypes = {
   searching: React.PropTypes.bool.isRequired,
   creating: React.PropTypes.bool.isRequired,
+  loadingMoreNotes: React.PropTypes.bool.isRequired,
   foundNotes: React.PropTypes.array.isRequired,
   addNewNote: React.PropTypes.func.isRequired,
   deleteNote: React.PropTypes.func.isRequired,

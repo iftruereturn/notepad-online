@@ -36,7 +36,7 @@ export const findNotesByTags = (queryString) => (dispatch) => {
     formattedQueryString,
   });
 
-  return fetch(`/api/notes?${formattedQueryString}&limit=1`, {
+  return fetch(`/api/notes?${formattedQueryString}&limit=6`, {
     credentials: 'same-origin',
   }).then((response) => response.json())
     .then((foundNotes) => {
@@ -73,10 +73,11 @@ export const loadMoreNotes = () => (dispatch, getState) => {
   const lastNoteCreatedAt = listState.lastNoteCreatedAt;
   let formattedQueryString = listState.formattedQueryString;
 
-  formattedQueryString += `&date=${lastNoteCreatedAt}&limit=1`;
+  formattedQueryString += `&date=${lastNoteCreatedAt}&limit=3`;
 
   dispatch({
     type: LOAD_MORE_NOTES_REQUEST,
+    loadingMoreNotes: true,
   });
 
   return fetch(`/api/notes?${formattedQueryString}`, {
@@ -88,6 +89,7 @@ export const loadMoreNotes = () => (dispatch, getState) => {
 
       dispatch({
         type: LOAD_MORE_NOTES_SUCCESS,
+        loadingMoreNotes: false,
         foundNotes: allNotes,
         lastNoteCreatedAtNew,
       });
@@ -95,6 +97,7 @@ export const loadMoreNotes = () => (dispatch, getState) => {
     .catch(() => {
       dispatch({
         type: LOAD_MORE_NOTES_FAIL,
+        loadingMoreNotes: false,
       });
     });
 };

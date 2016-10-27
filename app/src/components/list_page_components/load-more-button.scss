@@ -1,0 +1,12 @@
+.load-more-button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+
+  .load-more-button {
+    // align-self: center;
+    margin: 2em;
+  }
+}

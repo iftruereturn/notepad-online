@@ -20,6 +20,7 @@ const initialState = {
   foundNotes: [],
   lastNoteCreatedAt: 0,
   formattedQueryString: '',
+  loadingMoreNotes: false,
 };
 
 const list = (state = initialState, action) => {
@@ -48,6 +49,7 @@ const list = (state = initialState, action) => {
     case LOAD_MORE_NOTES_REQUEST:
       return {
         ...state,
+        loadingMoreNotes: action.loadingMoreNotes,
       };
 
     case LOAD_MORE_NOTES_SUCCESS:
@@ -55,11 +57,13 @@ const list = (state = initialState, action) => {
         ...state,
         foundNotes: action.foundNotes,
         lastNoteCreatedAt: action.lastNoteCreatedAtNew,
+        loadingMoreNotes: action.loadingMoreNotes,
       };
 
     case LOAD_MORE_NOTES_FAIL:
       return {
         ...state,
+        loadingMoreNotes: action.loadingMoreNotes,
       };
 
     case ADD_NEW_NOTE_REQUEST:
