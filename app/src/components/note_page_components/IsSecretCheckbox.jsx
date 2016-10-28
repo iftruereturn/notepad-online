@@ -9,7 +9,7 @@ const IsSecretCheckbox = ({ isSecret, changeIsSecret }) => (
       onChange={(e) => changeIsSecret(e.target.checked)}
     />
     <label htmlFor="is-secret-checkbox-input">
-      Is note secret?
+      Is this note secret?
     </label>
   </div>
 );

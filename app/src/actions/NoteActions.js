@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: ["error", { "allow": ["_id"] }]*/
+
 import { browserHistory } from 'react-router';
 import {
   FETCH_NOTE_REQUEST,
@@ -14,6 +16,9 @@ import {
   CHANGE_NOTE_TAGS,
   CHANGE_NOTE_IS_SECRET,
 } from '../constants/Note';
+import {
+  REFRESH_NOTE_DATA_IN_LIST,
+} from '../constants/List';
 
 export const fetchNote = (noteId) => (dispatch) => {
   // Need to verify if this note is already fetched or now fetching
@@ -45,7 +50,7 @@ export const fetchNote = (noteId) => (dispatch) => {
 };
 
 export const saveNoteToServer = (noteId) => (dispatch, getState) => {
-  const { note } = getState();
+  const { note, list } = getState();
   const { name, value, tags, isSecret, owner } = note;
 
   dispatch({
@@ -67,6 +72,25 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
       saving: false,
       noteId,
     });
+
+    let index;
+    let found = false;
+    for (index = 0; index < list.foundNotes.length; index++) {
+      if (list.foundNotes[index]._id === noteId) {
+        found = true;
+        break;
+      }
+    }
+
+    if (found) { // action to list subreducer
+      dispatch({
+        type: REFRESH_NOTE_DATA_IN_LIST,
+        index,
+        name,
+        tags,
+        isSecret,
+      });
+    }
   }).catch(() => {
     dispatch({
       type: SAVE_NOTE_TO_SERVER_FAIL,

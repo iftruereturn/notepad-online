@@ -5,8 +5,18 @@
   justify-content: center;
   flex-wrap: wrap;
 
-  .load-more-button {
+  .load-more {
     // align-self: center;
     margin: 2em;
+  }
+
+  .load-more-div {
+    padding: 0.4em 0.5em;
+    margin: 2em;
+    background-color: $background-color-button;
+    border: 1px solid #888;
+    color: #888;
+    border-radius: 3px;
+    line-height: 1.5em;
   }
 }

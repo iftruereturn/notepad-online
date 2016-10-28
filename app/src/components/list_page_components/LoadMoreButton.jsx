@@ -2,20 +2,20 @@ import React from 'react';
 
 const LoadMoreButton = ({ loadMoreNotes, loadingMoreNotes }) => (
   <div className="load-more-button-container">
-    <button
-      onClick={() => loadMoreNotes()}
-      disabled={loadingMoreNotes}
-      className="add load-more-button"
-    >
       { loadingMoreNotes ?
-        <div>
-          <i className="fa fa-refresh fa-spin fa-lg" />&nbsp;Load More
+        <div
+          className="add load-more-div"
+        >
+          <i className="fa fa-refresh fa-spin fa-lg" />
         </div> :
-        <div>
+        <button
+          onClick={() => loadMoreNotes()}
+          className="add load-more"
+        >
           <i className="fa fa-refresh fa-lg" />&nbsp;Load More
-        </div>
+        </button>
       }
-    </button>
+
   </div>
 );
 

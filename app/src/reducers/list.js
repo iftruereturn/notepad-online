@@ -11,6 +11,7 @@ import {
   DELETE_NOTE_REQUEST,
   DELETE_NOTE_SUCCESS,
   DELETE_NOTE_FAIL,
+  REFRESH_NOTE_DATA_IN_LIST,
 } from '../constants/List';
 
 const initialState = {
@@ -104,6 +105,23 @@ const list = (state = initialState, action) => {
       return {
         ...state,
         deleting: action.deleting,
+      };
+
+    case REFRESH_NOTE_DATA_IN_LIST:
+      return {
+        ...state,
+        foundNotes: state.foundNotes.map((elem, i) => {
+          if (i === action.index) {
+            return {
+              ...elem,
+              name: action.name,
+              tags: action.tags.split(' '),
+              isSecret: action.isSecret,
+            };
+          }
+
+          return elem;
+        }),
       };
 
     default:
