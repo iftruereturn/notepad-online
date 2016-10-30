@@ -118,9 +118,11 @@ const list = (state = initialState, action) => {
           if (i === action.index) {
             return {
               ...elem,
-              name: action.name,
-              tags: action.tags.split(' '),
-              isSecret: action.isSecret,
+              name: action.noteInfo.name,
+              tags: action.noteInfo.tags,
+              isSecret: action.noteInfo.isSecret,
+              updatedAt: action.noteInfo.updatedAt,
+              createdAt: action.noteInfo.createdAt,
             };
           }
 

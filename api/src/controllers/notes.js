@@ -6,10 +6,31 @@ module.exports = function(passport) {
 
   const getNote = function*() {
     const id = this.params.id;
+    const isInfo = this.request.query.info;
+    const projection = isInfo ? '-value -owner' : '';
 
     let note;
     try {
-      note = yield Note.findById(id).exec();
+      note = yield Note.findById(id, projection).exec();
+    } catch (e) {
+      return this.status = 404;
+    }
+
+    if (!note) {
+      this.status = 404;
+    } else {
+      this.set({ 'Content-Type': 'application/json' });
+      this.body = JSON.stringify(note);
+      this.status = 200;
+    }
+  };
+
+  const getNoteInfo = function*() {
+    const id = this.params.id;
+
+    let note;
+    try {
+      note = yield Note.findById(id, '-value').exec();
     } catch (e) {
       return this.status = 404;
     }

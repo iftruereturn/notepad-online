@@ -73,25 +73,30 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
       noteId,
     });
 
-    let index;
-    let found = false;
-    for (index = 0; index < list.foundNotes.length; index++) {
-      if (list.foundNotes[index]._id === noteId) {
-        found = true;
-        break;
-      }
-    }
+    return fetch(`/api/notes/${noteId}?info=true`, {
+      credentials: 'same-origin',
+    });
+  }).then((response) => response.json())
+    .then((noteInfo) => {
+      let index;
+      let found = false;
 
-    if (found) { // action to list subreducer
-      dispatch({
-        type: REFRESH_NOTE_DATA_IN_LIST,
-        index,
-        name,
-        tags,
-        isSecret,
-      });
-    }
-  }).catch(() => {
+      for (index = 0; index < list.foundNotes.length; index++) {
+        if (list.foundNotes[index]._id === noteId) {
+          found = true;
+          break;
+        }
+      }
+
+      if (found) { // action to list subreducer
+        dispatch({
+          type: REFRESH_NOTE_DATA_IN_LIST,
+          noteInfo,
+          index,
+        });
+      }
+    })
+  .catch(() => {
     dispatch({
       type: SAVE_NOTE_TO_SERVER_FAIL,
       saving: false,
