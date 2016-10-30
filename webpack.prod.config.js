@@ -6,6 +6,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 module.exports = {
   devtool: 'cheap-module-source-map',
   entry: [
+    'whatwg-fetch',
     './app/src/index.jsx',
     './app/styles/bundle.scss'
   ],
