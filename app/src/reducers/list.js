@@ -13,6 +13,10 @@ import {
   DELETE_NOTE_FAIL,
   REFRESH_NOTE_DATA_IN_LIST,
 } from '../constants/List';
+import {
+  USER_LOGIN_SUCCESS,
+  USER_LOGOUT_SUCCESS,
+} from '../constants/Auth';
 
 const initialState = {
   creating: false,
@@ -122,6 +126,18 @@ const list = (state = initialState, action) => {
 
           return elem;
         }),
+      };
+
+    case USER_LOGIN_SUCCESS:
+      return {
+        ...state,
+        foundNotes: [],
+      };
+
+    case USER_LOGOUT_SUCCESS:
+      return {
+        ...state,
+        foundNotes: [],
       };
 
     default:

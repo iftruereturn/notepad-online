@@ -1,4 +1,5 @@
 import React from 'react';
+// import { browserHistory } from 'react-router';
 import ListNoteItem from './list_page_components/ListNoteItem.jsx';
 import LoadMoreButton from './list_page_components/LoadMoreButton.jsx';
 import Loader from './Loader.jsx';
@@ -7,17 +8,10 @@ class ListPage extends React.Component {
 
   componentWillMount() {
     // this.findNotes('');
-    if (this.prevLoggedIn !== this.props.loggedIn) {
-      this.findNotes('');
-    }
   }
 
   componentDidMount() {
     document.title = 'Notepad Online - Search';
-  }
-
-  componentDidUpdate(prevProps) {
-    this.prevLoggedIn = prevProps.loggedIn;
   }
 
   handleInputChange = (e) => {
@@ -103,7 +97,6 @@ ListPage.propTypes = {
   deleteNote: React.PropTypes.func.isRequired,
   findNotesByTags: React.PropTypes.func.isRequired,
   loadMoreNotes: React.PropTypes.func.isRequired,
-  loggedIn: React.PropTypes.bool.isRequired,
 };
 
 export default ListPage;
