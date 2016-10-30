@@ -9,7 +9,10 @@ const ListView = (props) => (
 );
 
 const mapStateToProps = (state) => (
-  { ...state.list }
+  {
+    ...state.list,
+    loggedIn: state.auth.loggedIn,
+  }
 );
 
 // const mapDispatchToProps = (dispatch) => {

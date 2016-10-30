@@ -7,10 +7,17 @@ class ListPage extends React.Component {
 
   componentWillMount() {
     // this.findNotes('');
+    if (this.prevLoggedIn !== this.props.loggedIn) {
+      this.findNotes('');
+    }
   }
 
   componentDidMount() {
     document.title = 'Notepad Online - Search';
+  }
+
+  componentDidUpdate(prevProps) {
+    this.prevLoggedIn = prevProps.loggedIn;
   }
 
   handleInputChange = (e) => {
@@ -96,6 +103,7 @@ ListPage.propTypes = {
   deleteNote: React.PropTypes.func.isRequired,
   findNotesByTags: React.PropTypes.func.isRequired,
   loadMoreNotes: React.PropTypes.func.isRequired,
+  loggedIn: React.PropTypes.bool.isRequired,
 };
 
 export default ListPage;
