@@ -2,6 +2,7 @@ const koa = require('koa');
 const app = module.exports = koa();
 const bodyParser = require('koa-bodyparser');
 const serve = require('koa-static');
+const favicon = require('koa-favicon');
 const path = require('path');
 
 const config = require('./config/config');
@@ -40,6 +41,7 @@ app.use(passport.session());
 require('./config/passport')(passport, config);
 
 app.use(serve(path.resolve('public')));
+app.use(favicon(path.resolve('/public/favicon.ico')));
 
 // routes
 require('./routes/router')(app, passport);

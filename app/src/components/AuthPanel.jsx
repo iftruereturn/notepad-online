@@ -158,7 +158,7 @@ class AuthPanel extends React.Component {
           logOutMarkup :
           unloggedMarkup }
       </div>
-      );
+    );
   }
 }
 

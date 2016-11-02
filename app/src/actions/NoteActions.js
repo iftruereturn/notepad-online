@@ -17,17 +17,17 @@ import {
   CHANGE_NOTE_IS_SECRET,
 } from '../constants/Note';
 import {
+  DELETE_NOTE_SUCCESS,
   REFRESH_NOTE_DATA_IN_LIST,
 } from '../constants/List';
 
 export const fetchNote = (noteId) => (dispatch) => {
-  // Need to verify if this note is already fetched or now fetching
-  // if (getFetchingState())
-
   dispatch({
     type: FETCH_NOTE_REQUEST,
-    fetching: true,
-    noteId,
+    payload: {
+      fetching: true,
+      noteId,
+    },
   });
 
   return fetch(`/api/notes/${noteId}`, {
@@ -36,15 +36,19 @@ export const fetchNote = (noteId) => (dispatch) => {
     .then((note) => {
       dispatch({
         type: FETCH_NOTE_SUCCESS,
-        fetching: false,
-        note,
+        payload: {
+          fetching: false,
+          note,
+        },
       });
     })
     .catch(() => {
       dispatch({
         type: FETCH_NOTE_FAIL,
-        fetching: false,
-        noteId,
+        payload: {
+          fetching: false,
+          noteId,
+        },
       });
     });
 };
@@ -55,8 +59,10 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
 
   dispatch({
     type: SAVE_NOTE_TO_SERVER_REQUEST,
-    saving: true,
-    noteId,
+    payload: {
+      saving: true,
+      noteId,
+    },
   });
 
   return fetch(`/api/notes/${noteId}`, {
@@ -69,8 +75,10 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
   }).then(() => {
     dispatch({
       type: SAVE_NOTE_TO_SERVER_SUCCESS,
-      saving: false,
-      noteId,
+      payload: {
+        saving: false,
+        noteId,
+      },
     });
 
     return fetch(`/api/notes/${noteId}?info=true`, {
@@ -91,16 +99,20 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
       if (found) { // action to list subreducer
         dispatch({
           type: REFRESH_NOTE_DATA_IN_LIST,
-          noteInfo,
-          index,
+          payload: {
+            noteInfo,
+            index,
+          },
         });
       }
     })
   .catch(() => {
     dispatch({
       type: SAVE_NOTE_TO_SERVER_FAIL,
-      saving: false,
-      noteId,
+      payload: {
+        saving: false,
+        noteId,
+      },
     });
   });
 };
@@ -108,35 +120,45 @@ export const saveNoteToServer = (noteId) => (dispatch, getState) => {
 export const changeName = (name) => (dispatch) => {
   dispatch({
     type: CHANGE_NOTE_NAME,
-    name,
+    payload: {
+      name,
+    },
   });
 };
 
 export const changeValue = (value) => (dispatch) => {
   dispatch({
     type: CHANGE_NOTE_VALUE,
-    value,
+    payload: {
+      value,
+    },
   });
 };
 
 export const changeTags = (tags) => (dispatch) => {
   dispatch({
     type: CHANGE_NOTE_TAGS,
-    tags,
+    payload: {
+      tags,
+    },
   });
 };
 
 export const changeIsSecret = (isSecret) => (dispatch) => {
   dispatch({
     type: CHANGE_NOTE_IS_SECRET,
-    isSecret,
+    payload: {
+      isSecret,
+    },
   });
 };
 
-export const deleteThisNote = (noteId) => (dispatch) => {
+export const deleteThisNote = (noteId) => (dispatch, getState) => {
   dispatch({
     type: DELETE_THIS_NOTE_REQUEST,
-    deleting: true,
+    payload: {
+      deleting: true,
+    },
   });
 
   return fetch(`/api/notes/${noteId}`, {
@@ -144,21 +166,45 @@ export const deleteThisNote = (noteId) => (dispatch) => {
     credentials: 'same-origin',
   }).then((response) => {
     if (response.status === 200) {
+      const listStateNotes = getState().list.foundNotes;
+      let index;
+
+      for (index = 0; index < listStateNotes.length; index++) {
+        if (listStateNotes[index]._id === noteId) {
+          break;
+        }
+      }
+
       dispatch({
         type: DELETE_THIS_NOTE_SUCCESS,
-        deleting: false,
+        payload: {
+          deleting: false,
+        },
+      });
+
+      // Refresh list
+      dispatch({
+        type: DELETE_NOTE_SUCCESS,
+        payload: {
+          deleting: false,
+          noteIndexToDelete: index,
+        },
       });
       browserHistory.push('/notes');
     } else {
       dispatch({
         type: DELETE_THIS_NOTE_FAIL,
-        deleting: false,
+        payload: {
+          deleting: false,
+        },
       });
     }
   }).catch(() => {
     dispatch({
       type: DELETE_THIS_NOTE_FAIL,
-      deleting: false,
+      payload: {
+        deleting: false,
+      },
     });
   });
 };

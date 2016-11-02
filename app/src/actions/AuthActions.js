@@ -19,8 +19,10 @@ export const signUp = (username, password) => (dispatch) => {
 
   dispatch({
     type: USER_SIGNUP_REQUEST,
-    signUpRequested: true,
-    username,
+    payload: {
+      signUpRequested: true,
+      username,
+    },
   });
 
   return fetch('/api/signup', {
@@ -40,14 +42,18 @@ export const signUp = (username, password) => (dispatch) => {
 
     dispatch({
       type: USER_SIGNUP_SUCCESS,
-      signUpRequested: false,
-      errorMessage: '',
+      payload: {
+        signUpRequested: false,
+        errorMessage: '',
+      },
     });
   }).catch(() => {
     dispatch({
       type: USER_SIGNUP_FAIL,
-      signUpRequested: false,
-      errorMessage: 'Signup error',
+      payload: {
+        signUpRequested: false,
+        errorMessage: 'Signup error',
+      },
     });
   });
 };
@@ -55,8 +61,10 @@ export const signUp = (username, password) => (dispatch) => {
 export const logIn = (username, password) => (dispatch) => {
   dispatch({
     type: USER_LOGIN_REQUEST,
-    logInRequested: true,
-    username,
+    payload: {
+      logInRequested: true,
+      username,
+    },
   });
 
   return fetch('/api/login', {
@@ -76,17 +84,21 @@ export const logIn = (username, password) => (dispatch) => {
 
     dispatch({
       type: USER_LOGIN_SUCCESS,
-      logInRequested: false,
-      loggedIn: true,
-      errorMessage: '',
+      payload: {
+        logInRequested: false,
+        loggedIn: true,
+        errorMessage: '',
+      },
     });
 
     browserHistory.push('/');
   }).catch(() => {
     dispatch({
       type: USER_LOGIN_FAIL,
-      logInRequested: false,
-      errorMessage: 'Login error',
+      payload: {
+        logInRequested: false,
+        errorMessage: 'Login error',
+      },
     });
   });
 };
@@ -94,7 +106,9 @@ export const logIn = (username, password) => (dispatch) => {
 export const logOut = () => (dispatch) => {
   dispatch({
     type: USER_LOGOUT_REQUEST,
-    logOutRequested: true,
+    payload: {
+      logOutRequested: true,
+    },
   });
 
   return fetch('/api/logout', {
@@ -109,17 +123,21 @@ export const logOut = () => (dispatch) => {
 
     dispatch({
       type: USER_LOGOUT_SUCCESS,
-      logOutRequested: false,
-      loggedIn: false,
-      errorMessage: '',
+      payload: {
+        logOutRequested: false,
+        loggedIn: false,
+        errorMessage: '',
+      },
     });
 
     browserHistory.push('/');
   }).catch(() => {
     dispatch({
       type: USER_LOGOUT_FAIL,
-      logOutRequested: false,
-      errorMessage: 'Logout error',
+      payload: {
+        logOutRequested: false,
+        errorMessage: 'Logout error',
+      },
     });
   });
 };
@@ -127,13 +145,15 @@ export const logOut = () => (dispatch) => {
 export const checkIfLoggedIn = () => (dispatch) => {
   dispatch({
     type: CHECK_IF_LOGGED_IN_REQUEST,
-    checkIfLoggedInRequested: true,
+    payload: {
+      checkIfLoggedInRequested: true,
+    },
   });
 
   return fetch('/api/account', {
     credentials: 'same-origin',
   }).then((response) => {
-    // Because CORS
+    // Because CORS... I think
     if (response.status === 401
         || response.status === 404
         || response.status === 502) {
@@ -144,16 +164,20 @@ export const checkIfLoggedIn = () => (dispatch) => {
   }).then((json) => {
     dispatch({
       type: CHECK_IF_LOGGED_IN_SUCCESS,
-      checkIfLoggedInRequested: false,
-      username: json.username,
-      loggedIn: true,
-      errorMessage: '',
+      payload: {
+        checkIfLoggedInRequested: false,
+        username: json.username,
+        loggedIn: true,
+        errorMessage: '',
+      },
     });
   }).catch(() => {
     dispatch({
       type: CHECK_IF_LOGGED_IN_FAIL,
-      checkIfLoggedInRequested: false,
-      errorMessage: '',
+      payload: {
+        checkIfLoggedInRequested: false,
+        errorMessage: '',
+      },
     });
   });
 };

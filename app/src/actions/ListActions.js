@@ -32,8 +32,10 @@ export const findNotesByTags = (queryString) => (dispatch) => {
 
   dispatch({
     type: FIND_NOTES_REQUEST,
-    searching: true,
-    formattedQueryString,
+    payload: {
+      searching: true,
+      formattedQueryString,
+    },
   });
 
   return fetch(`/api/notes?${formattedQueryString}&limit=6`, {
@@ -56,14 +58,18 @@ export const findNotesByTags = (queryString) => (dispatch) => {
 
       dispatch({
         type: FIND_NOTES_SUCCESS,
-        foundNotes,
-        searching: false,
-        lastNoteCreatedAt,
+        payload: {
+          foundNotes,
+          searching: false,
+          lastNoteCreatedAt,
+        },
       });
     }).catch(() => {
       dispatch({
         type: FIND_NOTES_FAIL,
-        searching: false,
+        payload: {
+          searching: false,
+        },
       });
     });
 };
@@ -77,7 +83,9 @@ export const loadMoreNotes = () => (dispatch, getState) => {
 
   dispatch({
     type: LOAD_MORE_NOTES_REQUEST,
-    loadingMoreNotes: true,
+    payload: {
+      loadingMoreNotes: true,
+    },
   });
 
   return fetch(`/api/notes?${formattedQueryString}`, {
@@ -89,15 +97,19 @@ export const loadMoreNotes = () => (dispatch, getState) => {
 
       dispatch({
         type: LOAD_MORE_NOTES_SUCCESS,
-        loadingMoreNotes: false,
-        foundNotes: allNotes,
-        lastNoteCreatedAtNew,
+        payload: {
+          loadingMoreNotes: false,
+          foundNotes: allNotes,
+          lastNoteCreatedAtNew,
+        },
       });
     })
     .catch(() => {
       dispatch({
         type: LOAD_MORE_NOTES_FAIL,
-        loadingMoreNotes: false,
+        payload: {
+          loadingMoreNotes: false,
+        },
       });
     });
 };
@@ -105,7 +117,9 @@ export const loadMoreNotes = () => (dispatch, getState) => {
 export const addNewNote = () => (dispatch) => {
   dispatch({
     type: ADD_NEW_NOTE_REQUEST,
-    creating: true,
+    payload: {
+      creating: true,
+    },
   });
 
   return fetch('/api/notes', {
@@ -119,14 +133,18 @@ export const addNewNote = () => (dispatch) => {
     .then((location) => {
       dispatch({
         type: ADD_NEW_NOTE_SUCCESS,
-        creating: false,
+        payload: {
+          creating: false,
+        },
       });
       const path = location.slice(4);
       browserHistory.push(path);
     }).catch(() => {
       dispatch({
         type: ADD_NEW_NOTE_FAIL,
-        creating: false,
+        payload: {
+          creating: false,
+        },
       });
     });
 };
@@ -134,7 +152,9 @@ export const addNewNote = () => (dispatch) => {
 export const deleteNote = (noteId) => (dispatch, getState) => {
   dispatch({
     type: DELETE_NOTE_REQUEST,
-    deleting: true,
+    payload: {
+      deleting: true,
+    },
   });
 
   return fetch(`/api/notes/${noteId}`, {
@@ -151,22 +171,27 @@ export const deleteNote = (noteId) => (dispatch, getState) => {
         }
       }
 
-
       dispatch({
         type: DELETE_NOTE_SUCCESS,
-        deleting: false,
-        noteIndexToDelete: index,
+        payload: {
+          deleting: false,
+          noteIndexToDelete: index,
+        },
       });
     } else {
       dispatch({
         type: DELETE_NOTE_FAIL,
-        deleting: false,
+        payload: {
+          deleting: false,
+        },
       });
     }
   }).catch(() => {
     dispatch({
       type: DELETE_NOTE_FAIL,
-      deleting: false,
+      payload: {
+        deleting: false,
+      },
     });
   });
 };

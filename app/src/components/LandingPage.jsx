@@ -32,7 +32,7 @@ class LandingPage extends React.Component {
               <FeatureItem>Hide your notes from the others</FeatureItem>
             </li>
           </ul>
-          <div>
+          <div className="landing-container-try-it">
             <Link to={'/notes'}>Wanna try it?</Link>
           </div>
         </div>

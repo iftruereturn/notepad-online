@@ -33,96 +33,96 @@ const list = (state = initialState, action) => {
     case FIND_NOTES_REQUEST:
       return {
         ...state,
-        searching: action.searching,
-        formattedQueryString: action.formattedQueryString,
+        searching: action.payload.searching,
+        formattedQueryString: action.payload.formattedQueryString,
       };
 
     case FIND_NOTES_SUCCESS:
       return {
         ...state,
-        foundNotes: action.foundNotes,
-        searching: action.searching,
-        lastNoteCreatedAt: action.lastNoteCreatedAt,
+        foundNotes: action.payload.foundNotes,
+        searching: action.payload.searching,
+        lastNoteCreatedAt: action.payload.lastNoteCreatedAt,
       };
 
     case FIND_NOTES_FAIL:
       return {
         ...state,
-        searching: action.searching,
+        searching: action.payload.searching,
       };
 
     case LOAD_MORE_NOTES_REQUEST:
       return {
         ...state,
-        loadingMoreNotes: action.loadingMoreNotes,
+        loadingMoreNotes: action.payload.loadingMoreNotes,
       };
 
     case LOAD_MORE_NOTES_SUCCESS:
       return {
         ...state,
-        foundNotes: action.foundNotes,
-        lastNoteCreatedAt: action.lastNoteCreatedAtNew,
-        loadingMoreNotes: action.loadingMoreNotes,
+        foundNotes: action.payload.foundNotes,
+        lastNoteCreatedAt: action.payload.lastNoteCreatedAtNew,
+        loadingMoreNotes: action.payload.loadingMoreNotes,
       };
 
     case LOAD_MORE_NOTES_FAIL:
       return {
         ...state,
-        loadingMoreNotes: action.loadingMoreNotes,
+        loadingMoreNotes: action.payload.loadingMoreNotes,
       };
 
     case ADD_NEW_NOTE_REQUEST:
       return {
         ...state,
-        creating: action.creating,
+        creating: action.payload.creating,
       };
 
     case ADD_NEW_NOTE_SUCCESS:
       return {
         ...state,
-        creating: action.creating,
+        creating: action.payload.creating,
       };
 
     case ADD_NEW_NOTE_FAIL:
       return {
         ...state,
-        creating: action.creating,
+        creating: action.payload.creating,
       };
 
     case DELETE_NOTE_REQUEST:
       return {
         ...state,
-        deleting: action.deleting,
+        deleting: action.payload.deleting,
       };
 
     case DELETE_NOTE_SUCCESS:
       return {
         ...state,
-        deleting: action.deleting,
+        deleting: action.payload.deleting,
         foundNotes: [
-          ...state.foundNotes.slice(0, action.noteIndexToDelete),
-          ...state.foundNotes.slice(action.noteIndexToDelete + 1),
+          ...state.foundNotes.slice(0, action.payload.noteIndexToDelete),
+          ...state.foundNotes.slice(action.payload.noteIndexToDelete + 1),
         ],
       };
 
     case DELETE_NOTE_FAIL:
       return {
         ...state,
-        deleting: action.deleting,
+        deleting: action.payload.deleting,
       };
 
     case REFRESH_NOTE_DATA_IN_LIST:
       return {
         ...state,
         foundNotes: state.foundNotes.map((elem, i) => {
-          if (i === action.index) {
+          if (i === action.payload.index) {
             return {
               ...elem,
-              name: action.noteInfo.name,
-              tags: action.noteInfo.tags,
-              isSecret: action.noteInfo.isSecret,
-              updatedAt: action.noteInfo.updatedAt,
-              createdAt: action.noteInfo.createdAt,
+              name: action.payload.noteInfo.name,
+              tags: action.payload.noteInfo.tags,
+              isSecret: action.payload.noteInfo.isSecret,
+              updatedAt: action.payload.noteInfo.updatedAt,
+              createdAt: action.payload.noteInfo.createdAt,
             };
           }
 

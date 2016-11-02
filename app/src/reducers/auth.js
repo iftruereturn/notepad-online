@@ -29,87 +29,87 @@ const auth = (state = initialState, action) => {
     case USER_SIGNUP_REQUEST:
       return {
         ...state,
-        username: action.username,
-        signUpRequested: action.signUpRequested,
+        username: action.payload.username,
+        signUpRequested: action.payload.signUpRequested,
       };
 
     case USER_SIGNUP_SUCCESS:
       return {
         ...state,
-        signUpRequested: action.signUpRequested,
-        errorMessage: action.errorMessage,
+        signUpRequested: action.payload.signUpRequested,
+        errorMessage: action.payload.errorMessage,
       };
 
     case USER_SIGNUP_FAIL:
       return {
         ...state,
-        signUpRequested: action.signUpRequested,
-        errorMessage: action.errorMessage,
+        signUpRequested: action.payload.signUpRequested,
+        errorMessage: action.payload.errorMessage,
       };
 
     case USER_LOGIN_REQUEST:
       return {
         ...state,
-        username: action.username,
-        logInRequested: action.logInRequested,
+        username: action.payload.username,
+        logInRequested: action.payload.logInRequested,
       };
 
     case USER_LOGIN_SUCCESS:
       return {
         ...state,
-        logInRequested: action.logInRequested,
-        loggedIn: action.loggedIn,
-        errorMessage: action.errorMessage,
+        logInRequested: action.payload.logInRequested,
+        loggedIn: action.payload.loggedIn,
+        errorMessage: action.payload.errorMessage,
       };
 
     case USER_LOGIN_FAIL:
       return {
         ...state,
-        logInRequested: action.logInRequested,
-        errorMessage: action.errorMessage,
+        logInRequested: action.payload.logInRequested,
+        errorMessage: action.payload.errorMessage,
       };
 
     case USER_LOGOUT_REQUEST:
       return {
         ...state,
-        logOutRequested: action.logOutRequested,
+        logOutRequested: action.payload.logOutRequested,
       };
 
     case USER_LOGOUT_SUCCESS:
       return {
         ...state,
-        logOutRequested: action.logOutRequested,
-        loggedIn: action.loggedIn,
-        errorMessage: action.errorMessage,
+        logOutRequested: action.payload.logOutRequested,
+        loggedIn: action.payload.loggedIn,
+        errorMessage: action.payload.errorMessage,
       };
 
     case USER_LOGOUT_FAIL:
       return {
         ...state,
-        logOutRequested: action.logOutRequested,
-        errorMessage: action.errorMessage,
+        logOutRequested: action.payload.logOutRequested,
+        errorMessage: action.payload.errorMessage,
       };
 
     case CHECK_IF_LOGGED_IN_REQUEST:
       return {
         ...state,
-        checkIfLoggedInRequested: action.checkIfLoggedInRequested,
+        checkIfLoggedInRequested: action.payload.checkIfLoggedInRequested,
       };
 
     case CHECK_IF_LOGGED_IN_SUCCESS:
       return {
         ...state,
-        username: action.username,
-        checkIfLoggedInRequested: action.checkIfLoggedInRequested,
-        loggedIn: action.loggedIn,
-        errorMessage: action.errorMessage,
+        username: action.payload.username,
+        checkIfLoggedInRequested: action.payload.checkIfLoggedInRequested,
+        loggedIn: action.payload.loggedIn,
+        errorMessage: action.payload.errorMessage,
       };
 
     case CHECK_IF_LOGGED_IN_FAIL:
       return {
         ...state,
-        checkIfLoggedInRequested: action.checkIfLoggedInRequested,
-        errorMessage: action.errorMessage,
+        checkIfLoggedInRequested: action.payload.checkIfLoggedInRequested,
+        errorMessage: action.payload.errorMessage,
       };
 
     default:

@@ -33,86 +33,86 @@ const note = (state = initialState, action) => {
     case FETCH_NOTE_REQUEST:
       return {
         ...state,
-        fetching: action.fetching,
+        fetching: action.payload.fetching,
       };
 
     case FETCH_NOTE_SUCCESS:
       return {
         ...state,
-        name: action.note.name,
-        value: action.note.value,
-        createdAt: new Date(action.note.createdAt).toLocaleString(),
-        updatedAt: new Date(action.note.updatedAt).toLocaleString(),
-        tags: action.note.tags.join(', '),
-        owner: action.note.owner,
-        isSecret: action.note.isSecret,
-        fetching: action.fetching,
+        name: action.payload.note.name,
+        value: action.payload.note.value,
+        createdAt: new Date(action.payload.note.createdAt).toLocaleString(),
+        updatedAt: new Date(action.payload.note.updatedAt).toLocaleString(),
+        tags: action.payload.note.tags.join(', '),
+        owner: action.payload.note.owner,
+        isSecret: action.payload.note.isSecret,
+        fetching: action.payload.fetching,
       };
 
     case FETCH_NOTE_FAIL:
       return {
         ...state,
-        fetching: action.fetching,
+        fetching: action.payload.fetching,
       };
 
     case SAVE_NOTE_TO_SERVER_REQUEST:
       return {
         ...state,
-        saving: action.saving,
+        saving: action.payload.saving,
       };
 
     case SAVE_NOTE_TO_SERVER_SUCCESS:
       return {
         ...state,
-        saving: action.saving,
+        saving: action.payload.saving,
       };
 
     case SAVE_NOTE_TO_SERVER_FAIL:
       return {
         ...state,
-        saving: action.saving,
+        saving: action.payload.saving,
       };
 
     case CHANGE_NOTE_NAME:
       return {
         ...state,
-        name: action.name,
+        name: action.payload.name,
       };
 
     case CHANGE_NOTE_VALUE:
       return {
         ...state,
-        value: action.value,
+        value: action.payload.value,
       };
 
     case CHANGE_NOTE_TAGS:
       return {
         ...state,
-        tags: action.tags,
+        tags: action.payload.tags,
       };
 
     case CHANGE_NOTE_IS_SECRET:
       return {
         ...state,
-        isSecret: action.isSecret,
+        isSecret: action.payload.isSecret,
       };
 
     case DELETE_THIS_NOTE_REQUEST:
       return {
         ...state,
-        deleting: action.deleting,
+        deleting: action.payload.deleting,
       };
 
     case DELETE_THIS_NOTE_SUCCESS:
       return {
         ...state,
-        deleting: action.deleting,
+        deleting: action.payload.deleting,
       };
 
     case DELETE_THIS_NOTE_FAIL:
       return {
         ...state,
-        deleting: action.deleting,
+        deleting: action.payload.deleting,
       };
 
     default:
