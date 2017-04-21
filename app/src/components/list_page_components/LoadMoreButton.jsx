@@ -8,12 +8,12 @@ const LoadMoreButton = ({ loadMoreNotes, loadingMoreNotes }) => (
       >
         <i className="fa fa-refresh fa-spin fa-lg" />
       </div> :
-        <button
-          onClick={() => loadMoreNotes()}
-          className="add load-more"
-        >
-          <i className="fa fa-refresh fa-lg" />&nbsp;Load More
-        </button>
+      <button
+        onClick={() => loadMoreNotes()}
+        className="add load-more"
+      >
+        <i className="fa fa-refresh fa-lg" />&nbsp;Load More
+      </button>
     }
 
   </div>

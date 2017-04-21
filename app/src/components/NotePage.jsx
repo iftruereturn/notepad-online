@@ -47,10 +47,10 @@ class NotePage extends React.Component {
                 <i className="fa fa-refresh fa-spin fa-lg" />
                 &nbsp;deleting...
               </span> :
-                <span>
-                  <i className="fa fa-trash-o fa-lg" />
-                  &nbsp;Delete note
-                </span>
+              <span>
+                <i className="fa fa-trash-o fa-lg" />
+                &nbsp;Delete note
+              </span>
             }
           </button>
           <button className="save" onClick={() => saveNoteToServer(noteId)}>
@@ -59,10 +59,10 @@ class NotePage extends React.Component {
                 <i className="fa fa-refresh fa-spin fa-lg" />
                 &nbsp;saving...
               </span> :
-                <span>
-                  <i className="fa fa-floppy-o fa-lg" />
-                  &nbsp;Save note
-                </span>
+              <span>
+                <i className="fa fa-floppy-o fa-lg" />
+                &nbsp;Save note
+              </span>
             }
           </button>
         </div>

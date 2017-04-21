@@ -51,49 +51,49 @@ class AuthPanel extends React.Component {
     const signUpMarkup = (
       <div>
         { signUpRequested ? <Loader text="signing up" /> :
-          <div>
-            <h2>Sign up</h2>
-            <label className="auth-container-label" htmlFor="signup-username">
-              Username:
-            </label>
-            <input
-              id="signup-username"
-              type="text"
-              ref={node => { this.usernameSignUp = node; }}
-              onChange={() => { this.registerCheck(); }}
-              onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
-            />
-            <label className="auth-container-label" htmlFor="signup-password">
-              Password:
-            </label>
-            <input
-              id="signup-password"
-              type="password"
-              ref={node => { this.passwordSignUp = node; }}
-              onChange={() => { this.registerCheck(); }}
-              onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
-            />
-            <label className="auth-container-label" htmlFor="signup-repeat-password">
-              Repeat password:
-            </label>
-            <input
-              id="signup-repeat-password"
-              type="password"
-              ref={node => { this.repeatedPasswordSignUp = node; }}
-              onChange={() => { this.registerCheck(); }}
-              onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
-            />
-            <button
-              className="add"
-              ref={node => { this.registerButton = node; }}
-              onClick={() => { signUp(this.usernameSignUp.value, this.passwordSignUp.value); }}
-            >
-              <i className="fa fa-user-plus" />&nbsp;Sign Up
-            </button>
-            { errorMessage === 'Signup error' ?
-              <span className="auth-container-error">{errorMessage}</span> :
-            '' }
-          </div>
+        <div>
+          <h2>Sign up</h2>
+          <label className="auth-container-label" htmlFor="signup-username">
+            Username:
+          </label>
+          <input
+            id="signup-username"
+            type="text"
+            ref={node => { this.usernameSignUp = node; }}
+            onChange={() => { this.registerCheck(); }}
+            onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
+          />
+          <label className="auth-container-label" htmlFor="signup-password">
+            Password:
+          </label>
+          <input
+            id="signup-password"
+            type="password"
+            ref={node => { this.passwordSignUp = node; }}
+            onChange={() => { this.registerCheck(); }}
+            onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
+          />
+          <label className="auth-container-label" htmlFor="signup-repeat-password">
+            Repeat password:
+          </label>
+          <input
+            id="signup-repeat-password"
+            type="password"
+            ref={node => { this.repeatedPasswordSignUp = node; }}
+            onChange={() => { this.registerCheck(); }}
+            onKeyPress={(e) => { this.checkEnterKeyPressedSignup(e); }}
+          />
+          <button
+            className="add"
+            ref={node => { this.registerButton = node; }}
+            onClick={() => { signUp(this.usernameSignUp.value, this.passwordSignUp.value); }}
+          >
+            <i className="fa fa-user-plus" />&nbsp;Sign Up
+          </button>
+          { errorMessage === 'Signup error' ?
+            <span className="auth-container-error">{errorMessage}</span> :
+          '' }
+        </div>
         }
       </div>
     );
@@ -101,36 +101,36 @@ class AuthPanel extends React.Component {
     const logInMarkup = (
       <div>
         { logInRequested || checkIfLoggedInRequested ? <Loader text="logging in" /> :
-          <div>
-            <h2>Log In</h2>
-            <label className="auth-container-label" htmlFor="login-username">
-              Username:
-            </label>
-            <input
-              id="login-username"
-              type="text"
-              ref={node => { this.usernameLogIn = node; }}
-              onKeyPress={(e) => { this.checkEnterKeyPressedLogin(e); }}
-            />
-            <label className="auth-container-label" htmlFor="login-password">
-              Password:
-            </label>
-            <input
-              id="login-password"
-              type="password"
-              ref={node => { this.passwordLogIn = node; }}
-              onKeyPress={(e) => { this.checkEnterKeyPressedLogin(e); }}
-            />
-            <button
-              className="save"
-              onClick={() => { logIn(this.usernameLogIn.value, this.passwordLogIn.value); }}
-            >
-              <i className="fa fa-sign-in" />&nbsp;Log In
-            </button>
-            { errorMessage === 'Login error' ?
-              <span className="auth-container-error">{errorMessage}</span> :
-            '' }
-          </div>
+        <div>
+          <h2>Log In</h2>
+          <label className="auth-container-label" htmlFor="login-username">
+            Username:
+          </label>
+          <input
+            id="login-username"
+            type="text"
+            ref={node => { this.usernameLogIn = node; }}
+            onKeyPress={(e) => { this.checkEnterKeyPressedLogin(e); }}
+          />
+          <label className="auth-container-label" htmlFor="login-password">
+            Password:
+          </label>
+          <input
+            id="login-password"
+            type="password"
+            ref={node => { this.passwordLogIn = node; }}
+            onKeyPress={(e) => { this.checkEnterKeyPressedLogin(e); }}
+          />
+          <button
+            className="save"
+            onClick={() => { logIn(this.usernameLogIn.value, this.passwordLogIn.value); }}
+          >
+            <i className="fa fa-sign-in" />&nbsp;Log In
+          </button>
+          { errorMessage === 'Login error' ?
+            <span className="auth-container-error">{errorMessage}</span> :
+          '' }
+        </div>
         }
       </div>
     );
@@ -138,9 +138,9 @@ class AuthPanel extends React.Component {
     const logOutMarkup = (
       <div>
         { logOutRequested ? <Loader text="logging out" /> :
-          <div>
-            Already logged in as { username }
-          </div>
+        <div>
+          Already logged in as { username }
+        </div>
         }
       </div>
       );

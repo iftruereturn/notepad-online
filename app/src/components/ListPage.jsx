@@ -69,18 +69,18 @@ class ListPage extends React.Component {
 
         { (searching || creating) ?
             loader :
-              <div className="list-page-notes">
-                {notesToShow}
-              </div>
+            <div className="list-page-notes">
+              {notesToShow}
+            </div>
         }
 
         {
           (notesToShow.length === 0 || searching || creating) ?
             null :
-              <LoadMoreButton
-                loadMoreNotes={this.props.loadMoreNotes}
-                loadingMoreNotes={loadingMoreNotes}
-              />
+            <LoadMoreButton
+              loadMoreNotes={this.props.loadMoreNotes}
+              loadingMoreNotes={loadingMoreNotes}
+            />
         }
 
       </div>
